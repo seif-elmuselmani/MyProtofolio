@@ -68,7 +68,7 @@ export default function Contact() {
               lineHeight: 1.3
             }}
           >
-            سواء كنت تبحث عن تعيين مهندس Backend، بناء مشروع متكامل، أو تدريب تقني...
+            سواء كنت تبحث عن تعيين مهندس Full-Stack، بناء مشروع متكامل، أو تدريب تقني...
           </h1>
 
           <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', maxWidth: '750px', margin: '0 auto', lineHeight: 1.7 }}>
@@ -88,7 +88,7 @@ export default function Contact() {
           {/* Chip 1: Hiring */}
           <button
             type="button"
-            onClick={() => handlePersonaSelect('انضمام لفريق العمل كـ Backend Engineer')}
+            onClick={() => handlePersonaSelect('انضمام لفريق العمل كـ Full-Stack Engineer')}
             style={{
               backgroundColor: formData.subject.includes('انضمام') ? '#eff6ff' : '#ffffff',
               border: formData.subject.includes('انضمام') ? '2px solid #2563eb' : '1px solid #e2e8f0',
@@ -106,11 +106,11 @@ export default function Contact() {
                 <Briefcase size={20} />
               </div>
               <h4 style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-primary)', margin: 0 }}>
-                تضمين مهندس Backend
+                تضمين مهندس Full-Stack
               </h4>
             </div>
             <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
-              بحث عن مهندس متمرس لبناء وبناء أنظمة خلفية صلبة وعالية الأداء.
+              بحث عن مهندس متمرس لبناء وتطوير أنظمة متكاملة وحلول برمجية عالية الأداء.
             </p>
           </button>
 
