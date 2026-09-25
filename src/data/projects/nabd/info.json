@@ -9,6 +9,8 @@
   "liveUrl": "https://www.nabdhealth.me/",
   "githubBackendUrl": "https://github.com/Nabd-Health/Nabd-Backend",
   "githubFrontendUrl": "https://github.com/Nabd-Health/Nabd-Frontend",
+  "presentationUrl": "https://github.com/seif-elmuselmani/Nabd-Presentation",
+  "presentationFile": "/assets/projects/nabd/nabd-presentation.pptx",
   "backendTech": [".NET 8", "C# 12", "Clean Architecture", "EF Core", "SQL Server", "PostgreSQL", "Mistral AI"],
   "frontendTech": ["React 18", "Vite 5", "Tailwind CSS", "Zustand"],
   "coverImage": "/assets/projects/nabd/nabd.png",

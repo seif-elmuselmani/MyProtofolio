@@ -209,6 +209,8 @@ export const webProjects = [
     liveUrl: "https://www.nabdhealth.me/",
     githubUrl: "https://github.com/Nabd-Health/Nabd-Backend",
     githubFrontendUrl: "https://github.com/Nabd-Health/Nabd-Frontend",
+    presentationUrl: "https://github.com/seif-elmuselmani/Nabd-Presentation",
+    presentationFile: "/assets/projects/nabd/nabd-presentation.pptx",
     caseStudy: {
       client: "كلية الحاسبات والمعلومات - جامعة الزقازيق",
       challenge: "قيادة فريق من 6 مهندسين برمجيات لإنجاز دورة حياة النظام بالكامل (SDLC) مع ربط نماذج الـ AI ونظم قواعد البيانات الهجينة (SQL و NoSQL) في منظومة آمنة وسلسة.",
@@ -443,7 +445,9 @@ export const presentationDecks = [
     tools: ["Figma", "Data Flow Visuals", "System Diagrams"],
     description: "برزنتيشن مناقشة مشروع التخرج أمام لجنة أساتذة جامعة الزقازيق لشرح المنظومة الذكية وهيكلة البيانات والذكاء الاصطناعي.",
     coverImage: "/assets/profile/seif-defense-formal.jpg",
-    impact: "الحصول على تقدير ممتاز (A+) في مشروع التخرج وإشادة لجنة التحكيم الأكاديمية"
+    impact: "الحصول على تقدير ممتاز (A+) في مشروع التخرج وإشادة لجنة التحكيم الأكاديمية",
+    presentationUrl: "https://github.com/seif-elmuselmani/Nabd-Presentation",
+    presentationFile: "/assets/projects/nabd/nabd-presentation.pptx"
   },
   {
     id: "ischool-coding-sessions",
