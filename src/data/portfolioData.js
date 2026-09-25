@@ -7,7 +7,7 @@ export const personalInfo = {
   tagline: "خريج حاسبات ومعلومات جامعة الزقازيق (جيد جداً) • المركز الأول على مستوى الجمهورية في مبادرة رواد مصر الرقمية (DEPI) بمشروع 'شريان' • قائد مشروع تخرج 'نبض' للرعاية الصحية والذكاء الاصطناعي (A+)",
   bioAr: "مهندس برمجيات متخصص في هندسة وبناء الأنظمة الخلفية (Backend Engineering) السريعة وعالية الأداء بالاعتماد على منظومة .NET (C#, ASP.NET Core, EF Core, Clean Architecture, SQL Server) و MEAN Stack (Node.js, Express, Angular, MongoDB). أجمع بين المعمارية البرمجية الصلبة، وتكامل نماذج الذكاء الاصطناعي، ومهارات القيادة والتواصل كمدرب تقني رئيسي لمبادرة 'براعم مصر الرقمية' بالتعاون مع iSchool ووزارة الاتصالات.",
   bioEn: "Computer Science graduate from Zagazig University (Very Good - GPA 3.11) specializing in the .NET Ecosystem and MEAN Stack. Part of the backend engineering team for 'Shuryan', which won 1st Place Nationwide in DEPI (MCIT), and Team Leader of AI Healthcare Ecosystem 'NABD' (Grade A+). Verified 5-star freelance delivery and tech instructor at iSchool.",
-  location: "الزقازيق، محافظة الشرقية، مصر (متاح للعمل Remote / Hybrid / On-site)",
+  location: "مصر (توقيت القاهرة GMT+3 • العمل عن بُعد واستشارات الأنظمة المتقدمة)",
   email: "eldenseif645@gmail.com",
   phone: "+20 122 381 7860",
   whatsapp: "https://wa.me/201223817860",
