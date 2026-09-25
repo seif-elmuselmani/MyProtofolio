@@ -439,3 +439,116 @@ body {
   }
 }
 
+/* ==========================================================================
+   Bento Grid Enhanced UI/UX Design System
+   ========================================================================== */
+
+.bento-card-flagship {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  border: 1.5px solid #dbeafe;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+.bento-card-flagship::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa);
+  border-radius: 4px 4px 0 0;
+}
+.bento-card-flagship:hover {
+  border-color: #93c5fd;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 35px -10px rgba(37, 99, 235, 0.12), 0 8px 12px -4px rgba(37, 99, 235, 0.06);
+}
+
+.bento-card-prestige {
+  background: linear-gradient(145deg, #fffdf5 0%, #fffbeb 100%);
+  border: 1.5px solid #fef3c7;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+.bento-card-prestige::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #d97706, #f59e0b, #fbbf24);
+  border-radius: 4px 4px 0 0;
+}
+.bento-card-prestige:hover {
+  border-color: #fde68a;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 35px -10px rgba(217, 119, 6, 0.14), 0 8px 12px -4px rgba(217, 119, 6, 0.06);
+}
+
+.bento-card-emerald {
+  background: linear-gradient(145deg, #f4fbf7 0%, #ecfdf5 100%);
+  border: 1.5px solid #d1fae5;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+.bento-card-emerald::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #059669, #10b981, #34d399);
+  border-radius: 4px 4px 0 0;
+}
+.bento-card-emerald:hover {
+  border-color: #a7f3d0;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 35px -10px rgba(5, 150, 105, 0.14), 0 8px 12px -4px rgba(5, 150, 105, 0.06);
+}
+
+.bento-card-sapphire {
+  background: linear-gradient(145deg, #ffffff 0%, #f0fdf4 50%, #f8fafc 100%);
+  border: 1.5px solid #cbd5e1;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+.bento-card-sapphire::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #1e40af, #2563eb, #3b82f6);
+  border-radius: 4px 4px 0 0;
+}
+.bento-card-sapphire:hover {
+  border-color: #94a3b8;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 35px -10px rgba(30, 64, 175, 0.12), 0 8px 12px -4px rgba(30, 64, 175, 0.06);
+}
+
+.bento-badge-interactive {
+  transition: var(--transition-smooth);
+}
+.bento-badge-interactive:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.bento-metric-number {
+  font-family: var(--font-latin);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--brand-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
