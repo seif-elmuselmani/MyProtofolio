@@ -12,8 +12,21 @@
   "backendTech": [".NET 8", "C# 12", "Clean Architecture", "EF Core", "SQL Server", "PostgreSQL", "Mistral AI"],
   "frontendTech": ["React 18", "Vite 5", "Tailwind CSS", "Zustand"],
   "coverImage": "/assets/projects/nabd/nabd.png",
-  "images": [
-    "/assets/projects/nabd/nabd.png",
-    "/assets/profile/seif-defense-formal.jpg"
-  ]
+  "galleries": {
+    "doctor": [
+      "/assets/projects/nabd/screens/doctor/screencapture-localhost-5173-doctor-dashboard-2026-01-12-07_34_42.png",
+      "/assets/projects/nabd/screens/doctor/screencapture-localhost-5173-doctor-appointments-2026-01-12-07_35_41.png",
+      "/assets/projects/nabd/screens/doctor/screencapture-localhost-5173-doctor-session-apt1-2026-01-12-07_38_00.png",
+      "/assets/projects/nabd/screens/doctor/screencapture-localhost-5173-doctor-patients-2026-01-12-07_41_15.png"
+    ],
+    "patient": [
+      "/assets/projects/nabd/screens/patient/screencapture-localhost-5173-patient-search-2026-01-13-23_40_32.png",
+      "/assets/projects/nabd/screens/patient/screencapture-localhost-5173-patient-appointments-2026-01-13-23_40_51.png",
+      "/assets/projects/nabd/screens/patient/screencapture-localhost-5173-patient-prescriptions-2026-01-13-23_41_03.png"
+    ],
+    "verifier": [
+      "/assets/projects/nabd/screens/verifier/screencapture-localhost-5173-verifier-statistics-2026-01-11-07_14_16.png",
+      "/assets/projects/nabd/screens/verifier/screencapture-localhost-5173-verifier-doctors-2026-01-11-07_14_46.png"
+    ]
+  }
 }
