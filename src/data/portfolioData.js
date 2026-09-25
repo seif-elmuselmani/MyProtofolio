@@ -206,8 +206,9 @@ export const webProjects = [
     badge: "🩺 Grade A+ Graduation Project",
     tags: [".NET 8", "AI Diagnostics", "Unified Medical Passport", "SQL Server", "MongoDB", "Team Leadership"],
     summary: "منظومة رعاية صحية ذكية موحدة للمرضى والعيادات تعتمد على السجل الطبي الموحد (Unified Medical Passport) ودمج نماذج الذكاء الاصطناعي التشخيصية للتنبؤ بالمؤشرات الحيوية ومساندة الأطباء في اتخاذ القرار.",
-    liveUrl: "https://seif-elmuselmani-portfolio.netlify.app/",
-    githubUrl: "https://github.com/seif-elmuselmani",
+    liveUrl: "https://www.nabdhealth.me/",
+    githubUrl: "https://github.com/Nabd-Health/Nabd-Backend",
+    githubFrontendUrl: "https://github.com/Nabd-Health/Nabd-Frontend",
     caseStudy: {
       client: "كلية الحاسبات والمعلومات - جامعة الزقازيق",
       challenge: "قيادة فريق من 6 مهندسين برمجيات لإنجاز دورة حياة النظام بالكامل (SDLC) مع ربط نماذج الـ AI ونظم قواعد البيانات الهجينة (SQL و NoSQL) في منظومة آمنة وسلسة.",
