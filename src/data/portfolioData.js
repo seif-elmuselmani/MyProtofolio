@@ -202,15 +202,31 @@ export const webProjects = [
     category: "ai-health",
     featured: true,
     year: "2026",
-    image: "/assets/profile/seif-defense-formal.jpg",
+    image: "/assets/projects/nabd/screens/doctor/screencapture-localhost-5173-doctor-dashboard-2026-01-12-07_34_42.png",
     badge: "🩺 Grade A+ Graduation Project",
     tags: [".NET 8", "AI Diagnostics", "Unified Medical Passport", "SQL Server", "MongoDB", "Team Leadership"],
     summary: "منظومة رعاية صحية ذكية موحدة للمرضى والعيادات تعتمد على السجل الطبي الموحد (Unified Medical Passport) ودمج نماذج الذكاء الاصطناعي التشخيصية للتنبؤ بالمؤشرات الحيوية ومساندة الأطباء في اتخاذ القرار.",
     liveUrl: "https://www.nabdhealth.me/",
-    githubUrl: "https://github.com/Nabd-Health/Nabd-Backend",
-    githubFrontendUrl: "https://github.com/Nabd-Health/Nabd-Frontend",
+    githubUrl: "https://github.com/Nabd-Health",
     presentationUrl: "https://github.com/seif-elmuselmani/Nabd-Presentation",
     presentationFile: "/assets/projects/nabd/nabd-presentation.pptx",
+    galleries: {
+      doctor: [
+        "/assets/projects/nabd/screens/doctor/screencapture-localhost-5173-doctor-dashboard-2026-01-12-07_34_42.png",
+        "/assets/projects/nabd/screens/doctor/screencapture-localhost-5173-doctor-appointments-2026-01-12-07_35_41.png",
+        "/assets/projects/nabd/screens/doctor/screencapture-localhost-5173-doctor-session-apt1-2026-01-12-07_38_00.png",
+        "/assets/projects/nabd/screens/doctor/screencapture-localhost-5173-doctor-patients-2026-01-12-07_41_15.png"
+      ],
+      patient: [
+        "/assets/projects/nabd/screens/patient/screencapture-localhost-5173-patient-search-2026-01-13-23_40_32.png",
+        "/assets/projects/nabd/screens/patient/screencapture-localhost-5173-patient-appointments-2026-01-13-23_40_51.png",
+        "/assets/projects/nabd/screens/patient/screencapture-localhost-5173-patient-prescriptions-2026-01-13-23_41_03.png"
+      ],
+      verifier: [
+        "/assets/projects/nabd/screens/verifier/screencapture-localhost-5173-verifier-statistics-2026-01-11-07_14_16.png",
+        "/assets/projects/nabd/screens/verifier/screencapture-localhost-5173-verifier-doctors-2026-01-11-07_14_46.png"
+      ]
+    },
     caseStudy: {
       client: "كلية الحاسبات والمعلومات - جامعة الزقازيق",
       challenge: "قيادة فريق من 6 مهندسين برمجيات لإنجاز دورة حياة النظام بالكامل (SDLC) مع ربط نماذج الـ AI ونظم قواعد البيانات الهجينة (SQL و NoSQL) في منظومة آمنة وسلسة.",
