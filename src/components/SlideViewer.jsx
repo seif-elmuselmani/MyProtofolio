@@ -11,7 +11,6 @@ import {
 } from 'lucide-react';
 
 export default function SlideViewer({ deck, onClose }) {
-  // Dynamic Slide Generation based on deck's explicit slidesFolder or slides array
   const slides = (deck.slides && deck.slides.length > 0)
     ? deck.slides 
     : (deck.slidesFolder && deck.slidesCount)
@@ -28,11 +27,15 @@ export default function SlideViewer({ deck, onClose }) {
   const currentSlide = slides[currentIndex];
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % slides.length);
+    if (slides.length > 0) {
+      setCurrentIndex((prev) => (prev + 1) % slides.length);
+    }
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+    if (slides.length > 0) {
+      setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+    }
   };
 
   useEffect(() => {
@@ -43,82 +46,80 @@ export default function SlideViewer({ deck, onClose }) {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [slides.length]);
 
   return (
     <div 
-      className="slide-viewer-container"
+      className="corporate-card slide-viewer-container"
       style={{
         position: isFullscreen ? 'fixed' : 'relative',
         inset: isFullscreen ? 0 : 'auto',
         zIndex: isFullscreen ? 99999 : 1,
-        backgroundColor: '#0f172a',
+        backgroundColor: '#ffffff',
         borderRadius: isFullscreen ? 0 : '20px',
         overflow: 'hidden',
-        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4)',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
+        boxShadow: isFullscreen ? 'none' : 'var(--shadow-modal)',
+        border: '1px solid #e2e8f0',
         display: 'flex',
         flexDirection: 'column'
       }}
     >
-      {/* Header Bar */}
+      {/* Light Enterprise Header Bar */}
       <div 
         style={{
-          padding: '1rem 1.5rem',
-          backgroundColor: '#1e293b',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+          padding: '1.1rem 1.6rem',
+          backgroundColor: '#ffffff',
+          borderBottom: '1px solid #e2e8f0',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          gap: '0.75rem'
+          gap: '0.85rem'
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
           <div 
             style={{
-              padding: '0.45rem',
-              borderRadius: '10px',
-              backgroundColor: 'rgba(37, 99, 235, 0.15)',
-              color: '#60a5fa',
+              width: '42px',
+              height: '42px',
+              borderRadius: '12px',
+              backgroundColor: '#eff6ff',
+              border: '1px solid #bfdbfe',
+              color: '#2563eb',
               display: 'flex',
-              alignItems: 'center'
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 2px 6px rgba(37,99,235,0.08)'
             }}
           >
-            <Presentation size={20} />
+            <Presentation size={22} />
           </div>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span className="pill-badge pill-gold" style={{ fontSize: '0.75rem', padding: '0.15rem 0.6rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', marginBottom: '0.15rem', flexWrap: 'wrap' }}>
+              <span className="pill-badge pill-gold" style={{ fontSize: '0.78rem' }}>
                 {deck.category || 'Graduation Defense Deck'}
               </span>
-              <span style={{ fontSize: '0.8rem', color: '#94a3b8', fontWeight: '600' }}>
+              <span className="pill-badge pill-slate" style={{ fontSize: '0.78rem' }}>
                 الشريحة {currentIndex + 1} من {slides.length}
               </span>
             </div>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#ffffff', margin: '0.2rem 0 0' }}>
+            <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: 'var(--text-primary)', margin: 0, lineHeight: 1.3 }}>
               {deck.title}
             </h3>
           </div>
         </div>
 
         {/* Action Controls */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
           
           <button
             onClick={() => setIsFullscreen(!isFullscreen)}
+            className="btn-secondary"
             style={{
-              backgroundColor: 'rgba(255,255,255,0.08)',
-              border: 'none',
-              color: '#ffffff',
-              padding: '0.5rem 0.85rem',
-              borderRadius: '8px',
-              fontSize: '0.8rem',
-              fontWeight: '700',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.35rem'
+              padding: '0.45rem 0.9rem',
+              fontSize: '0.82rem',
+              gap: '0.35rem',
+              borderRadius: '10px'
             }}
             title={isFullscreen ? 'الخروج من العرض الكامل' : 'عرض بملء الشاشة'}
           >
@@ -130,150 +131,176 @@ export default function SlideViewer({ deck, onClose }) {
             <button
               onClick={onClose}
               style={{
-                backgroundColor: 'rgba(239, 68, 68, 0.15)',
-                border: '1px solid rgba(239, 68, 68, 0.3)',
-                color: '#f87171',
+                backgroundColor: '#fef2f2',
+                border: '1px solid #fecaca',
+                color: '#ef4444',
                 padding: '0.5rem',
-                borderRadius: '8px',
+                borderRadius: '10px',
                 cursor: 'pointer',
                 display: 'flex',
-                alignItems: 'center'
+                alignItems: 'center',
+                transition: 'var(--transition-smooth)'
               }}
               title="إغلاق العارض"
             >
-              <X size={16} />
+              <X size={18} />
             </button>
           )}
 
         </div>
       </div>
 
-      {/* Main Slide Display Stage */}
+      {/* Light Canvas Slide Display Stage */}
       <div 
         style={{
           position: 'relative',
           width: '100%',
           flexGrow: 1,
-          minHeight: isFullscreen ? '75vh' : '480px',
-          backgroundColor: '#090d16',
+          minHeight: isFullscreen ? '78vh' : '500px',
+          backgroundColor: '#f8fafc',
+          backgroundImage: 'radial-gradient(#e2e8f0 1px, transparent 1px)',
+          backgroundSize: '24px 24px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '1.5rem',
+          padding: '1.75rem',
           overflow: 'hidden'
         }}
       >
         {/* Previous Button */}
-        <button
-          onClick={handlePrev}
-          style={{
-            position: 'absolute',
-            right: '1.25rem',
-            zIndex: 10,
-            backgroundColor: 'rgba(15, 23, 42, 0.85)',
-            backdropFilter: 'blur(8px)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            color: '#ffffff',
-            padding: '0.75rem',
-            borderRadius: '9999px',
-            cursor: 'pointer',
-            boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
-            transition: 'all 0.2s ease'
-          }}
-          title="الشريحة السابقة (السهم الأيمن)"
-        >
-          <ChevronRight size={24} />
-        </button>
-
-        {/* Current Slide Image */}
-        <div style={{ position: 'relative', maxWidth: '100%', maxHeight: '100%', display: 'flex', justifyContent: 'center' }}>
-          <img 
-            src={currentSlide.image} 
-            alt={`Slide ${currentIndex + 1}`}
+        {slides.length > 1 && (
+          <button
+            onClick={handlePrev}
             style={{
-              maxWidth: '100%',
-              maxHeight: isFullscreen ? '78vh' : '450px',
-              objectFit: 'contain',
-              borderRadius: '12px',
-              boxShadow: '0 15px 35px rgba(0, 0, 0, 0.6)'
-            }}
-          />
-        </div>
-
-        {/* Next Button */}
-        <button
-          onClick={handleNext}
-          style={{
-            position: 'absolute',
-            left: '1.25rem',
-            zIndex: 10,
-            backgroundColor: 'rgba(15, 23, 42, 0.85)',
-            backdropFilter: 'blur(8px)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            color: '#ffffff',
-            padding: '0.75rem',
-            borderRadius: '9999px',
-            cursor: 'pointer',
-            boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
-            transition: 'all 0.2s ease'
-          }}
-          title="الشريحة التالية (السهم الأيسر)"
-        >
-          <ChevronLeft size={24} />
-        </button>
-      </div>
-
-      {/* Thumbnails Row Bar */}
-      <div 
-        style={{
-          padding: '0.85rem 1.5rem',
-          backgroundColor: '#0f172a',
-          borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-          display: 'flex',
-          gap: '0.6rem',
-          overflowX: 'auto',
-          alignItems: 'center'
-        }}
-      >
-        {slides.map((s, idx) => (
-          <div
-            key={idx}
-            onClick={() => setCurrentIndex(idx)}
-            style={{
-              position: 'relative',
-              flexShrink: 0,
+              position: 'absolute',
+              right: '1.25rem',
+              zIndex: 10,
+              backgroundColor: '#ffffff',
+              border: '1px solid #cbd5e1',
+              color: 'var(--text-primary)',
+              padding: '0.75rem',
+              borderRadius: '9999px',
               cursor: 'pointer',
-              borderRadius: '8px',
-              overflow: 'hidden',
-              border: currentIndex === idx ? '2px solid #3b82f6' : '2px solid transparent',
-              opacity: currentIndex === idx ? 1 : 0.6,
-              transition: 'all 0.2s ease',
-              boxShadow: currentIndex === idx ? '0 0 12px rgba(59, 130, 246, 0.5)' : 'none'
+              boxShadow: '0 4px 12px rgba(15, 23, 42, 0.08)',
+              transition: 'var(--transition-smooth)'
+            }}
+            title="الشريحة السابقة (السهم الأيمن)"
+          >
+            <ChevronRight size={22} color="var(--brand-primary)" />
+          </button>
+        )}
+
+        {/* Current Slide Image with Clean Surface Frame */}
+        {currentSlide ? (
+          <div 
+            style={{ 
+              position: 'relative', 
+              maxWidth: '100%', 
+              maxHeight: '100%', 
+              display: 'flex', 
+              justifyContent: 'center',
+              backgroundColor: '#ffffff',
+              padding: '0.5rem',
+              borderRadius: '16px',
+              border: '1px solid #e2e8f0',
+              boxShadow: '0 12px 30px rgba(15, 23, 42, 0.08)'
             }}
           >
             <img 
-              src={s.image} 
-              alt={`thumb-${idx}`} 
-              style={{ width: '75px', height: '48px', objectFit: 'cover' }}
+              src={currentSlide.image} 
+              alt={`Slide ${currentIndex + 1}`}
+              style={{
+                maxWidth: '100%',
+                maxHeight: isFullscreen ? '80vh' : '460px',
+                objectFit: 'contain',
+                borderRadius: '12px'
+              }}
             />
-            <span 
-              style={{ 
-                position: 'absolute', 
-                bottom: 2, 
-                right: 2, 
-                backgroundColor: 'rgba(0,0,0,0.75)', 
-                color: '#fff', 
-                fontSize: '0.65rem', 
-                padding: '0.1rem 0.35rem', 
-                borderRadius: '4px',
-                fontWeight: '700'
+          </div>
+        ) : (
+          <div style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
+            لا توجد شرائح متاحة في هذا العرض
+          </div>
+        )}
+
+        {/* Next Button */}
+        {slides.length > 1 && (
+          <button
+            onClick={handleNext}
+            style={{
+              position: 'absolute',
+              left: '1.25rem',
+              zIndex: 10,
+              backgroundColor: '#ffffff',
+              border: '1px solid #cbd5e1',
+              color: 'var(--text-primary)',
+              padding: '0.75rem',
+              borderRadius: '9999px',
+              cursor: 'pointer',
+              boxShadow: '0 4px 12px rgba(15, 23, 42, 0.08)',
+              transition: 'var(--transition-smooth)'
+            }}
+            title="الشريحة التالية (السهم الأيسر)"
+          >
+            <ChevronLeft size={22} color="var(--brand-primary)" />
+          </button>
+        )}
+      </div>
+
+      {/* Light Enterprise Thumbnails Strip */}
+      {slides.length > 1 && (
+        <div 
+          style={{
+            padding: '0.85rem 1.5rem',
+            backgroundColor: '#ffffff',
+            borderTop: '1px solid #e2e8f0',
+            display: 'flex',
+            gap: '0.65rem',
+            overflowX: 'auto',
+            alignItems: 'center'
+          }}
+        >
+          {slides.map((s, idx) => (
+            <div
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              style={{
+                position: 'relative',
+                flexShrink: 0,
+                cursor: 'pointer',
+                borderRadius: '10px',
+                overflow: 'hidden',
+                border: currentIndex === idx ? '2px solid #2563eb' : '1px solid #e2e8f0',
+                opacity: currentIndex === idx ? 1 : 0.65,
+                transition: 'var(--transition-smooth)',
+                boxShadow: currentIndex === idx ? '0 4px 12px rgba(37,99,235,0.2)' : 'none',
+                backgroundColor: '#f8fafc'
               }}
             >
-              {idx + 1}
-            </span>
-          </div>
-        ))}
-      </div>
+              <img 
+                src={s.image} 
+                alt={`thumb-${idx}`} 
+                style={{ width: '75px', height: '48px', objectFit: 'cover' }}
+              />
+              <span 
+                style={{ 
+                  position: 'absolute', 
+                  bottom: 2, 
+                  right: 2, 
+                  backgroundColor: currentIndex === idx ? '#2563eb' : 'rgba(15, 23, 42, 0.75)', 
+                  color: '#ffffff', 
+                  fontSize: '0.65rem', 
+                  padding: '0.1rem 0.35rem', 
+                  borderRadius: '4px',
+                  fontWeight: '700'
+                }}
+              >
+                {idx + 1}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
 
     </div>
   );
