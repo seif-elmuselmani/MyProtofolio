@@ -1,0 +1,19 @@
+{
+  "id": "nabd",
+  "titleAr": "مشروع 'نبض' (NABD - Smart Healthcare Platform)",
+  "titleEn": "NABD Smart Healthcare Platform & AI Diagnostics",
+  "role": "Team Leader & Backend Architect (Led 6 Software Engineers)",
+  "grade": "Grade A+ Graduation Project (Zagazig University)",
+  "category": "ai-health",
+  "year": "2026",
+  "liveUrl": "https://www.nabdhealth.me/",
+  "githubBackendUrl": "https://github.com/Nabd-Health/Nabd-Backend",
+  "githubFrontendUrl": "https://github.com/Nabd-Health/Nabd-Frontend",
+  "backendTech": [".NET 8", "C# 12", "Clean Architecture", "EF Core", "SQL Server", "PostgreSQL", "Mistral AI"],
+  "frontendTech": ["React 18", "Vite 5", "Tailwind CSS", "Zustand"],
+  "coverImage": "/assets/projects/nabd/nabd.png",
+  "images": [
+    "/assets/projects/nabd/nabd.png",
+    "/assets/profile/seif-defense-formal.jpg"
+  ]
+}
