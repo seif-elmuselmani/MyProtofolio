@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 32" width="160" height="32">
+  <rect x="0" y="0" width="32" height="32" rx="8" fill="#1e3a8a"/>
+  <path d="M8 20 L16 8 L24 20 Z" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round"/>
+  <circle cx="16" cy="15" r="3" fill="#f59e0b"/>
+  <text x="40" y="14" font-family="'Readex Pro', Arial, sans-serif" font-weight="800" font-size="11" fill="#0f172a">وزارة الاتصالات</text>
+  <text x="40" y="26" font-family="'Readex Pro', Arial, sans-serif" font-weight="600" font-size="9" fill="#475569">وتكنولوجيا المعلومات</text>
+</svg>
