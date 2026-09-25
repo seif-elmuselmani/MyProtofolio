@@ -1,0 +1,19 @@
+{
+  "id": "shuryan",
+  "titleAr": "مشروع 'شريان' (Shuryan)",
+  "titleEn": "Shuryan Blood Donation Emergency Network",
+  "role": "Backend Engineer (.NET & Clean Architecture)",
+  "award": "🏆 1st Place Republic Winner (DEPI - Ministry of Communications MCIT)",
+  "category": "backend",
+  "year": "2025",
+  "liveUrl": "https://seif-elmuselmani-portfolio.netlify.app/",
+  "githubBackendUrl": "https://github.com/seif-elmuselmani",
+  "backendTech": ["ASP.NET Core Web API", "C#", "Entity Framework Core", "Clean Architecture", "SQL Server", "SOLID", "JWT Auth"],
+  "coverImage": "/assets/profile/seif-with-dr-hesham-farouk-depi.png",
+  "highlights": [
+    "الفوز بالمركز الأول على مستوى الجمهورية في مسار Full Stack .NET (DEPI)",
+    "تكريم رسمي بحضور مستشار وزير الاتصالات للتطوير التكنولوجي د. هشام فاروق",
+    "تطبيق مبادئ SOLID و Clean Architecture لضمان التوسع والربط الفوري مع غرف الطوارئ",
+    "معمارية قواعد بيانات SQL Server عالية الكفاءة مع Indexing دقيق للجداول الحرجة"
+  ]
+}

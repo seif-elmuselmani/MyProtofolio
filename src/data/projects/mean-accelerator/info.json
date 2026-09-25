@@ -1,0 +1,13 @@
+{
+  "id": "mean-accelerator",
+  "titleAr": "منظومة إدارة المحتوى والخدمات (NTI Accelerator)",
+  "titleEn": "NTI Enterprise MEAN Stack Accelerator",
+  "role": "MEAN Stack Developer (Angular & Node.js)",
+  "badge": "⚡ 210+ Hours NTI Training Program",
+  "category": "mean",
+  "year": "2026",
+  "liveUrl": "https://seif-elmuselmani-portfolio.netlify.app/",
+  "githubUrl": "https://github.com/seif-elmuselmani",
+  "techStack": ["Angular", "Node.js", "Express.js", "MongoDB", "Mongoose", "JWT Auth"],
+  "coverImage": "/assets/testimonials/testimonial-sherif-adel-nti.png"
+}

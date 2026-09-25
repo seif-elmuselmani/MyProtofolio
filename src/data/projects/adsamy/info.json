@@ -1,0 +1,13 @@
+{
+  "id": "adsamy",
+  "titleAr": "بوابة إعلانات Adsamy الرقمية",
+  "titleEn": "Adsamy Enterprise Marketing & Operations Portal",
+  "role": "Full Stack / Frontend Developer",
+  "badge": "🚀 Enterprise Marketing Portal",
+  "category": "mean",
+  "year": "2026",
+  "liveUrl": "https://adsamy.vercel.app",
+  "githubUrl": "https://github.com/seif-elmuselmani",
+  "techStack": ["React.js", "Vite", "Modern UI/UX", "Tailwind CSS", "Responsive Design"],
+  "coverImage": "/assets/profile/banner-linkedin-header.png"
+}
