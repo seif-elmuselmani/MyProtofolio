@@ -1,9 +1,9 @@
 export const personalInfo = {
   nameAr: "سيف الدين محمد",
   nameEn: "Seif Elden Mohamed",
-  titleEn: "Backend Software Engineer (.NET & MEAN Stack)",
-  roleAr: "مهندس برمجيات Backend (.NET & Node.js) | الحائز على المركز الأول جمهورية (DEPI) | مدرب برمجة في iSchool",
-  roleEn: "Backend Software Engineer (.NET & MEAN Stack) | 1st Place Winner Nationwide (DEPI) | Technical Coding Instructor at iSchool",
+  titleEn: "Full-Stack Software Engineer (.NET & MEAN Stack)",
+  roleAr: "مهندس برمجيات Full-Stack (.NET & MEAN Stack) | الحائز على المركز الأول جمهورية (DEPI) | مدرب برمجة في iSchool",
+  roleEn: "Full-Stack Software Engineer (.NET & MEAN Stack) | 1st Place Winner Nationwide (DEPI) | Technical Coding Instructor at iSchool",
   tagline: "خريج حاسبات ومعلومات جامعة الزقازيق (جيد جداً) • المركز الأول على مستوى الجمهورية في مبادرة رواد مصر الرقمية (DEPI) بمشروع 'شريان' • قائد مشروع تخرج 'نبض' للرعاية الصحية والذكاء الاصطناعي (A+)",
   bioAr: "مهندس برمجيات متخصص في هندسة وبناء الأنظمة الخلفية (Backend Engineering) السريعة وعالية الأداء بالاعتماد على منظومة .NET (C#, ASP.NET Core, EF Core, Clean Architecture, SQL Server) و MEAN Stack (Node.js, Express, Angular, MongoDB). أجمع بين المعمارية البرمجية الصلبة، وتكامل نماذج الذكاء الاصطناعي، ومهارات القيادة والتواصل كمدرب تقني رئيسي لمبادرة 'براعم مصر الرقمية' بالتعاون مع iSchool ووزارة الاتصالات.",
   bioEn: "Computer Science graduate from Zagazig University (Very Good - GPA 3.11) specializing in the .NET Ecosystem and MEAN Stack. Part of the backend engineering team for 'Shuryan', which won 1st Place Nationwide in DEPI (MCIT), and Team Leader of AI Healthcare Ecosystem 'NABD' (Grade A+). Verified 5-star freelance delivery and tech instructor at iSchool.",

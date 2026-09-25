@@ -21,7 +21,7 @@ export default function Footer() {
 
   const avatarSource = personalInfo?.avatar || personalInfo?.avatarUrl || "/assets/profile/seif-portrait-avatar.jpg";
   const displayName = personalInfo?.nameAr || personalInfo?.name || "سيف الدين محمد";
-  const displayTitle = personalInfo?.titleEn || personalInfo?.roleAr || "Backend Software Engineer | DEPI Top 1 Scholar";
+  const displayTitle = personalInfo?.titleEn || personalInfo?.roleAr || "Full-Stack Software Engineer (.NET & MEAN Stack)";
   const displayBio = personalInfo?.bioAr || personalInfo?.bioEn;
 
   return (
