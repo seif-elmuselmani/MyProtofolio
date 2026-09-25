@@ -205,20 +205,21 @@ export const webProjects = [
     image: "/assets/projects/nabd/nabd.png",
     badge: "🩺 Grade A+ Graduation Project",
     tags: [".NET 8", "AI Diagnostics", "Unified Medical Passport", "SQL Server", "MongoDB", "Team Leadership"],
-    summary: "منظومة رعاية صحية ذكية موحدة للمرضى والعيادات تعتمد على السجل الطبي الموحد (Unified Medical Passport) وتكامل نموذج Mistral AI عبر خوادم .NET 8 للتشخيص التنبؤي وتحليل الأعراض ومساندة الأطباء في اتخاذ القرار الطبي السليم.",
+    summary: "منظومة رعاية صحية ذكية موحدة للمرضى والعيادات تعتمد على السجل الطبي الموحد (Unified Medical Passport) ودمج نموذجين للذكاء الاصطناعي: نموذج Mistral AI لاستخلاص الأعراض من الملاحظات الطبية النصية (Zero-Hallucination)، ونموذج Machine Learning (Random Forest) مدرب على 1.29 مليون مريض بدقة تشخيصية 99.72%.",
     liveUrl: "https://www.nabdhealth.me/",
     githubUrl: "https://github.com/Nabd-Health",
     presentationUrl: "https://github.com/seif-elmuselmani/Nabd-Presentation",
     presentationFile: "/assets/projects/nabd/nabd-presentation.pptx",
     caseStudy: {
       client: "كلية الحاسبات والمعلومات - جامعة الزقازيق",
-      challenge: "قيادة فريق من 6 مهندسين برمجيات لبناء منظومة صحية متكاملة تربط المرضى بالعيادات والأطباء، وتدمج نموذج الذكاء الاصطناعي (Mistral AI) لتحليل البيانات الطبية وتسهيل اتخاذ القرار الطبي تحت وطأة الضغط.",
-      solution: "قيادة الفريق الهندسي (Team Leader) وتصميم معمارية Clean Architecture حزمية بـ .NET 8، وتوفير طبقة وسيطة (AI Service Integration Middleware) لربط الـ APIs بنماذج الذكاء الاصطناعي، مع بناء السجل الطبي الموحد الموثق.",
+      challenge: "قيادة فريق من 6 مهندسين برمجيات لبناء منظومة صحية ذكية متكاملة، وحل مشكلة معالجة الملاحظات الطبية غير المهيكلة (باللغة العربية والإنجليزي)، وبناء نموذج تشخيصي عالي الدقة دون أي نسبة مخاطرة أو هلاوس ذكاء اصطناعي (Zero-Hallucination).",
+      solution: "قيادة الفريق (Team Leader) وتصميم معمارية Clean Architecture بـ .NET 8، مع ربط نموذج Mistral AI معالج للنصوص بضبط (Temperature 0.0)، وبناء نموذج Random Forest مدرب على 1,292,579 سجل مريض بـ 517 بُعد حيوي (517-dimension vectors)، وتوفيره عبر REST API متصل بالـ Backend.",
       highlights: [
         "قيادة فريق مكون من 6 مهندسين وحصد التقدير النهائي امتياز (A+) بجدارة",
-        "دمج نموذج الذكاء الاصطناعي Mistral AI عبر خوادم .NET 8 لتحليل الأعراض الحيوية ودعم القرارات الطبية",
-        "تصميم معمارية السجل الطبي الموحد (Unified Medical Passport) للتنقل الآمن بين الأطباء والعيادات",
-        "تكامل نظم قواعد البيانات الهجينة (SQL Server للمستندات الطبية + NoSQL للتحليلات غير المهيكلة)"
+        "تدريب نموذج Random Forest على داتا سيت تضم 1,292,579 سجل مريض وتحقيق دقة تشخيصية 99.72%",
+        "معالجة النصوص الطبية (Mistral AI NLP) لتحويل الشكوى المرضية (بالعربية والإنجليزي) إلى رمزي زفرية (DDXPlus E-codes) بدون هلاوس",
+        "بناء معمارية 517-dimension Feature Vectors تشمل التاريخ المرضي والأعراض الحالية والبيانات الديموغرافية",
+        "تكامل نظم قواعد البيانات الهجينة (SQL Server للمستندات والمواعيد + NoSQL للـ AI Telemetry)"
       ]
     }
   },
