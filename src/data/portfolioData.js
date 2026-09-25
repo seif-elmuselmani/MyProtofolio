@@ -197,29 +197,29 @@ export const webProjects = [
   },
   {
     id: "nabd-graduation",
-    title: "مشروع 'نبض' (NABD - AI Healthcare Ecosystem)",
-    subtitle: "مشروع التخرج الرسمي - قيادة فريق التطوير والـ Backend (تقدير A+)",
+    title: "مشروع 'نبض' (NABD - AI Healthcare & Diagnostic Ecosystem)",
+    subtitle: "نظام تشخيص طبي ذكي يدعم الأطباء (CDSS) | قيادة فريق التطوير والـ Backend (تقدير A+)",
     category: "ai-health",
     featured: true,
     year: "2026",
     image: "/assets/projects/nabd/nabd.png",
     badge: "🩺 Grade A+ Graduation Project",
-    tags: [".NET 8", "AI Diagnostics", "Unified Medical Passport", "SQL Server", "MongoDB", "Team Leadership"],
-    summary: "منظومة رعاية صحية ذكية موحدة للمرضى والعيادات تعتمد على السجل الطبي الموحد (Unified Medical Passport) ودمج نموذجين للذكاء الاصطناعي: نموذج Mistral AI لاستخلاص الأعراض من الملاحظات الطبية النصية (Zero-Hallucination)، ونموذج Machine Learning (Random Forest) مدرب على 1.29 مليون مريض بدقة تشخيصية 99.72%.",
+    tags: [".NET 8", "AI Diagnostic Assistant", "Clinical Decision Support", "Unified Medical Passport", "SQL Server", "Mistral AI"],
+    summary: "منظومة رعاية صحية ذكية مزودة بمساعد ذكاء اصطناعي تشخيصي للأطباء (Clinical Decision Support System - CDSS) يساعد الطبيب في تحليل أعراض المريض فورياً وتحديد التشخيص الدقيق، بالاعتماد على نموذج Mistral AI لاستخلاص الأعراض ونموذج تشخيصي مدرب على 1.29 مليون مريض بدقة 99.72%.",
     liveUrl: "https://www.nabdhealth.me/",
     githubUrl: "https://github.com/Nabd-Health",
     presentationUrl: "https://github.com/seif-elmuselmani/Nabd-Presentation",
     presentationFile: "/assets/projects/nabd/nabd-presentation.pptx",
     caseStudy: {
       client: "كلية الحاسبات والمعلومات - جامعة الزقازيق",
-      challenge: "قيادة فريق من 6 مهندسين برمجيات لبناء منظومة صحية ذكية متكاملة، وحل مشكلة معالجة الملاحظات الطبية غير المهيكلة (باللغة العربية والإنجليزي)، وبناء نموذج تشخيصي عالي الدقة دون أي نسبة مخاطرة أو هلاوس ذكاء اصطناعي (Zero-Hallucination).",
-      solution: "قيادة الفريق (Team Leader) وتصميم معمارية Clean Architecture بـ .NET 8، مع ربط نموذج Mistral AI معالج للنصوص بضبط (Temperature 0.0)، وبناء نموذج Random Forest مدرب على 1,292,579 سجل مريض بـ 517 بُعد حيوي (517-dimension vectors)، وتوفيره عبر REST API متصل بالـ Backend.",
+      challenge: "قيادة فريق من 6 مهندسين برمجيات لتطوير نظام طبي ذكي يساعد الطبيب في اتخاذ القرار التشخيصي السريع والدقيق أثناء كشف المريض، وتفادي الأخطاء الطبية الناتجة عن ضغط العمل والحالات الحرجة.",
+      solution: "بناء وتصميم مساعد الذكاء الاصطناعي التشخيصي (AI Diagnostic Assistant) المدمج في لوحة تحكم الطبيب عبر خوادم .NET 8، مع ربط نموذج Mistral AI لتحويل أعراض المريض النصية إلى رموز تشخيصية طبية، ونموذج Random Forest للتنبؤ بالأمراض المحتملة ومساندة الطبيب.",
       highlights: [
-        "قيادة فريق مكون من 6 مهندسين وحصد التقدير النهائي امتياز (A+) بجدارة",
-        "تدريب نموذج Random Forest على داتا سيت تضم 1,292,579 سجل مريض وتحقيق دقة تشخيصية 99.72%",
-        "معالجة النصوص الطبية (Mistral AI NLP) لتحويل الشكوى المرضية (بالعربية والإنجليزي) إلى رمزي زفرية (DDXPlus E-codes) بدون هلاوس",
-        "بناء معمارية 517-dimension Feature Vectors تشمل التاريخ المرضي والأعراض الحالية والبيانات الديموغرافية",
-        "تكامل نظم قواعد البيانات الهجينة (SQL Server للمستندات والمواعيد + NoSQL للـ AI Telemetry)"
+        "بناء مساعد تشخيصي ذكي للأطباء (Clinical Decision Support System) لمساندة الطبيب في التشخيص الفوري",
+        "قيادة الفريق الهندسي (Team Leader) وحصد الدرجة النهائية امتياز (A+) بجدارة",
+        "تحقيق دقة تشخيصية 99.72% عبر نموذج ذكاء اصطناعي مدرب على داتا سيت تضم 1,292,579 سجل مريض",
+        "معالجة الأعراض والشكوى المرضية نصياً (Mistral AI NLP) باللغة العربية والإنجليزي دون أي هلاوس طبية",
+        "تكامل معمارية السجل الطبي الموحد (Unified Medical Passport) لنقل البيانات الطبية بين العيادات"
       ]
     }
   },
