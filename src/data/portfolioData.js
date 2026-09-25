@@ -202,7 +202,7 @@ export const webProjects = [
     category: "ai-health",
     featured: true,
     year: "2026",
-    image: "/assets/projects/nabd/screens/doctor/screencapture-localhost-5173-doctor-dashboard-2026-01-12-07_34_42.png",
+    image: "/assets/projects/nabd/nabd.png",
     badge: "🩺 Grade A+ Graduation Project",
     tags: [".NET 8", "AI Diagnostics", "Unified Medical Passport", "SQL Server", "MongoDB", "Team Leadership"],
     summary: "منظومة رعاية صحية ذكية موحدة للمرضى والعيادات تعتمد على السجل الطبي الموحد (Unified Medical Passport) ودمج نماذج الذكاء الاصطناعي التشخيصية للتنبؤ بالمؤشرات الحيوية ومساندة الأطباء في اتخاذ القرار.",
