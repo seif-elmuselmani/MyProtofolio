@@ -11,11 +11,16 @@ import {
 } from 'lucide-react';
 
 export default function SlideViewer({ deck, onClose }) {
-  const slides = deck.slides && deck.slides.length > 0 ? deck.slides : Array.from({ length: deck.slidesCount || 31 }, (_, i) => ({
-    id: i + 1,
-    title: `الشريحة رقم ${i + 1}`,
-    image: `/assets/projects/nabd/slides/slide_${String(i + 1).padStart(2, '0')}.png`
-  }));
+  // Dynamic Slide Generation based on deck's explicit slidesFolder or slides array
+  const slides = (deck.slides && deck.slides.length > 0)
+    ? deck.slides 
+    : (deck.slidesFolder && deck.slidesCount)
+      ? Array.from({ length: deck.slidesCount }, (_, i) => ({
+          id: i + 1,
+          title: `الشريحة رقم ${i + 1}`,
+          image: `${deck.slidesFolder}slide_${String(i + 1).padStart(2, '0')}.png`
+        }))
+      : [];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);

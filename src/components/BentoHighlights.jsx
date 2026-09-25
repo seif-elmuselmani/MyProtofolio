@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Code2, 
@@ -13,9 +13,11 @@ import {
   ExternalLink,
   ShieldCheck,
   Trophy,
-  Check
+  Check,
+  Play
 } from 'lucide-react';
 import { usePortfolioData } from '../context/DynamicPortfolioContext';
+import SlideViewer from './SlideViewer';
 
 export default function BentoHighlights() {
   const { 
@@ -26,6 +28,8 @@ export default function BentoHighlights() {
     presentationDecks, 
     teachingExperience 
   } = usePortfolioData();
+
+  const [activeLiveDeck, setActiveLiveDeck] = useState(null);
 
   const totalCertificatesCount = certificatesList ? certificatesList.length : 9;
 
@@ -150,15 +154,43 @@ export default function BentoHighlights() {
               <h3 style={{ fontSize: '1.4rem', fontWeight: '800', color: '#92400e', marginBottom: '0.65rem' }}>
                 عروض التحكيم والـ Pitch Decks
               </h3>
-              <p style={{ color: '#78350f', fontSize: '0.92rem', lineHeight: 1.65, marginBottom: '1.5rem' }}>
+              <p style={{ color: '#78350f', fontSize: '0.92rem', lineHeight: 1.65, marginBottom: '1.25rem' }}>
                 تصميم وتقديم عروض الإقناع التقنية للجان التحكيم الحكومية والجامعية وتتويجها ببروز المهارات الجماهيرية وتصدّر المراكز الأولى.
               </p>
             </div>
 
-            <Link to="/presentations" className="btn-secondary" style={{ width: '100%', justifyContent: 'center', padding: '0.6rem 1rem', fontSize: '0.88rem', backgroundColor: '#ffffff', borderColor: '#fde68a', color: '#92400e' }}>
-              <span>استعراض الـ Decks والمحاضرات</span>
-              <ArrowUpLeft size={16} />
-            </Link>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <button
+                onClick={() => {
+                  const nabdDeck = (presentationDecks || []).find(d => d.hasLiveSlides) || presentationDecks[0];
+                  if (nabdDeck) setActiveLiveDeck(nabdDeck);
+                }}
+                style={{
+                  width: '100%',
+                  justifyContent: 'center',
+                  padding: '0.55rem 1rem',
+                  fontSize: '0.85rem',
+                  backgroundColor: '#b45309',
+                  color: '#ffffff',
+                  border: 'none',
+                  borderRadius: '10px',
+                  fontWeight: '700',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  boxShadow: '0 4px 12px rgba(180, 83, 9, 0.25)'
+                }}
+              >
+                <Play size={14} />
+                <span>معاينة العرض الحي (31 سلايدز) 📊</span>
+              </button>
+
+              <Link to="/presentations" className="btn-secondary" style={{ width: '100%', justifyContent: 'center', padding: '0.55rem 1rem', fontSize: '0.82rem', backgroundColor: '#ffffff', borderColor: '#fde68a', color: '#92400e' }}>
+                <span>كافة العروض والمحاضرات</span>
+                <ArrowUpLeft size={15} />
+              </Link>
+            </div>
           </div>
 
           {/* Card 3: Technical Teaching & iSchool (4 Cols) */}
@@ -255,6 +287,31 @@ export default function BentoHighlights() {
         </div>
 
       </div>
+
+      {/* Live Slide Viewer Modal */}
+      {activeLiveDeck && (
+        <div 
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 99999,
+            backgroundColor: 'rgba(15, 23, 42, 0.95)',
+            backdropFilter: 'blur(12px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1.5rem'
+          }}
+          onClick={() => setActiveLiveDeck(null)}
+        >
+          <div 
+            style={{ width: '100%', maxWidth: '1100px', maxHeight: '90vh' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <SlideViewer deck={activeLiveDeck} onClose={() => setActiveLiveDeck(null)} />
+          </div>
+        </div>
+      )}
 
       <style>{`
         @media (max-width: 900px) {
