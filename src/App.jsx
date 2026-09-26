@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Navbar from './components/Navbar';
 import DynamicSeoManager from './components/DynamicSeoManager';
 import Footer from './components/Footer';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 
 import Home from './pages/Home';
 import Projects from './pages/Projects';
@@ -67,6 +68,7 @@ function MainLayout() {
         </Routes>
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 }
