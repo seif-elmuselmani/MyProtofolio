@@ -285,7 +285,18 @@ export const webProjects = [
   },
 ];
 
-export const certificatesList = [  
+export const certificatesList = [
+  {
+    id: "nti-210h-training",
+    title: "برنامج التدريب المكثف (210 ساعة)",
+    issuer: "المعهد القومي للاتصالات (NTI) - وزارة الاتصالات",
+    date: "2025 - 2026",
+    badge: "🏛️ NTI Certified (210 Hours)",
+    category: "web",
+    image: "/assets/certificates/cert-nti-210h.jpg",
+    verificationId: "معتمد برقم قيد وتوصية رسمية من قيادات المعهد",
+    description: "برنامج تدريبي مكثف متكامل بالمعهد القومي للاتصالات (NTI) التابع لوزارة الاتصالات بحجم 210 ساعة دراسية وتطبيقية شمل الـ Web Development، وتأمين الأنظمة، وتطوير معمارية وتطبيقات سحابية معتمدة."
+  },  
   {
     id: "zagazig-cs-degree",
     title: "بكالوريوس علوم الحاسب (Bachelor of Science in CS)",
