@@ -39,8 +39,10 @@ export default function Teaching() {
   const sessionPhotos = [
     {
       src: "/assets/teaching/ischool-live-session.png",
-      title: "محاضرة حية ومباشرة لتطبيق ومتابعة الأكواد أونلاين على iSchool",
-      desc: "لقطة واقعية أثناء شرح مفاهيم البرمجة ومتابعة المشاريع وإتاحة الفرصة للطلاب للتفاعل والمشاركة الفعالة."
+      title: "خبرة وتجربة التدريس أونلاين عبر منصة iSchool",
+      desc: "تصور توضيحي يعكس بيئة المحاضرات والسيشنات أونلاين، مراعاة لسياسة الخصوصية وعدم نشر صور الطلاب الناشئين.",
+      link: "https://www.linkedin.com/posts/seif-elmuselmani_%D8%A7%D9%84%D8%B4%D9%87%D8%B1-%D8%AF%D9%87-%D8%A7%D8%AA%D8%B9%D8%B1%D8%B6-%D8%B9%D9%84%D9%8A%D8%A7-%D9%81%D8%B1%D8%B5%D8%A9-%D8%A5%D9%86%D9%8A-%D8%A3%D8%AF%D9%8A-%D8%B3%D9%8A%D8%B4%D9%86%D8%A7%D8%AA-%D8%A3%D9%88%D9%86%D9%84%D8%A7%D9%8A%D9%86-activity-7508549064591069184-COuP",
+      linkText: "قراءة المنشور الرسمي والـ Story على LinkedIn ↗"
     },
     {
       src: "/assets/teaching/session-live-1.jpg",
@@ -264,10 +266,33 @@ export default function Teaching() {
                       {photo.desc}
                     </p>
                   </div>
-                  <div style={{ marginTop: "1rem", paddingTop: "0.75rem", borderTop: "1px solid #f1f5f9", display: "flex", alignItems: "center", gap: "0.4rem", color: "#059669", fontSize: "0.82rem", fontWeight: "700" }}>
-                    <CheckCircle2 size={15} />
-                    <span>جلسات موثقة ومباشرة</span>
-                  </div>
+                  {photo.link ? (
+                    <a 
+                      href={photo.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      style={{ 
+                        marginTop: "1rem", 
+                        paddingTop: "0.75rem", 
+                        borderTop: "1px solid #e2e8f0", 
+                        display: "inline-flex", 
+                        alignItems: "center", 
+                        gap: "0.4rem", 
+                        color: "#2563eb", 
+                        fontSize: "0.85rem", 
+                        fontWeight: "800",
+                        textDecoration: "none"
+                      }}
+                    >
+                      <ExternalLink size={15} />
+                      <span>{photo.linkText || "عرض المنشور الرسمي ↗"}</span>
+                    </a>
+                  ) : (
+                    <div style={{ marginTop: "1rem", paddingTop: "0.75rem", borderTop: "1px solid #f1f5f9", display: "flex", alignItems: "center", gap: "0.4rem", color: "#059669", fontSize: "0.82rem", fontWeight: "700" }}>
+                      <CheckCircle2 size={15} />
+                      <span>جلسات موثقة ومباشرة</span>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
