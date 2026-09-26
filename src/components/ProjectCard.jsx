@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
-import { ExternalLink, Github, Sparkles, Layers } from 'lucide-react';
+import { ExternalLink, Github, Sparkles, Layers, Cpu, CheckCircle2 } from 'lucide-react';
 import CaseStudyModal from './CaseStudyModal';
 
 export default function ProjectCard({ project }) {
   const [isCaseStudyOpen, setIsCaseStudyOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Extract architecture hint if available
+  const architectureBadge = project.architecture || project.subtitle || "System Architecture";
 
   return (
     <div 
       className="corporate-card" 
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       style={{ 
         overflow: 'hidden', 
         display: 'flex', 
@@ -15,14 +21,15 @@ export default function ProjectCard({ project }) {
         justifyContent: 'space-between',
         height: '100%',
         backgroundColor: '#ffffff',
-        borderRadius: '22px',
-        border: '1px solid #cbd5e1',
-        boxShadow: '0 4px 18px rgba(15, 23, 42, 0.04)',
-        transition: 'all 0.3s ease'
+        borderRadius: '24px',
+        border: isHovered ? '1.5px solid #2563eb' : '1px solid #cbd5e1',
+        boxShadow: isHovered ? '0 16px 36px rgba(37, 99, 235, 0.12)' : '0 4px 18px rgba(15, 23, 42, 0.04)',
+        transform: isHovered ? 'translateY(-5px)' : 'none',
+        transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)'
       }}
     >
       <div>
-        {/* Project Thumbnail */}
+        {/* Project Image & Badge Container */}
         <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', overflow: 'hidden', backgroundColor: '#0f172a' }}>
           <img 
             src={project.image} 
@@ -31,9 +38,12 @@ export default function ProjectCard({ project }) {
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              transition: 'transform 0.4s ease'
+              transform: isHovered ? 'scale(1.06)' : 'scale(1.0)',
+              transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
             }}
           />
+
+          {/* Award / Distinction Badge */}
           {project.badge && (
             <div 
               style={{
@@ -43,39 +53,66 @@ export default function ProjectCard({ project }) {
                 zIndex: 2
               }}
             >
-              <span className="pill-badge pill-gold" style={{ boxShadow: '0 4px 12px rgba(217, 119, 6, 0.3)', whiteSpace: 'nowrap' }}>
-                <Sparkles size={12} />
+              <span className="pill-badge pill-gold" style={{ boxShadow: '0 4px 14px rgba(217, 119, 6, 0.35)', whiteSpace: 'nowrap', fontWeight: '800' }}>
+                <Sparkles size={13} />
                 {project.badge}
               </span>
             </div>
           )}
+
+          {/* Architecture Tag Banner on Image */}
+          <div 
+            style={{
+              position: 'absolute',
+              bottom: '0.75rem',
+              left: '0.75rem',
+              zIndex: 2,
+              backgroundColor: 'rgba(15, 23, 42, 0.85)',
+              backdropFilter: 'blur(8px)',
+              color: '#ffffff',
+              padding: '0.35rem 0.75rem',
+              borderRadius: '9999px',
+              fontSize: '0.76rem',
+              fontWeight: '700',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              border: '1px solid rgba(255, 255, 255, 0.15)'
+            }}
+          >
+            <Cpu size={12} color="#38bdf8" />
+            <span>{architectureBadge}</span>
+          </div>
         </div>
 
-        {/* Content Body */}
-        <div style={{ padding: '1.5rem 1.5rem 1rem', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ fontSize: '0.82rem', color: '#2563eb', fontWeight: '800', marginBottom: '0.35rem' }}>
-            {project.subtitle}
+        {/* Card Content Body */}
+        <div style={{ padding: '1.6rem 1.6rem 1rem', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ fontSize: '0.82rem', color: '#2563eb', fontWeight: '800', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            {project.categoryLabel || project.subtitle}
           </div>
           
-          <h3 style={{ fontSize: '1.2rem', fontWeight: '800', color: '#0f172a', marginBottom: '0.65rem', lineHeight: 1.4 }}>
+          <h3 style={{ fontSize: '1.25rem', fontWeight: '900', color: '#0f172a', marginBottom: '0.65rem', lineHeight: 1.35 }}>
             {project.title}
           </h3>
 
-          <p style={{ fontSize: '0.9rem', color: '#475569', lineHeight: 1.7, marginBottom: '1.25rem', fontWeight: '500' }}>
+          <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: 1.75, marginBottom: '1.35rem', fontWeight: '500' }}>
             {project.summary}
           </p>
 
-          {/* Tags */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1rem' }}>
+          {/* Technology Tags */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem', marginBottom: '1rem' }}>
             {(project.tags || []).map((tag, idx) => (
               <span 
                 key={idx} 
-                className="pill-badge pill-slate" 
                 style={{ 
-                  fontSize: '0.75rem', 
-                  padding: '0.25rem 0.6rem', 
+                  backgroundColor: '#f1f5f9',
+                  color: '#334155',
+                  fontSize: '0.78rem', 
+                  padding: '0.3rem 0.7rem', 
+                  borderRadius: '9999px',
                   whiteSpace: 'nowrap',
-                  fontWeight: '600'
+                  fontWeight: '700',
+                  border: '1px solid #e2e8f0'
                 }}
               >
                 {tag}
@@ -85,58 +122,93 @@ export default function ProjectCard({ project }) {
         </div>
       </div>
 
-      {/* Card Action Buttons Footer */}
-      <div style={{ padding: '1.25rem 1.5rem', borderTop: '1px solid #f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem', backgroundColor: '#f8fafc' }}>
-        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+      {/* Card High-Contrast Action Buttons Footer */}
+      <div 
+        style={{ 
+          padding: '1.25rem 1.6rem', 
+          borderTop: '1px solid #e2e8f0', 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'space-between', 
+          flexWrap: 'wrap', 
+          gap: '0.65rem', 
+          backgroundColor: '#f8fafc' 
+        }}
+      >
+        <div style={{ display: 'flex', gap: '0.55rem', flexWrap: 'wrap', alignItems: 'center' }}>
           
-          {/* Live Demo */}
+          {/* Live System Button (Vibrant Green) */}
           {project.liveUrl && (
             <a 
               href={project.liveUrl} 
               target="_blank" 
               rel="noreferrer"
-              className="btn-primary"
-              style={{ padding: '0.45rem 0.9rem', fontSize: '0.82rem', gap: '0.35rem', whiteSpace: 'nowrap' }}
+              style={{
+                backgroundColor: '#059669',
+                color: '#ffffff',
+                padding: '0.5rem 1.05rem',
+                borderRadius: '10px',
+                fontSize: '0.84rem',
+                fontWeight: '800',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                textDecoration: 'none',
+                boxShadow: '0 4px 12px rgba(5, 150, 105, 0.28)',
+                transition: 'all 0.2s ease'
+              }}
             >
               <span>الموقع الحي</span>
-              <ExternalLink size={13} />
+              <ExternalLink size={14} />
             </a>
           )}
 
-          {/* GitHub Repo */}
+          {/* GitHub Repo Button (Corporate Dark) */}
           {project.githubUrl && (
             <a 
               href={project.githubUrl} 
               target="_blank" 
               rel="noreferrer"
-              className="btn-secondary"
-              style={{ padding: '0.45rem 0.85rem', fontSize: '0.82rem', gap: '0.35rem', whiteSpace: 'nowrap' }}
+              style={{
+                backgroundColor: '#1e293b',
+                color: '#ffffff',
+                padding: '0.5rem 0.95rem',
+                borderRadius: '10px',
+                fontSize: '0.84rem',
+                fontWeight: '800',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                textDecoration: 'none',
+                boxShadow: '0 4px 12px rgba(30, 41, 59, 0.18)',
+                transition: 'all 0.2s ease'
+              }}
             >
-              <Github size={13} />
+              <Github size={14} />
               <span>GitHub</span>
             </a>
           )}
 
         </div>
 
-        {/* Case Study Modal Trigger Button */}
+        {/* Case Study Modal Trigger Button (Premium Brand Blue) */}
         {project.caseStudy && (
           <button
             onClick={() => setIsCaseStudyOpen(true)}
             style={{
-              backgroundColor: '#ffffff',
-              border: '1px solid #cbd5e1',
-              color: '#2563eb',
-              fontSize: '0.82rem',
+              backgroundColor: '#2563eb',
+              color: '#ffffff',
+              fontSize: '0.84rem',
               fontWeight: '800',
               cursor: 'pointer',
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.35rem',
-              padding: '0.45rem 0.85rem',
+              gap: '0.4rem',
+              padding: '0.5rem 1rem',
               borderRadius: '10px',
+              border: 'none',
               whiteSpace: 'nowrap',
-              boxShadow: '0 2px 6px rgba(0,0,0,0.03)',
+              boxShadow: '0 4px 14px rgba(37, 99, 235, 0.28)',
               transition: 'all 0.2s ease'
             }}
           >
