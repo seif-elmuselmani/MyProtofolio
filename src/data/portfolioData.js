@@ -283,7 +283,9 @@ export const webProjects = [
       ]
     }
   },
-  
+];
+
+export const certificatesList = [  
   {
     id: "zagazig-cs-degree",
     title: "بكالوريوس علوم الحاسب (Bachelor of Science in CS)",
