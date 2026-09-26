@@ -70,13 +70,6 @@ export default function Teaching() {
       date: "2026",
       desc: "منحة تدريبية مكثفة واحترافية في بناء المعماريات السحابية والأنظمة المعقدة بتقدير امتياز وتوصية رسمية من قيادات المعهد."
     },
-    {
-      title: "🤖 منح معهد تكنولوجيا المعلومات (ITI) و Microsoft AI",
-      issuer: "ITI & Microsoft Certificate Program",
-      image: "/assets/certificates/cert-deeplearning-iti.png",
-      date: "2026",
-      desc: "شهادات معتمدة في أساسيات الذكاء الاصطناعي وبناء نماذج الـ Deep Learning وتوظيفها مهنياً."
-    }
   ];
 
   return (
@@ -375,22 +368,22 @@ export default function Teaching() {
             className="corporate-card"
             style={{ 
               padding: "3rem 2.25rem", 
-              backgroundColor: "#0f172a", 
-              color: "#ffffff", 
+              backgroundColor: "#ffffff", 
+              color: "#0f172a", 
               borderRadius: "24px",
-              boxShadow: "0 20px 40px rgba(15, 23, 42, 0.25)",
-              border: "1px solid #1e293b"
+              boxShadow: "0 10px 30px -5px rgba(15, 23, 42, 0.05)",
+              border: "1px solid #cbd5e1"
             }}
           >
             <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: "0.45rem", padding: "0.4rem 1rem", borderRadius: "9999px", backgroundColor: "rgba(255,255,255,0.1)", color: "#38bdf8", fontSize: "0.85rem", fontWeight: "800", marginBottom: "1rem" }}>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: "0.45rem", padding: "0.4rem 1rem", borderRadius: "9999px", backgroundColor: "#eff6ff", color: "#2563eb", border: "1px solid #bfdbfe", fontSize: "0.85rem", fontWeight: "800", marginBottom: "1rem" }}>
                 <MessageSquare size={16} />
                 <span>إشادات القيادات التنفيذية وأولياء الأمور</span>
               </div>
-              <h2 style={{ fontSize: "2.2rem", fontWeight: "900", color: "#ffffff", marginBottom: "0.75rem" }}>
+              <h2 style={{ fontSize: "2.2rem", fontWeight: "900", color: "#0f172a", marginBottom: "0.75rem" }}>
                 ماذا يقول الرؤساء المباشرون وأولياء الأمور عن أسلوب تدريسي؟
               </h2>
-              <p style={{ color: "#94a3b8", fontSize: "1.02rem", maxWidth: "650px", margin: "0 auto", lineHeight: 1.7 }}>
+              <p style={{ color: "#64748b", fontSize: "1.02rem", maxWidth: "650px", margin: "0 auto", lineHeight: 1.7 }}>
                 شهادات حقيقية وموثقة على LinkedIn ومنصات التدريب الرسمية تعكس الأثر التقني والتربوي الكبير.
               </p>
             </div>
@@ -407,26 +400,26 @@ export default function Teaching() {
                 <div 
                   key={i}
                   style={{
-                    backgroundColor: "rgba(30, 41, 59, 0.8)",
+                    backgroundColor: "#f8fafc",
                     padding: "1.75rem",
                     borderRadius: "18px",
-                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                    border: "1px solid #e2e8f0", boxShadow: "0 4px 12px rgba(15, 23, 42, 0.03)",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between"
                   }}
                 >
                   <div>
-                    <div style={{ fontSize: "0.8rem", color: "#38bdf8", fontWeight: "800", marginBottom: "0.5rem" }}>
+                    <div style={{ fontSize: "0.8rem", color: "#2563eb", fontWeight: "800", marginBottom: "0.5rem" }}>
                       {test.badge || test.company}
                     </div>
-                    <p style={{ fontSize: "0.92rem", color: "#e2e8f0", lineHeight: 1.75, fontStyle: "italic", marginBottom: "1.25rem" }}>
+                    <p style={{ fontSize: "0.92rem", color: "#334155", lineHeight: 1.75, fontStyle: "italic", marginBottom: "1.25rem" }}>
                       "{test.quote.length > 160 ? test.quote.substring(0, 160) + "..." : test.quote}"
                     </p>
                   </div>
 
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", paddingTop: "0.75rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-                    <div style={{ fontWeight: "800", color: "#ffffff", fontSize: "0.92rem" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", paddingTop: "0.75rem", borderTop: "1px solid #e2e8f0" }}>
+                    <div style={{ fontWeight: "800", color: "#0f172a", fontSize: "0.95rem" }}>
                       {test.name}
                     </div>
                   </div>
