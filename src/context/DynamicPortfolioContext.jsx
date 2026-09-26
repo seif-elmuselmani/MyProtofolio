@@ -78,8 +78,30 @@ export function DynamicPortfolioProvider({ children }) {
 
   // Updaters
   const updatePersonalInfo = (data) => {
-    setPersonalInfo(data);
-    localStorage.setItem(STORAGE_KEYS.PERSONAL_INFO, JSON.stringify(data));
+    let updatedData = { ...data };
+    if (data.linkedinFollowers) {
+      if (Array.isArray(updatedData.stats)) {
+        updatedData.stats = updatedData.stats.map(st => {
+          if (st.label && st.label.includes('LinkedIn')) {
+            return { ...st, value: data.linkedinFollowers };
+          }
+          return st;
+        });
+      }
+      if (teachingExperience && teachingExperience.stats) {
+        const updatedTeaching = {
+          ...teachingExperience,
+          stats: {
+            ...teachingExperience.stats,
+            community: `${data.linkedinFollowers} متابع على LinkedIn`
+          }
+        };
+        setTeachingExperience(updatedTeaching);
+        localStorage.setItem(STORAGE_KEYS.TEACHING, JSON.stringify(updatedTeaching));
+      }
+    }
+    setPersonalInfo(updatedData);
+    localStorage.setItem(STORAGE_KEYS.PERSONAL_INFO, JSON.stringify(updatedData));
     localStorage.setItem(STORAGE_KEYS.IS_CUSTOMIZED, 'true');
     setIsCustomized(true);
   };

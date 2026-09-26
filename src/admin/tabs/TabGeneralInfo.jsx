@@ -153,6 +153,20 @@ export default function TabGeneralInfo({ showToast }) {
           />
         </div>
 
+        <div className="admin-form-group">
+          <label className="admin-label" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#2563eb', fontWeight: '800' }}>
+            <Globe size={16} />
+            عدد متابعين لينكد إن (LinkedIn Connections / Followers)
+          </label>
+          <input
+            type="text"
+            className="admin-input"
+            placeholder="مثال: +9K أو 9,000+"
+            value={formData.linkedinFollowers || ''}
+            onChange={(e) => handleChange('linkedinFollowers', e.target.value)}
+          />
+        </div>
+
       </div>
 
       <div className="admin-form-group" style={{ marginTop: '1rem' }}>

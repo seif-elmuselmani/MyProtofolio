@@ -19,6 +19,7 @@ export const personalInfo = {
   defensePhoto: "/assets/profile/seif-defense-formal.jpg",
   ceremonyPhoto: "/assets/profile/seif-with-dr-hesham-farouk-depi.png",
   linkedinBanner: "/assets/profile/banner-linkedin-header.png",
+  linkedinFollowers: "+9K",
   education: {
     degree: "بكالوريوس علوم الحاسب (Bachelor of Science - Computer Science)",
     university: "جامعة الزقازيق (Zagazig University)",
@@ -32,7 +33,7 @@ export const personalInfo = {
     { label: "تدريب مكثف NTI", value: "210+ ساعة", enLabel: "MEAN Stack Accelerator", icon: "Code2" },
     { label: "فريق مشروع التخرج", value: "6 مهندسين", enLabel: "NABD Team Leader (A+)", icon: "Users" },
     { label: "تقييم العمل الحر", value: "5.0 / 5.0", enLabel: "100% Deal Completion", icon: "Star" },
-    { label: "متابع على LinkedIn", value: "8,388+", enLabel: "Tech Network & Community", icon: "Globe" }
+    { label: "متابع على LinkedIn", value: "+9K", enLabel: "Tech Network & Community", icon: "Globe" }
   ]
 };
 
@@ -556,7 +557,7 @@ export const teachingExperience = {
     totalStudents: "500+",
     hoursTaught: "300+ ساعة",
     roleTitle: "Main Tutor at iSchool",
-    community: "8,388+ متابع على LinkedIn"
+    community: "+9K متابع على LinkedIn"
   },
   experienceList: [
     {
