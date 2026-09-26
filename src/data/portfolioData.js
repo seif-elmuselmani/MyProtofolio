@@ -537,39 +537,17 @@ export const testimonialsList = [
 export const presentationDecks = [
   {
     id: "nabd-defense-deck",
-    title: "عرض مناقشة مشروع تخرج 'نبض' للذكاء الاصطناعي الطبي",
+    title: "عرض مناقشة مشروع تخرج 'نبض' للذكاء الاصطناعي الطبي (Graduation Defense Deck)",
     category: "Graduation Defense Deck",
     slidesCount: 31,
     hasLiveSlides: true,
     slidesFolder: "/assets/projects/nabd/slides/",
-    tools: ["PowerPoint", "Mistral AI Architecture", "517-Dim Vectors", "System Diagrams"],
-    description: "برزنتيشن مناقشة مشروع التخرج أمام لجنة أساتذة جامعة الزقازيق لشرح المنظومة الذكية، معالجة النصوص (Mistral AI), ونموذج التشخيص المتقدم (Random Forest - 99.72%).",
+    tools: ["PowerPoint", "Mistral AI Architecture", "517-Dim Vectors", "System Architecture"],
+    description: "العرض التقديمي الفني الشامل الذي تم مناقشته أمام لجنة أساتذة كلية الحاسبات والمعلومات جامعة الزقازيق لشرح معمارية المنظومة، معالجة اللغة الطبيعية (Mistral AI)، ونموذج التشخيص الذكي بنسبة دقة 99.72%.",
     coverImage: "/assets/projects/nabd/slides/slide_01.png",
-    impact: "الحصول على تقدير ممتاز (A+) في مشروع التخرج وإشادة لجنة التحكيم الأكاديمية",
+    impact: "تقدير ممتاز (A+) في مشروع التخرج وإشادة لجنة التحكيم الأكاديمية",
     presentationUrl: "https://github.com/seif-elmuselmani/Nabd-Presentation",
     presentationFile: "/assets/projects/nabd/nabd-presentation.pptx"
-  },
-  {
-    id: "shuryan-pitch-deck",
-    title: "عرض تحكيم مشروع 'شريان' الفائز بالمركز الأول (DEPI)",
-    category: "Award-Winning Pitch Deck",
-    slidesCount: 16,
-    hasLiveSlides: false,
-    tools: ["PowerPoint", "Figma Visuals", "Technical Architecture"],
-    description: "العرض التقديمي الذي تم عرضه أمام لجان التحكيم في وزارة الاتصالات ومبادرة DEPI، والذي استعرض الجدوى التقنية والهندسية لمنصة شريان وتوج بالمركز الأول على الجمهورية.",
-    coverImage: "/assets/profile/seif-with-dr-hesham-farouk-depi.png",
-    impact: "الفوز بالمركز الأول على مستوى الجمهورية في مبادرة رواد مصر الرقمية (DEPI)"
-  },
-  {
-    id: "ischool-coding-sessions",
-    title: "سلايدات التدريب البرمجي والتفكير الحسابي (iSchool & DEMI)",
-    category: "Educational & Coding Decks",
-    slidesCount: 25,
-    hasLiveSlides: false,
-    tools: ["Interactive Visuals", "Gamified Coding Slides"],
-    description: "عروض تقديمية تعليمية تفاعلية مصممة لتبسيط مفاهيم البرمجة المعقدة وهياكل البيانات والذكاء الاصطناعي لطلاب مبادرة 'براعم مصر الرقمية' و iSchool.",
-    coverImage: "/assets/profile/seif-portrait-avatar.jpg",
-    impact: "تدريب مئات الطلاب بنسبة رضا وتفاعل قياسية وتقديم هدايا وشهادات تقدير من الطلاب"
   }
 ];
 

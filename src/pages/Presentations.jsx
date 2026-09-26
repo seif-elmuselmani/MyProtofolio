@@ -1,128 +1,173 @@
 import React from 'react';
-import { Presentation, Sparkles, Layers, CheckCircle2, Lock, Clock, ExternalLink, Download } from 'lucide-react';
+import { 
+  Presentation, 
+  Sparkles, 
+  Layers, 
+  CheckCircle2, 
+  ExternalLink, 
+  Download,
+  Award,
+  Cpu,
+  ShieldCheck
+} from 'lucide-react';
 import { usePortfolioData } from '../context/DynamicPortfolioContext';
 import SlideViewer from '../components/SlideViewer';
 
 export default function Presentations() {
   const { presentationDecks } = usePortfolioData();
+  const featuredDeck = (presentationDecks || [])[0];
 
   return (
-    <div className="animate-fade-in" style={{ paddingTop: '6.5rem', minHeight: '85vh', paddingBottom: '5rem' }}>
+    <div className="animate-fade-in" style={{ paddingTop: '6.5rem', minHeight: '85vh', paddingBottom: '5rem', backgroundColor: '#f8fafc' }}>
       <div className="container-custom">
         
         {/* Page Header */}
-        <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <div className="pill-badge pill-gold" style={{ marginBottom: '0.75rem' }}>
-            <Presentation size={15} />
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <div className="pill-badge pill-gold" style={{ marginBottom: '1rem', display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}>
+            <Presentation size={16} />
             <span>العروض التقديمية والـ Pitch Decks</span>
           </div>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: '900', color: 'var(--text-primary)', marginBottom: '0.75rem' }}>
-            عروض التحكيم التقنية والـ Pitch Decks
+          <h1 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: '900', color: '#0f172a', marginBottom: '0.85rem', lineHeight: 1.25 }}>
+            عروض التحكيم التقنية والمناقشات الأكاديمية
           </h1>
-          <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', maxWidth: '700px', margin: '0 auto' }}>
-            نماذج لعروض الإقناع التقني ومناقشات المشاريع التي نالت المركز الأول على مستوى الجمهورية وإشادة لجان التحكيم.
+          <p style={{ color: '#64748b', fontSize: '1.05rem', maxWidth: '720px', margin: '0 auto', lineHeight: 1.75, fontWeight: '500' }}>
+            استعراض تفاعلي كامل لشرائح مناقشة مشروع التخرج والتصميم المفهومي والمعماري لمنظومة الذكاء الاصطناعي.
           </p>
         </div>
 
-        {/* Decks List */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}>
-          {(presentationDecks || []).map((deck) => {
-            const isLive = deck.hasLiveSlides || (deck.slides && deck.slides.length > 0) || Boolean(deck.slidesFolder);
-
-            return (
-              <div key={deck.id} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                
-                {/* Deck Info Bar */}
-                <div className="corporate-card" style={{ padding: '1.5rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', backgroundColor: '#ffffff' }}>
-                  <div>
-                    <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', marginBottom: '0.35rem', flexWrap: 'wrap' }}>
-                      <span className="pill-badge pill-gold">{deck.category}</span>
-                      <span className="pill-badge pill-slate">{deck.slidesCount} سلايد</span>
-                      {isLive ? (
-                        <span className="pill-badge pill-emerald" style={{ fontSize: '0.75rem' }}>
-                          🟢 عرض لايف مباشر
-                        </span>
-                      ) : (
-                        <span className="pill-badge pill-gold" style={{ fontSize: '0.75rem', backgroundColor: '#fffbeb', color: '#b45309', borderColor: '#fde68a' }}>
-                          <Clock size={12} />
-                          قريباً - قيد التوثيق
-                        </span>
-                      )}
-                    </div>
-
-                    <h2 style={{ fontSize: '1.4rem', fontWeight: '800', color: 'var(--text-primary)' }}>{deck.title}</h2>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '0.3rem', maxWidth: '650px', lineHeight: 1.6 }}>
-                      {deck.description}
-                    </p>
-
-                    {/* Action Links */}
-                    <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.75rem', flexWrap: 'wrap' }}>
-                      {deck.presentationUrl && (
-                        <a
-                          href={deck.presentationUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="btn-secondary"
-                          style={{ padding: '0.35rem 0.75rem', fontSize: '0.78rem', gap: '0.3rem' }}
-                        >
-                          <ExternalLink size={12} />
-                          <span>المستودع الرسمي</span>
-                        </a>
-                      )}
-                      {deck.presentationFile && (
-                        <a
-                          href={deck.presentationFile}
-                          download
-                          className="btn-secondary"
-                          style={{ padding: '0.35rem 0.75rem', fontSize: '0.78rem', gap: '0.3rem', borderColor: '#10b981', color: '#047857' }}
-                        >
-                          <Download size={12} />
-                          <span>تحميل PPTX</span>
-                        </a>
-                      )}
-                    </div>
+        {/* Highlighted Deck Specifications & Summary Card */}
+        {featuredDeck && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            
+            {/* Executive Summary Card */}
+            <div 
+              className="corporate-card" 
+              style={{ 
+                padding: '2.5rem 2.25rem', 
+                backgroundColor: '#ffffff', 
+                borderRadius: '24px', 
+                border: '1px solid #cbd5e1',
+                boxShadow: '0 10px 30px -5px rgba(15, 23, 42, 0.05)'
+              }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '1.75rem' }}>
+                <div>
+                  <div style={{ display: 'flex', gap: '0.55rem', alignItems: 'center', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
+                    <span className="pill-badge pill-blue" style={{ fontSize: '0.82rem', fontWeight: '800' }}>
+                      🎓 {featuredDeck.category}
+                    </span>
+                    <span className="pill-badge pill-emerald" style={{ fontSize: '0.82rem', fontWeight: '800' }}>
+                      🟢 {featuredDeck.slidesCount} شرائح تفاعلية بالكامل
+                    </span>
                   </div>
 
-                  <div className="pill-badge pill-emerald" style={{ padding: '0.66rem 1.25rem', fontSize: '0.85rem', fontWeight: '700' }}>
-                    <CheckCircle2 size={16} />
-                    <span>الأثر: {deck.impact}</span>
-                  </div>
+                  <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: '900', color: '#0f172a', lineHeight: 1.35, marginBottom: '0.65rem' }}>
+                    {featuredDeck.title}
+                  </h2>
+                  <p style={{ color: '#475569', fontSize: '1.02rem', maxWidth: '780px', lineHeight: 1.8, fontWeight: '500' }}>
+                    {featuredDeck.description}
+                  </p>
                 </div>
 
-                {/* Interactive Viewer Component OR Pending Upload Banner */}
-                {isLive ? (
-                  <SlideViewer deck={deck} />
-                ) : (
-                  <div 
-                    style={{
-                      padding: '2.5rem 2rem',
-                      borderRadius: '20px',
-                      backgroundColor: '#f8fafc',
-                      border: '2px dashed #cbd5e1',
-                      textAlign: 'center',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '0.75rem'
+                <div className="pill-badge pill-emerald" style={{ padding: '0.85rem 1.35rem', fontSize: '0.9rem', fontWeight: '800', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Award size={18} />
+                  <span>{featuredDeck.impact}</span>
+                </div>
+              </div>
+
+              {/* Tools & Specifications Pills */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', paddingTop: '1.25rem', borderTop: '1px solid #e2e8f0', marginBottom: '1.75rem' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: '800', color: '#64748b', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                  <Cpu size={15} />
+                  <span>التقنيات المستخدمة بالعرض:</span>
+                </span>
+                {(featuredDeck.tools || []).map((tool, tIdx) => (
+                  <span 
+                    key={tIdx}
+                    style={{ 
+                      backgroundColor: '#f1f5f9', 
+                      color: '#334155', 
+                      padding: '0.35rem 0.85rem', 
+                      borderRadius: '9999px', 
+                      fontSize: '0.82rem', 
+                      fontWeight: '700',
+                      border: '1px solid #e2e8f0' 
                     }}
                   >
-                    <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#fef3c7', color: '#d97706', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Lock size={22} />
-                    </div>
-                    <h4 style={{ fontSize: '1.1rem', fontWeight: '800', color: 'var(--text-primary)', margin: 0 }}>
-                      شرائح العرض قيد التنسيق والتحضير للرفع
-                    </h4>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', maxWidth: '500px', margin: 0 }}>
-                      العرض التقديمي الخاص بـ ({deck.title}) جاري تحضير شرائحه بدقة عالية لرفعها مباشرة من لوحة التحكم.
-                    </p>
-                  </div>
+                    {tool}
+                  </span>
+                ))}
+              </div>
+
+              {/* Action Buttons: Download PPTX & GitHub Presentation Repo */}
+              <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                {featuredDeck.presentationFile && (
+                  <a
+                    href={featuredDeck.presentationFile}
+                    download
+                    className="btn-primary"
+                    style={{
+                      padding: '0.85rem 1.85rem',
+                      fontSize: '0.95rem',
+                      fontWeight: '800',
+                      backgroundColor: '#059669',
+                      color: '#ffffff',
+                      borderRadius: '12px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.55rem',
+                      textDecoration: 'none',
+                      boxShadow: '0 8px 20px -4px rgba(5, 150, 105, 0.35)'
+                    }}
+                  >
+                    <Download size={18} />
+                    <span>تحميل ملف العرض الأصلي (PPTX)</span>
+                  </a>
                 )}
 
+                {featuredDeck.presentationUrl && (
+                  <a
+                    href={featuredDeck.presentationUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-secondary"
+                    style={{
+                      padding: '0.85rem 1.65rem',
+                      fontSize: '0.95rem',
+                      fontWeight: '800',
+                      backgroundColor: '#ffffff',
+                      color: '#2563eb',
+                      border: '1.5px solid #2563eb',
+                      borderRadius: '12px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.55rem',
+                      textDecoration: 'none'
+                    }}
+                  >
+                    <ExternalLink size={18} />
+                    <span>مستودع العرض على GitHub ↗</span>
+                  </a>
+                )}
               </div>
-            );
-          })}
-        </div>
+            </div>
+
+            {/* Interactive Slide Deck Player Container */}
+            <div 
+              className="corporate-card"
+              style={{
+                backgroundColor: '#ffffff',
+                borderRadius: '24px',
+                border: '1px solid #cbd5e1',
+                padding: '1.25rem',
+                boxShadow: '0 10px 30px -5px rgba(15, 23, 42, 0.05)'
+              }}
+            >
+              <SlideViewer deck={featuredDeck} />
+            </div>
+
+          </div>
+        )}
 
       </div>
     </div>
