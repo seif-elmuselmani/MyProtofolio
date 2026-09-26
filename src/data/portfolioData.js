@@ -196,14 +196,14 @@ export const webProjects = [
       ]
     }
   },
-      {
+        {
     id: "shuryan-depi",
     title: "منظومة 'شُريان' الشاملة للرعاية الصحية والاستشارات الطبية (ShurYan Healthcare Platform)",
     subtitle: "منظومة هندسية متكاملة لربط المرضى والأطباء والصيدليات والمعامل مع دعم الذكاء الاصطناعي والخرائط التفاعلية (.NET 8 Clean Architecture)",
     category: "backend",
     featured: true,
     year: "2025",
-    image: "/assets/profile/seif-with-dr-hesham-farouk-depi.png",
+    image: "/assets/projects/shuryan/shuryan-hero.png",
     badge: "🏆 1st Place Republic Winner (DEPI)",
     tags: [".NET 8", "Clean Architecture", "Gemini AI", "Leaflet & OSM", "SignalR", "Haversine Formula", "SQL Server", "JWT & RBAC"],
     summary: "منظومة سحابية رائدة للرعاية الصحية توفر 4 رحلات عمل متكاملة (مرضى، أطباء، صيدليات، معامل، ومتحققين Verifier). تشمل الاستشارات عن بُعد، الروشتات الرقمية، طلب وتوصيل الأدوية، حجز وسحب عينات التحاليل من المنزل، البحث الجغرافي عن أقرب الصيدليات بـ Haversine Formula، شات بوت طبي متكامل بـ Gemini AI، وتوثيق تراخيص وتفعيل مقدمي الخدمة.",

@@ -9,7 +9,7 @@
   "liveUrl": "https://shuryan-healthcare-system.vercel.app/",
   "githubBackendUrl": "https://github.com/seif-elmuselmani/shuryan-healthcare-system",
   "backendTech": ["ASP.NET Core .NET 8", "C#", "Clean Architecture", "Google Gemini AI", "SignalR", "Leaflet & OSM", "Haversine Formula", "SQL Server", "JWT & RBAC"],
-  "coverImage": "/assets/profile/seif-with-dr-hesham-farouk-depi.png",
+  "coverImage": "/assets/projects/shuryan/shuryan-hero.png",
   "highlights": [
     "الفوز بالمركز الأول على مستوى الجمهورية في مسار Full Stack .NET (DEPI)",
     "تكريم رسمي بحضور مستشار وزير الاتصالات للتطوير التكنولوجي د. هشام فاروق",
