@@ -323,19 +323,23 @@ export default function Teaching() {
                 <div 
                   style={{ 
                     position: "relative", 
-                    height: "220px", 
+                    height: "280px", 
                     borderRadius: "16px", 
                     overflow: "hidden", 
-                    border: "2px solid #3b82f6",
+                    border: "2px solid #2563eb",
+                    backgroundColor: "#f1f5f9",
                     cursor: "pointer",
-                    boxShadow: "0 10px 25px rgba(37, 99, 235, 0.15)"
+                    boxShadow: "0 10px 25px rgba(37, 99, 235, 0.12)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
                   }}
                   onClick={() => setZoomedImage({ src: item.image, title: item.title, desc: item.desc })}
                 >
                   <img 
                     src={item.image} 
                     alt={item.title}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center" }}
                   />
                   <div 
                     style={{
