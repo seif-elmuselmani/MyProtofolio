@@ -330,7 +330,7 @@ export default function TestimonialProofModal({ isOpen, onClose, testimonial }) 
               left: "1.5rem",
               display: "flex",
               alignItems: "center",
-              justify.content: "space-between",
+              justifyContent: "space-between",
               zIndex: 10
             }}
             onClick={(e) => e.stopPropagation()}
