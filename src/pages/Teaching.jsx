@@ -50,16 +50,6 @@ export default function Teaching() {
       desc: "تصور توضيحي يجسد تفاعل الطلاب والتواصل المباشر والحضوري في قاعات التدريب.",
       link: "https://lnkd.in/p/emGPyist",
       linkText: "قراءة منشور تجربة التدريس الأوفلاين على LinkedIn ↗"
-    },
-    {
-      src: "/assets/teaching/session-live-2.jpg",
-      title: "معسكر مبادرة براعم مصر الرقمية (DEMI) بالتعاون مع وزارة الاتصالات",
-      desc: "تدريب الطلاب على التفكير الحاسوبي (Computational Thinking) والبرمجة بالـ MBlock و Scratch."
-    },
-    {
-      src: "/assets/teaching/session-live-3.jpg",
-      title: "جلسات الـ Live Coding ومراجعة مشاريع الطلاب وتطبيق Peer Teaching",
-      desc: "إتاحة الفرصة للطلاب للشرح والتعبير عن أكوادهم لبناء الشخصية التقنية والثقة بالنفس."
     }
   ];
 
