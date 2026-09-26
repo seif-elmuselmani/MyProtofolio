@@ -42,7 +42,7 @@ export default function Home() {
   const [selectedProofTestimonial, setSelectedProofTestimonial] = useState(null);
   const [selectedCert, setSelectedCert] = useState(null);
 
-  const featuredProjects = (webProjects || []).filter(p => p.featured);
+  const featuredProjects = (webProjects || []).filter(p => p.featured).slice(0, 3);
   const previewCertificates = (certificatesList || []).slice(0, 4);
   const approvedTestimonials = (testimonialsList || []).filter(t => t.status !== 'pending');
   const previewTestimonials = approvedTestimonials.slice(0, 3);
