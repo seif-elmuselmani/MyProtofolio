@@ -42,12 +42,14 @@ export default function Teaching() {
       title: "خبرة وتجربة التدريس أونلاين عبر منصة iSchool",
       desc: "تصور توضيحي يعكس بيئة المحاضرات والسيشنات أونلاين، مراعاة لسياسة الخصوصية وعدم نشر صور الطلاب الناشئين.",
       link: "https://www.linkedin.com/posts/seif-elmuselmani_%D8%A7%D9%84%D8%B4%D9%87%D8%B1-%D8%AF%D9%87-%D8%A7%D8%AA%D8%B9%D8%B1%D8%B6-%D8%B9%D9%84%D9%8A%D8%A7-%D9%81%D8%B1%D8%B5%D8%A9-%D8%A5%D9%86%D9%8A-%D8%A3%D8%AF%D9%8A-%D8%B3%D9%8A%D8%B4%D9%86%D8%A7%D8%AA-%D8%A3%D9%88%D9%86%D9%84%D8%A7%D9%8A%D9%86-activity-7508549064591069184-COuP",
-      linkText: "قراءة المنشور الرسمي والـ Story على LinkedIn ↗"
+      linkText: "قراءة منشور تجربة الأونلاين على LinkedIn ↗"
     },
     {
-      src: "/assets/teaching/session-live-1.jpg",
-      title: "سيشن حية لتطوير الويب والـ Web Development أونلاين بـ iSchool",
-      desc: "شرح تفاعلي وبناء مشاريع عملية حقيقية مع الطلاب والتأكد من الفهم الكامل كود بكود."
+      src: "/assets/teaching/offline-sessions.png",
+      title: "خبرة عملية مثبتة في إدارة الجلسات والمحاضرات الأوفلاين (In-Person)",
+      desc: "تصور توضيحي يجسد تفاعل الطلاب والتواصل المباشر والحضوري في قاعات التدريب، مع الحفاظ على خصوصية الطلاب.",
+      link: "https://lnkd.in/p/emGPyist",
+      linkText: "قراءة منشور تجربة التدريس الأوفلاين على LinkedIn ↗"
     },
     {
       src: "/assets/teaching/session-live-2.jpg",
