@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { CheckCircle2, FileCheck, ExternalLink, Download, X, Award } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { CheckCircle2, FileCheck, ExternalLink, Download, X, Award, ArrowUpLeft, Eye } from 'lucide-react';
 import { usePortfolioData } from '../context/DynamicPortfolioContext';
 
 export default function TrustPartnersTicker() {
   const { trustPartners } = usePortfolioData();
   const [selectedProof, setSelectedProof] = useState(null);
+  const navigate = useNavigate();
 
   if (!trustPartners || trustPartners.length === 0) return null;
 
@@ -39,7 +41,7 @@ export default function TrustPartnersTicker() {
         <div 
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))',
             gap: '1.5rem'
           }}
         >
@@ -62,29 +64,30 @@ export default function TrustPartnersTicker() {
               {/* Top: Brand Logo Box */}
               <div 
                 style={{
-                  height: '52px',
+                  height: '60px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '1.25rem',
-                  padding: '0.5rem',
+                  padding: '0.5rem 1rem',
                   backgroundColor: '#f8fafc',
-                  borderRadius: '12px',
-                  border: '1px solid #f1f5f9'
+                  borderRadius: '14px',
+                  border: '1px solid #f1f5f9',
+                  overflow: 'hidden'
                 }}
               >
                 <img 
                   src={partner.logo} 
                   alt={partner.name}
                   style={{
-                    maxHeight: '38px',
-                    maxWidth: '170px',
+                    maxHeight: '44px',
+                    maxWidth: '180px',
                     objectFit: 'contain'
                   }}
                 />
               </div>
 
-              {/* Middle: Partner Info & Badge */}
+              {/* Middle: Partner Title & Badge */}
               <div style={{ marginBottom: '1.25rem', textAlign: 'center' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', marginBottom: '0.4rem' }}>
                   <span style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-primary)' }}>
@@ -110,22 +113,43 @@ export default function TrustPartnersTicker() {
                 )}
               </div>
 
-              {/* Bottom: Action Button */}
-              <button
-                onClick={() => setSelectedProof(partner)}
-                className="btn-secondary"
-                style={{
-                  width: '100%',
-                  justifyContent: 'center',
-                  padding: '0.55rem 1rem',
-                  fontSize: '0.85rem',
-                  backgroundColor: '#f8fafc',
-                  border: '1px solid #cbd5e1'
-                }}
-              >
-                <span>استعراض التوثيق المعتمد</span>
-                <ExternalLink size={14} />
-              </button>
+              {/* Bottom Actions: Internal Link + Proof Modal */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                
+                {/* Internal Section Router Link */}
+                <Link
+                  to={partner.linkUrl || '/credentials'}
+                  className="btn-primary"
+                  style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    padding: '0.55rem 1rem',
+                    fontSize: '0.85rem'
+                  }}
+                >
+                  <span>{partner.linkText || 'الانتقال لقسم التوثيق'}</span>
+                  <ArrowUpLeft size={15} />
+                </Link>
+
+                {/* Proof Document Modal Button */}
+                <button
+                  onClick={() => setSelectedProof(partner)}
+                  className="btn-secondary"
+                  style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    padding: '0.45rem 1rem',
+                    fontSize: '0.8rem',
+                    backgroundColor: '#ffffff',
+                    border: '1px solid #e2e8f0',
+                    color: 'var(--text-secondary)'
+                  }}
+                >
+                  <Eye size={13} />
+                  <span>معاينة المستند الرسمي 🔍</span>
+                </button>
+
+              </div>
 
             </div>
           ))}
@@ -235,16 +259,18 @@ export default function TrustPartnersTicker() {
                   <span>تنزيل الوثيقة</span>
                 </a>
 
-                <a
-                  href={selectedProof.proofUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => {
+                    const url = selectedProof.linkUrl || '/credentials';
+                    setSelectedProof(null);
+                    navigate(url);
+                  }}
                   className="btn-secondary"
                   style={{ padding: '0.55rem 1.15rem', fontSize: '0.85rem' }}
                 >
                   <ExternalLink size={15} />
-                  <span>عرض بالشاشة الكاملة</span>
-                </a>
+                  <span>الانتقال لقسم التوثيق بالموقع</span>
+                </button>
               </div>
             </div>
 
