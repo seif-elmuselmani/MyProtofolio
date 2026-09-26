@@ -304,7 +304,8 @@ export const certificatesList = [
     date: "مايو 2026 (معتمد 19/7/2026)",
     badge: "🎓 تقدير عام جيد جداً (GPA 3.11)",
     category: "academic",
-    image: "/assets/certificates/cert-zagazig-cs-degree.jpg",
+    image: "/assets/certificates/cert-zagazig-graduation.png",
+    proofUrl: "https://lnkd.in/p/eiWnXkAC",
     verificationId: "النسبة المئوية: 78.286% | مشروع التخرج: امتياز (A+)",
     description: "بيان نجاح وتخرج رسمي معتمد من كلية الحاسبات والمعلومات جامعة الزقازيق بتقدير عام جيد جداً، مع الحصول على تقدير A+ في مشروع التخرج الطبي نبض."
   },

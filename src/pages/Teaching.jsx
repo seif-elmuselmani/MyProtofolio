@@ -66,6 +66,16 @@ export default function Teaching() {
   // Scholarship Proofs
   const scholarshipProofs = [
     {
+      title: "🎓 بكالوريوس علوم الحاسب (CS) — تقدير جيد جداً و A+ بمشروع التخرج",
+      issuer: "كلية الحاسبات والمعلومات — جامعة الزقازيق",
+      image: "/assets/certificates/cert-zagazig-graduation.png",
+      date: "2026",
+      desc: "التخرج بتقدير عام جيد جداً مرتفع من كلية الحاسبات والمعلومات جامعة الزقازيق، والعمل كـ Team Leader لمشروع التخرج الطبي الذكي (نبض) والحصول على تقدير ممتاز (A+) مع إشادة لجنة التحكيم.",
+      link: "https://lnkd.in/p/eiWnXkAC",
+      linkText: "قراءة منشور التخرج الرسمي والتفاصيل على LinkedIn ↗",
+      badgeText: "درجة أكاديمية رسمية وتوثيق تخرج"
+    },
+    {
       title: "🏆 تكريم المركز الأول على مستوى الجمهورية (مبادرة DEPI)",
       issuer: "وزارة الاتصالات وتكنولوجيا المعلومات (MCIT) بالتعاون مع EYouth",
       image: "/assets/profile/seif-with-dr-hesham-farouk-depi.png",
@@ -78,7 +88,7 @@ export default function Teaching() {
       image: "/assets/certificates/cert-nti-210h.jpg",
       date: "2025 - 2026",
       desc: "برنامج تدريبي مكثف واحترافي بمعدل 210 ساعة دراسية وعملية من المعهد القومي للاتصالات (NTI)، شمل تطوير تطبيقات الويب، الهندسة السحابية وبناء المعماريات المعقدة وتأمين الأنظمة وتطبيقها عملياً."
-    },
+    }
   ];
 
   return (
@@ -346,9 +356,30 @@ export default function Teaching() {
                     {item.desc}
                   </p>
 
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#059669", fontWeight: "700", fontSize: "0.88rem" }}>
-                    <ShieldCheck size={17} />
-                    <span>منحة رسمية معتمدة وموثقة بالشهادات والتكريمات</span>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#059669", fontWeight: "700", fontSize: "0.88rem" }}>
+                      <ShieldCheck size={17} />
+                      <span>{item.badgeText || "منحة رسمية معتمدة وموثقة بالشهادات والتكريمات"}</span>
+                    </div>
+                    {item.link && (
+                      <a 
+                        href={item.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        style={{ 
+                          display: "inline-flex", 
+                          alignItems: "center", 
+                          gap: "0.4rem", 
+                          color: "#2563eb", 
+                          fontWeight: "800", 
+                          fontSize: "0.85rem",
+                          textDecoration: "none"
+                        }}
+                      >
+                        <ExternalLink size={15} />
+                        <span>{item.linkText || "عرض المنشور الرسمي على LinkedIn ↗"}</span>
+                      </a>
+                    )}
                   </div>
                 </div>
 
