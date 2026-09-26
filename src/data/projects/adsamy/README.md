@@ -1,11 +1,11 @@
-# 🚀 بوابة إعلانات Adsamy الرقمية
+# 🚀 منصة Adsamy 360° الرقمية للحلول التسويقية والتصوير الإبداعي
 
-- **المشروع**: Adsamy Marketing & Operations Portal.
-- **رابط العرض المباشر**: [https://adsamy.vercel.app](https://adsamy.vercel.app)
-- **رابط المستودع**: [GitHub Repo](https://github.com/seif-elmuselmani)
+- **المشروع**: Adsamy Agency 360° Enterprise Marketing & Operations Portal.
+- **رابط المعاينة المباشر**: [https://adsamy-portal.vercel.app/](https://adsamy-portal.vercel.app/)
+- **رابط المستودع على GitHub**: [https://github.com/seif-elmuselmani/adsamy-portal](https://github.com/seif-elmuselmani/adsamy-portal)
 
 ---
 
-## 🏛️ التفاصيل الفنية والواجهات
+## 🏛️ نظرة عامة والميزات الرئيسية
 
-بوابة تفاعلية عصرية تتيح استعراض باقات التسويق والدعاية وحساب التكلفة الفورية وتوفير تجربة مستخدم سريعة وفاخرة بهوية بصرية راقية.
+بوابة تفاعلية عصرية ومجهزة بجميع الأدوات لوكالة التسويق الإبداعي **Adsamy 360°**، تتيح استعراض باقات الدعاية والتسويق والتصوير الإبداعي وحساب التكلفة الفورية عبر حاسبة ميزانية تفاعلية (Budget Calculator) مع توفير تجربة مستخدم ديناميكية فائقة السرعة بدعم كامل للغتين العربية والإنجليزية (RTL/LTR).

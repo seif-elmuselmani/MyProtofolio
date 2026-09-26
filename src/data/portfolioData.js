@@ -255,27 +255,31 @@ export const webProjects = [
       ]
     }
   },
-  {
+    {
     id: "adsamy-portal",
-    title: "بوابة إعلانات Adsamy الرقمية",
-    subtitle: "Enterprise Marketing & Interactive Operations Portal",
-    category: "mean",
+    title: "منصة 'Adsamy 360°' الرقمية للحلول التسويقية والتصوير الإبداعي (Adsamy Agency 360° Portal)",
+    subtitle: "منصة تفاعلية متكاملة للوكالات الإبداعية تشمل حاسبة الميزانية التسويقية وبوابة العملاء المتعددة اللغات (React.js + Vite + Tailwind CSS)",
+    category: "frontend",
     featured: true,
     year: "2026",
-    image: "/assets/profile/banner-linkedin-header.png",
-    badge: "🚀 Enterprise Marketing Portal",
-    tags: ["React.js", "Modern UI", "Interactive Portal", "Vite", "Responsive Design"],
-    summary: "بوابة تفاعلية عصرية لشركة دعاية وإعلان تدمج بين استعراض باقات التسويق والخدمات وتقديم تجربة مستخدم ديناميكية فائقة السرعة مع ربط مباشر بقنوات التواصل وحساب التكلفة.",
-    liveUrl: "https://adsamy.vercel.app",
-    githubUrl: "https://github.com/seif-elmuselmani/shuryan-healthcare-system",
+    image: "/assets/projects/adsamy/adsamy-hero.png",
+    badge: "🚀 Enterprise Marketing & Operations Portal",
+    tags: ["React.js", "Vite", "Tailwind CSS", "Framer Motion", "Budget Calculator", "Multi-Language RTL", "Client Portal"],
+    summary: "بوابة رقمية تفاعلية متكاملة لوكالة التسويق الإبداعي Adsamy 360°، توفر تجربة مستخدم فاخرة باستعراض خدمات الهوية البصرية، التصوير الفوتوغرافي، الموشن جرافيك، إدارة الحملات، مع حاسبة ميزانية تفاعلية وبوابة عملاء ودعم كامل للغتين العربية والإنجليزية.",
+    liveUrl: "https://adsamy-portal.vercel.app/",
+    githubUrl: "https://github.com/seif-elmuselmani/adsamy-portal",
     caseStudy: {
-      client: "Adsamy Media Agency",
-      challenge: "تطوير واجهة عصرية تعكس الهوية المؤسسية الفاخرة للشركة وتتيح استعراض الباقات والخدمات مع سرعة فائقة وتجاوب 100%.",
-      solution: "بناء واجهة React نقية مع نظام CSS مخصص بالكامل وأعلى درجات سرعة التحميل.",
+      client: "شركة Adsamy 360° Media Agency",
+      challenge: "تطوير منصة تسويقية رقمية متكاملة تعكس الهوية المؤسسية الراقية للوكالة، وتوفر أدوات تفاعلية لحساب ميزانية الحملات التسويقية فورياً وتسهيل تواصل العملاء مع تصفح أعمال الشركة عبر مختلف القطاعات.",
+      solution: "تطوير المنصة بـ React.js و Vite مع Tailwind CSS و Framer Motion، وتصميم حاسبة ميزانية تفاعلية (Budget Calculator) لحساب التكلفة التقديرية بناءً على الخدمات والمدة، وتوفير دعم كامل للغتين العربية والإنجليزية (RTL/LTR)، وبناء معرض استعراض أعمال المعامل، المطاعم، العيادات، والأثاث.",
       highlights: [
-        "واجهة مخصصة بالكامل بهوية بصرية راقية",
-        "أداء وسرعة تحميل استثنائية (100% Performance Score)",
-        "تكامل مع أدوات الحجز وحساب التكلفة الفورية"
+        "تصميم وتطوير واجهة مستخدم فاخرة وفائقة السرعة بـ React.js و Vite و Tailwind CSS",
+        "دمج حاسبة ميزانية تسويقية تفاعلية (Interactive Budget Calculator) لحساب تكلفة الحملات فورياً",
+        "دعم كامل متعدد اللغات (English / Arabic RTL) مع تحويل فوري للواجهات والاتجاهات",
+        "بوابة العملاء وقاعدة المعرفة (Client Portal & Knowledge Base) لإدارة الاشتراكات والنشر",
+        "معرض أعمال تفاعلي مقسم بالقطاعات (مطاعم، كافيهات، عيادات، أثاث، تجارة إلكترونية، وشركات)",
+        "أداء عالي وسرعة تجاوب 100% مع كافة الشاشات وأجهزة الموبايل",
+        "تكامل مع نماذج الاتصال المباشر وربط وسائل التواصل الاجتماعي وتحديد مواقع الفروع"
       ]
     }
   },

@@ -1,13 +1,19 @@
 {
-  "id": "adsamy",
-  "titleAr": "بوابة إعلانات Adsamy الرقمية",
-  "titleEn": "Adsamy Enterprise Marketing & Operations Portal",
-  "role": "Full Stack / Frontend Developer",
-  "badge": "🚀 Enterprise Marketing Portal",
-  "category": "mean",
+  "id": "adsamy-portal",
+  "titleAr": "منصة 'Adsamy 360°' الرقمية للحلول التسويقية (Adsamy Agency Portal)",
+  "titleEn": "Adsamy 360° Enterprise Marketing & Operations Portal",
+  "role": "Frontend Developer & UI/UX Architect (React.js & Vite)",
+  "award": "🚀 Enterprise Marketing & Operations Portal",
+  "category": "frontend",
   "year": "2026",
-  "liveUrl": "https://adsamy.vercel.app",
-  "githubUrl": "https://github.com/seif-elmuselmani",
-  "techStack": ["React.js", "Vite", "Modern UI/UX", "Tailwind CSS", "Responsive Design"],
-  "coverImage": "/assets/profile/banner-linkedin-header.png"
+  "liveUrl": "https://adsamy-portal.vercel.app/",
+  "githubBackendUrl": "https://github.com/seif-elmuselmani/adsamy-portal",
+  "backendTech": ["React.js", "Vite", "Tailwind CSS", "Framer Motion", "Budget Calculator", "i18n Multi-Language"],
+  "coverImage": "/assets/projects/adsamy/adsamy-hero.png",
+  "highlights": [
+    "واجهة مستخدم فاخرة وفائقة السرعة بـ React.js و Tailwind CSS",
+    "حاسبة ميزانية تسويقية تفاعلية (Interactive Budget Calculator)",
+    "دعم كامل متعدد اللغات (English / Arabic RTL)",
+    "معرض أعمال تفاعلي مقسم بقطاعات المطاعم والعيادات والأثاث"
+  ]
 }
