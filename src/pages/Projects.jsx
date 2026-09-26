@@ -9,6 +9,18 @@ export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
+  // Dynamically filter categories so only those with > 0 projects appear
+  const activeCategories = (categories || []).filter(cat => {
+    if (cat.id === 'all') return true;
+    const count = (webProjects || []).filter(p => p.category === cat.id).length;
+    return count > 0;
+  });
+
+  const getCategoryCount = (catId) => {
+    if (catId === 'all') return (webProjects || []).length;
+    return (webProjects || []).filter(p => p.category === catId).length;
+  };
+
   const filteredProjects = (webProjects || []).filter(p => {
     const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
     const matchesSearch = 
@@ -18,11 +30,6 @@ export default function Projects() {
       (p.tags || []).some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesCategory && matchesSearch;
   });
-
-  const getCategoryCount = (catId) => {
-    if (catId === 'all') return (webProjects || []).length;
-    return (webProjects || []).filter(p => p.category === catId).length;
-  };
 
   return (
     <div className="animate-fade-in" style={{ paddingTop: '6.5rem', minHeight: '85vh', paddingBottom: '5rem', backgroundColor: '#f8fafc' }}>
@@ -58,7 +65,7 @@ export default function Projects() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="ابحث باسم المشروع، المعمارية، أو التقنية (مثال: .NET 8, Clean Architecture, Node.js, AI)..."
+              placeholder="ابحث باسم المشروع، المعمارية، أو التقنية (مثال: .NET 8, Clean Architecture, Node.js, React)..."
               style={{
                 width: '100%',
                 padding: '0.95rem 1.25rem 0.95rem 3.2rem',
@@ -101,7 +108,7 @@ export default function Projects() {
             )}
           </div>
 
-          {/* Dynamic Categories Tabs with Live Counters */}
+          {/* Dynamic Categories Tabs (Only Non-Zero Categories) */}
           <div 
             style={{
               display: 'flex',
@@ -110,9 +117,10 @@ export default function Projects() {
               gap: '0.6rem'
             }}
           >
-            {(categories || []).map((cat) => {
+            {activeCategories.map((cat) => {
               const isActive = activeCategory === cat.id;
               const count = getCategoryCount(cat.id);
+              const label = cat.label || cat.nameAr || cat.id;
 
               return (
                 <button
@@ -130,11 +138,11 @@ export default function Projects() {
                     boxShadow: isActive ? '0 4px 14px rgba(37, 99, 235, 0.3)' : '0 2px 6px rgba(0,0,0,0.02)',
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.4rem',
+                    gap: '0.45rem',
                     cursor: 'pointer'
                   }}
                 >
-                  <span>{cat.label}</span>
+                  <span>{label}</span>
                   <span 
                     style={{ 
                       backgroundColor: isActive ? 'rgba(255,255,255,0.25)' : '#f1f5f9', 

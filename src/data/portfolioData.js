@@ -164,10 +164,11 @@ export const skillsMatrix = [
 ];
 
 export const categories = [
-  { id: "all", nameAr: "جميع المشاريع", nameEn: "All Projects" },
-  { id: "backend", nameAr: "مشاريع .NET & Backend", nameEn: ".NET & Enterprise" },
-  { id: "mean", nameAr: "تطبيقات MEAN & Full-Stack", nameEn: "MEAN & Web Apps" },
-  { id: "ai-health", nameAr: "أنظمة الذكاء الاصطناعي الطبية", nameEn: "AI Healthcare" }
+  { id: "all", label: "جميع المشاريع", nameAr: "جميع المشاريع", nameEn: "All Projects" },
+  { id: "fullstack", label: "تطبيقات Full-Stack & E-Commerce", nameAr: "تطبيقات Full-Stack & E-Commerce", nameEn: "Full-Stack & E-Commerce" },
+  { id: "backend", label: "أنظمة .NET & Enterprise Backend", nameAr: "أنظمة .NET & Enterprise Backend", nameEn: ".NET & Enterprise" },
+  { id: "ai-health", label: "أنظمة الذكاء الاصطناعي الطبية", nameAr: "أنظمة الذكاء الاصطناعي الطبية", nameEn: "AI Healthcare" },
+  { id: "frontend", label: "منصات الويب والـ Portals", nameAr: "منصات الويب والـ Portals", nameEn: "Web Portals" }
 ];
 
 export const webProjects = [

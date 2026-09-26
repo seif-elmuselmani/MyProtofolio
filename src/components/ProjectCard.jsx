@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import { ExternalLink, Github, Sparkles, Layers, Cpu, CheckCircle2 } from 'lucide-react';
+import { ExternalLink, Github, Sparkles, Layers } from 'lucide-react';
 import CaseStudyModal from './CaseStudyModal';
 
 export default function ProjectCard({ project }) {
   const [isCaseStudyOpen, setIsCaseStudyOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-
-  // Extract architecture hint if available
-  const architectureBadge = project.architecture || project.subtitle || "System Architecture";
 
   return (
     <div 
@@ -29,8 +26,8 @@ export default function ProjectCard({ project }) {
       }}
     >
       <div>
-        {/* Project Image & Badge Container */}
-        <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', overflow: 'hidden', backgroundColor: '#0f172a' }}>
+        {/* Project Thumbnail Image Container (Clean & Crisp - No Dark Box Overlays) */}
+        <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', overflow: 'hidden', backgroundColor: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
           <img 
             src={project.image} 
             alt={project.title}
@@ -38,12 +35,12 @@ export default function ProjectCard({ project }) {
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              transform: isHovered ? 'scale(1.06)' : 'scale(1.0)',
+              transform: isHovered ? 'scale(1.05)' : 'scale(1.0)',
               transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
             }}
           />
 
-          {/* Award / Distinction Badge */}
+          {/* Distinction / Award Gold Badge */}
           {project.badge && (
             <div 
               style={{
@@ -59,36 +56,12 @@ export default function ProjectCard({ project }) {
               </span>
             </div>
           )}
-
-          {/* Architecture Tag Banner on Image */}
-          <div 
-            style={{
-              position: 'absolute',
-              bottom: '0.75rem',
-              left: '0.75rem',
-              zIndex: 2,
-              backgroundColor: 'rgba(15, 23, 42, 0.85)',
-              backdropFilter: 'blur(8px)',
-              color: '#ffffff',
-              padding: '0.35rem 0.75rem',
-              borderRadius: '9999px',
-              fontSize: '0.76rem',
-              fontWeight: '700',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.35rem',
-              border: '1px solid rgba(255, 255, 255, 0.15)'
-            }}
-          >
-            <Cpu size={12} color="#38bdf8" />
-            <span>{architectureBadge}</span>
-          </div>
         </div>
 
-        {/* Card Content Body */}
+        {/* Card Body */}
         <div style={{ padding: '1.6rem 1.6rem 1rem', display: 'flex', flexDirection: 'column' }}>
           <div style={{ fontSize: '0.82rem', color: '#2563eb', fontWeight: '800', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-            {project.categoryLabel || project.subtitle}
+            {project.subtitle}
           </div>
           
           <h3 style={{ fontSize: '1.25rem', fontWeight: '900', color: '#0f172a', marginBottom: '0.65rem', lineHeight: 1.35 }}>
@@ -163,7 +136,7 @@ export default function ProjectCard({ project }) {
             </a>
           )}
 
-          {/* GitHub Repo Button (Corporate Dark) */}
+          {/* GitHub Repo Button (Corporate Dark Slate) */}
           {project.githubUrl && (
             <a 
               href={project.githubUrl} 
