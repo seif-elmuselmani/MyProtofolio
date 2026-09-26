@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { X, CheckCircle2, ShieldCheck, Star, Quote, Maximize2, ZoomIn, FileText, Image as ImageIcon } from "lucide-react";
+import { X, CheckCircle2, ShieldCheck, Star, Quote, Maximize2, ExternalLink, Image as ImageIcon } from "lucide-react";
 
 export default function TestimonialProofModal({ isOpen, onClose, testimonial }) {
   const [isZoomed, setIsZoomed] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      setImageError(false);
     } else {
       document.body.style.overflow = "unset";
       setIsZoomed(false);
@@ -20,12 +22,24 @@ export default function TestimonialProofModal({ isOpen, onClose, testimonial }) 
   if (!isOpen || !testimonial) return null;
 
   const fullQuote = testimonial.quote || testimonial.content || "";
-  const proofImage = testimonial.image || testimonial.proofUrl || testimonial.screenshot;
+
+  // Helper to check if string is an actual image file path
+  const isValidImage = (url) => {
+    if (!url || typeof url !== "string") return false;
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      return url.match(/\.(jpeg|jpg|gif|png|webp|svg)(\?.*)?$/i) !== null;
+    }
+    return url.startsWith("/");
+  };
+
+  const rawProof = testimonial.proofImage || testimonial.screenshot || testimonial.proofFile || testimonial.image;
+  const proofImage = (!imageError && isValidImage(rawProof)) ? rawProof : null;
+  const externalLink = testimonial.proofUrl || testimonial.link;
 
   return createPortal(
     <>
       {/* Main Details Modal */}
-      <div 
+      <div
         style={{
           position: "fixed",
           top: 0,
@@ -42,7 +56,7 @@ export default function TestimonialProofModal({ isOpen, onClose, testimonial }) 
         }}
         onClick={onClose}
       >
-        <div 
+        <div
           style={{
             width: "100%",
             maxWidth: "760px",
@@ -59,7 +73,7 @@ export default function TestimonialProofModal({ isOpen, onClose, testimonial }) 
           onClick={(e) => e.stopPropagation()}
         >
           {/* Modal Header */}
-          <div 
+          <div
             style={{
               padding: "1.25rem 1.75rem",
               backgroundColor: "#f8fafc",
@@ -101,7 +115,7 @@ export default function TestimonialProofModal({ isOpen, onClose, testimonial }) 
 
           {/* Modal Scrollable Body */}
           <div style={{ padding: "2rem 1.75rem", overflowY: "auto", flex: 1 }}>
-            
+
             {/* Rating Stars Bar */}
             <div style={{ display: "flex", alignItems: "center", gap: "0.35rem", marginBottom: "1.25rem" }}>
               {[...Array(5)].map((_, i) => (
@@ -115,7 +129,7 @@ export default function TestimonialProofModal({ isOpen, onClose, testimonial }) 
             {/* Quotation Header & Exact Quote */}
             <div style={{ position: "relative", paddingRight: "1rem", borderRight: "4px solid #2563eb", marginBottom: "2rem" }}>
               <Quote size={36} color="#93c5fd" style={{ opacity: 0.5, marginBottom: "0.5rem" }} />
-              <p 
+              <p
                 style={{
                   fontSize: "1.02rem",
                   lineHeight: "1.9",
@@ -141,18 +155,18 @@ export default function TestimonialProofModal({ isOpen, onClose, testimonial }) 
                     onClick={() => setIsZoomed(true)}
                     style={{
                       border: "none",
-                      background: "transparent",
+                      backgroundColor: "transparent",
                       color: "#2563eb",
                       fontSize: "0.8rem",
-                      fontWeight: "800",
+                      fontWeight: "700",
                       cursor: "pointer",
                       display: "flex",
                       alignItems: "center",
                       gap: "0.3rem"
                     }}
                   >
-                    <ZoomIn size={14} />
-                    <span>تكبير الصورة ملء الشاشة</span>
+                    <Maximize2 size={13} />
+                    <span>تكبير الصورة</span>
                   </button>
                 </div>
 
@@ -160,23 +174,23 @@ export default function TestimonialProofModal({ isOpen, onClose, testimonial }) 
                   onClick={() => setIsZoomed(true)}
                   style={{
                     position: "relative",
-                    borderRadius: "18px",
+                    borderRadius: "16px",
                     overflow: "hidden",
-                    border: "1.5px solid #cbd5e1",
+                    border: "1px solid #cbd5e1",
                     backgroundColor: "#f8fafc",
-                    boxShadow: "0 4px 14px rgba(15, 23, 42, 0.06)",
-                    cursor: "zoom-in",
-                    maxHeight: "420px",
+                    cursor: "pointer",
+                    boxShadow: "0 4px 15px rgba(15, 23, 42, 0.08)",
+                    padding: "0.75rem",
                     display: "flex",
-                    alignItems: "center",
                     justifyContent: "center",
-                    padding: "0.75rem"
+                    alignItems: "center"
                   }}
                   title="انقر لتكبير صورة التوثيق ملء الشاشة"
                 >
                   <img 
                     src={proofImage} 
                     alt={`وثيقة إثبات ${testimonial.name}`} 
+                    onError={() => setImageError(true)}
                     style={{ 
                       width: "100%", 
                       maxHeight: "390px", 
@@ -215,7 +229,7 @@ export default function TestimonialProofModal({ isOpen, onClose, testimonial }) 
             <div style={{ display: "flex", alignItems: "center", gap: "1rem", padding: "1.25rem", backgroundColor: "#f8fafc", borderRadius: "16px", border: "1px solid #e2e8f0" }}>
               <div style={{ width: "56px", height: "56px", borderRadius: "14px", overflow: "hidden", backgroundColor: "#eff6ff", border: "2px solid #3b82f6", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
                 {testimonial.image ? (
-                  <img src={testimonial.image} alt={testimonial.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  <img src={testimonial.image} alt={testimonial.name} onError={(e) => { e.target.style.display = 'none'; }} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 ) : (
                   <div style={{ width: "100%", height: "100%", backgroundColor: "#2563eb", color: "#ffffff", fontWeight: "900", fontSize: "1.25rem", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     {testimonial.name ? testimonial.name.charAt(0) : "T"}
@@ -239,9 +253,9 @@ export default function TestimonialProofModal({ isOpen, onClose, testimonial }) 
           {/* Modal Footer */}
           <div style={{ padding: "1.25rem 1.75rem", backgroundColor: "#ffffff", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.75rem" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
-              {(testimonial.proofUrl || testimonial.link) && (
+              {externalLink && (
                 <a
-                  href={testimonial.proofUrl || testimonial.link}
+                  href={externalLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary"
@@ -316,7 +330,7 @@ export default function TestimonialProofModal({ isOpen, onClose, testimonial }) 
               left: "1.5rem",
               display: "flex",
               alignItems: "center",
-              justifyContent: "space-between",
+              justify.content: "space-between",
               zIndex: 10
             }}
             onClick={(e) => e.stopPropagation()}
@@ -361,6 +375,7 @@ export default function TestimonialProofModal({ isOpen, onClose, testimonial }) 
             <img 
               src={proofImage} 
               alt={`مستند توثيق مكبر - ${testimonial.name}`} 
+              onError={() => setIsZoomed(false)}
               style={{
                 maxWidth: "100%",
                 maxHeight: "85vh",
