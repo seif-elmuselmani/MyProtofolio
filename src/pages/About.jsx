@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
-import { User, MapPin, Mail, Phone, Download, Send, Award, GraduationCap, CheckCircle2, ExternalLink, Sparkles, BookOpen, ShieldCheck, Briefcase } from 'lucide-react';
+import { User, MapPin, Mail, Phone, Download, Send, Award, GraduationCap, CheckCircle2, ExternalLink, Maximize2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { usePortfolioData } from '../context/DynamicPortfolioContext';
 import ResumeModal from '../components/ResumeModal';
+import CertificateModal from '../components/CertificateModal';
 
 export default function About() {
   const { personalInfo, skillsMatrix } = usePortfolioData();
   const [showResume, setShowResume] = useState(false);
+  const [previewImage, setPreviewImage] = useState(null);
 
   const displayStats = [
     { value: '🏆 #1', label: 'المركز الأول جمهورية', enLabel: 'DEPI 1st Place Nationwide' },
     { value: '210+ ساعة', label: 'تدريب مكثف NTI', enLabel: 'MEAN & .NET Accelerator' },
-    { value: '+100 طالب', label: 'طلاب ومبتكرين تم تدريبهم', enLabel: 'iSchool & DEMI Students' },
+    { value: '+500 طالب', label: 'طلاب ومبتكرين تم تدريبهم', enLabel: 'iSchool & DEMI Students' },
     { value: '6 مهندسين', label: 'قيادة مشروع التخرج (A+)', enLabel: 'NABD Team Leader' },
     { value: '5.0 / 5.0', label: 'تقييم العمل الحر', enLabel: '100% Deal Completion' },
     { value: '+9K', label: 'متابع على LinkedIn', enLabel: 'Tech Network & Community' }
@@ -34,7 +36,7 @@ export default function About() {
         >
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '2.5rem', alignItems: 'center' }} className="about-grid">
             
-            {/* Left/Main Column: Bio & Info */}
+            {/* Main Bio Text Column */}
             <div style={{ gridColumn: 'span 7' }} className="about-text-col">
               <div className="pill-badge pill-blue" style={{ marginBottom: '1rem' }}>
                 <User size={14} />
@@ -48,7 +50,7 @@ export default function About() {
                 {personalInfo.roleAr}
               </div>
 
-              {/* Education Card Box */}
+              {/* Education Box */}
               <div style={{ backgroundColor: '#f8fafc', padding: '1.25rem 1.5rem', borderRadius: '16px', border: '1px solid #e2e8f0', marginBottom: '1.5rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--brand-prestige)', fontWeight: '800', fontSize: '1rem', marginBottom: '0.35rem' }}>
                   <GraduationCap size={22} />
@@ -98,47 +100,72 @@ export default function About() {
 
             </div>
 
-            {/* Right Column: Formal Photo & Highlights */}
+            {/* Formal Profile Photo Column */}
             <div style={{ gridColumn: 'span 5' }} className="about-metrics-col">
               <div 
                 style={{
                   position: 'relative',
-                  borderRadius: '20px',
+                  borderRadius: '24px',
                   overflow: 'hidden',
-                  boxShadow: '0 12px 30px rgba(0,0,0,0.08)',
-                  border: '3px solid #ffffff',
-                  backgroundColor: '#f1f5f9',
-                  marginBottom: '1.5rem'
+                  boxShadow: '0 20px 40px rgba(15, 23, 42, 0.12)',
+                  border: '4px solid #ffffff',
+                  backgroundColor: '#0f172a',
+                  cursor: 'pointer'
                 }}
+                onClick={() => setPreviewImage({
+                  title: 'سيف الدين محمد - الصورة الشخصية الرسمية',
+                  issuer: 'Full-Stack Software Engineer',
+                  image: '/assets/profile/seif-defense-formal.jpg',
+                  description: 'مهندس برمجيات متخصص في .NET & MEAN Stack، الحائز على المركز الأول على مستوى الجمهورية في مبادرة مصر الرقمية DEPI.'
+                })}
               >
                 <img 
                   src="/assets/profile/seif-defense-formal.jpg" 
                   alt="سيف الدين محمد - مهندس برمجيات"
-                  style={{ width: '100%', height: '340px', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
+                  style={{ 
+                    width: '100%', 
+                    maxHeight: '450px', 
+                    objectFit: 'cover', 
+                    objectPosition: 'center 15%', 
+                    display: 'block' 
+                  }}
                 />
                 <div 
                   style={{
                     position: 'absolute',
-                    bottom: '1rem',
-                    right: '1rem',
-                    left: '1rem',
-                    backgroundColor: 'rgba(15, 23, 42, 0.88)',
-                    backdropFilter: 'blur(8px)',
-                    padding: '0.85rem 1rem',
-                    borderRadius: '14px',
-                    color: '#ffffff',
+                    inset: 0,
+                    background: 'linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.2) 50%, transparent 100%)',
                     display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between'
+                    flexDirection: 'column',
+                    justifyContent: 'flex-end',
+                    padding: '1.25rem'
                   }}
                 >
-                  <div>
-                    <div style={{ fontSize: '0.9rem', fontWeight: '800', color: '#38bdf8' }}>سيف الدين محمد</div>
-                    <div style={{ fontSize: '0.75rem', color: '#cbd5e1' }}>Full-Stack Software Engineer</div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div>
+                      <div style={{ fontSize: '1rem', fontWeight: '800', color: '#ffffff' }}>سيف الدين محمد</div>
+                      <div style={{ fontSize: '0.8rem', color: '#cbd5e1' }}>Full-Stack Software Engineer</div>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span className="pill-badge pill-gold" style={{ fontSize: '0.78rem', padding: '0.3rem 0.75rem' }}>
+                        🏆 الأول جمهورية
+                      </span>
+                      <div 
+                        style={{
+                          width: '32px',
+                          height: '32px',
+                          borderRadius: '8px',
+                          backgroundColor: 'rgba(255,255,255,0.2)',
+                          color: '#ffffff',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
+                        }}
+                      >
+                        <Maximize2 size={16} />
+                      </div>
+                    </div>
                   </div>
-                  <span className="pill-badge pill-gold" style={{ fontSize: '0.75rem', padding: '0.25rem 0.65rem' }}>
-                    🏆 الأول جمهورية
-                  </span>
                 </div>
               </div>
             </div>
@@ -146,47 +173,95 @@ export default function About() {
           </div>
         </div>
 
-        {/* Award Spotlight Section */}
+        {/* Presidential Award Section with Full Photo Aspect Ratio */}
         <div 
           className="corporate-card"
           style={{
-            padding: '2rem 2.5rem',
+            padding: '2.5rem',
             marginBottom: '4rem',
-            backgroundColor: '#f8fafc',
+            backgroundColor: '#ffffff',
             borderRadius: '24px',
-            border: '1px solid #cbd5e1'
+            border: '1px solid #e2e8f0',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.03)'
           }}
         >
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '2rem', alignItems: 'center' }} className="award-grid">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '2.5rem', alignItems: 'center' }} className="award-grid">
+            
+            {/* Award Photo Column */}
             <div style={{ gridColumn: 'span 5' }} className="award-img-col">
-              <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid #cbd5e1' }}>
+              <div 
+                style={{ 
+                  borderRadius: '20px', 
+                  overflow: 'hidden', 
+                  border: '1px solid #cbd5e1',
+                  backgroundColor: '#0f172a',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
+                }}
+                onClick={() => setPreviewImage({
+                  title: 'التكريم الرسمي بالمركز الأول على مستوى الجمهورية (DEPI)',
+                  issuer: 'وزارة الاتصالات وتكنولوجيا المعلومات (MCIT)',
+                  image: '/assets/profile/seif-with-dr-hesham-farouk-depi.png',
+                  description: 'صورة التكريم الرسمي بحضور د. هشام فاروق (مستشار وزير الاتصالات لتطوير الكوادر التكنولوجية) ود. هدى بركة، عقب تحقيق المركز الأول جمهورية في مبادرة مصر الرقمية DEPI Round 3.'
+                })}
+              >
                 <img 
                   src="/assets/profile/seif-with-dr-hesham-farouk-depi.png" 
-                  alt="تتكريم سيف الدين محمد مع د. هشام فاروق" 
-                  style={{ width: '100%', height: '220px', objectFit: 'cover', display: 'block' }}
+                  alt="التكريم الرسمي مع د. هشام فاروق" 
+                  style={{ 
+                    width: '100%', 
+                    height: 'auto',
+                    maxHeight: '340px',
+                    objectFit: 'contain', 
+                    backgroundColor: '#0f172a',
+                    display: 'block' 
+                  }}
                 />
+                <div 
+                  style={{
+                    position: 'absolute',
+                    top: '0.75rem',
+                    left: '0.75rem',
+                    backgroundColor: 'rgba(15, 23, 42, 0.75)',
+                    backdropFilter: 'blur(6px)',
+                    color: '#ffffff',
+                    fontSize: '0.75rem',
+                    padding: '0.3rem 0.65rem',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.35rem'
+                  }}
+                >
+                  <Maximize2 size={13} />
+                  <span>تكبير الصورة</span>
+                </div>
               </div>
             </div>
+
+            {/* Award Description Column */}
             <div style={{ gridColumn: 'span 7' }} className="award-text-col">
-              <div className="pill-badge pill-gold" style={{ marginBottom: '0.65rem' }}>
+              <div className="pill-badge pill-gold" style={{ marginBottom: '0.75rem' }}>
                 <Award size={14} />
                 <span>التكريم والتميز الرئاسي</span>
               </div>
-              <h2 style={{ fontSize: '1.65rem', fontWeight: '900', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
+              <h2 style={{ fontSize: '1.75rem', fontWeight: '900', color: 'var(--text-primary)', marginBottom: '0.75rem', lineHeight: 1.35 }}>
                 التكريم الرسمي بالمركز الأول على مستوى الجمهورية (DEPI)
               </h2>
-              <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '1rem' }}>
-                تم التكريم بحضور د. هشام فاروق (مستشار وزير الاتصالات وتكنولوجيا المعلومات لتطوير الكوادر التكنولوجية) ود. هدى بركة، عقب تحقيـق المركز الأول جمهورية في مبادرة مصر الرقمية (DEPI Round 3) وتطوير حلول برمجية متكاملة بـ .NET & Cloud Architecture.
+              <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.75, marginBottom: '1.25rem' }}>
+                لحظة التكريم الرسمي بحضور <strong>د. هشام فاروق</strong> (مستشار وزير الاتصالات وتكنولوجيا المعلومات لتطوير الكوادر التكنولوجية) و<strong>د. هدى بركة</strong>، عقب تحقيق المركز الأول على مستوى الجمهورية في مبادرة مصر الرقمية (DEPI Round 3) عن مسار Full Stack Web Development (.NET) بالتعاون مع المعهد القومي للاتصالات NTI.
               </p>
-              <Link to="/credentials" className="btn-primary" style={{ padding: '0.5rem 1.25rem', fontSize: '0.85rem', display: 'inline-flex' }}>
+              <Link to="/credentials" className="btn-primary" style={{ padding: '0.65rem 1.4rem', fontSize: '0.88rem', display: 'inline-flex' }}>
                 <span>استعراض شهادات الاعتماد والتميز</span>
-                <ExternalLink size={14} />
+                <ExternalLink size={15} />
               </Link>
             </div>
+
           </div>
         </div>
 
-        {/* Metrics Grid (6 Balanced Cards) */}
+        {/* Metrics Grid */}
         <div style={{ marginBottom: '4.5rem' }}>
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <h2 style={{ fontSize: '1.85rem', fontWeight: '900', color: 'var(--text-primary)' }}>
@@ -235,6 +310,13 @@ export default function About() {
       </div>
 
       <ResumeModal isOpen={showResume} onClose={() => setShowResume(false)} />
+
+      {previewImage && (
+        <CertificateModal 
+          cert={previewImage} 
+          onClose={() => setPreviewImage(null)} 
+        />
+      )}
 
       <style>{`
         @media (max-width: 900px) {
