@@ -283,45 +283,7 @@ export const webProjects = [
       ]
     }
   },
-  {
-    id: "mean-stack-accelerator",
-    title: "منظومة إدارة المحتوى والخدمات (NTI Accelerator)",
-    subtitle: "Enterprise MEAN Stack Full-Application (210 Hours Training)",
-    category: "mean",
-    featured: false,
-    year: "2026",
-    image: "/assets/certificates/cert-depi-fullstack-dotnet.jpg",
-    badge: "🎓 NTI Official Project",
-    tags: ["MongoDB", "Express.js", "Angular", "Node.js", "JWT Auth", "REST APIs"],
-    summary: "تطبيق ويب متكامل تم بناؤه خلال تدريب الـ 210 ساعة بمعهد تكنولوجيا الاتصالات (NTI)، يشتمل على لوحة تحكم Angular كاملة وخوادم Node.js/Express وقاعدة بيانات MongoDB مع تأمين الـ Authentication.",
-    liveUrl: "https://seif-elmuselmani-portfolio.netlify.app/",
-    githubUrl: "https://github.com/seif-elmuselmani/shuryan-healthcare-system",
-    caseStudy: {
-      client: "المعهد القومي للاتصالات (NTI)",
-      challenge: "تطبيق معايير الـ Full-Stack وتأمين عمليات الـ CRUD والـ Role-based Authorization بين Angular و Node.js.",
-      solution: "بناء REST API منظم مع بنية Modular في Angular وإدارة الجلسات عبر Tokens مشفرة.",
-      highlights: [
-        "إتمام تدريب معهد NTI المكثف بتفوق وإشادة المشرفين",
-        "لوحة تحكم إدارية تفاعلية بـ Angular مع معالجة البيانات غير المتزامنة",
-        "هيكلة قواعد البيانات NoSQL بـ Mongoose وتوثيق الـ APIs"
-      ]
-    }
-  }
-];
-
-export const certificatesList = [
-  {
-    id: "depi-top1",
-    title: "Digital Egypt Pioneers Program (DEPI) - Full Stack .NET",
-    issuer: "وزارة الاتصالات وتكنولوجيا المعلومات (MCIT) + EYouth + Berlitz",
-    date: "يونيو - ديسمبر 2025",
-    badge: "🏆 المركز الأول على مستوى الجمهورية",
-    category: "gov",
-    image: "/assets/certificates/cert-depi-fullstack-dotnet.jpg",
-    pdfUrl: "/assets/certificates/cert-depi-fullstack-dotnet.pdf",
-    verificationId: "DEPI Certified Graduate - Project Shuryan (Top 1)",
-    description: "شهادة إتمام المسار التدريبي القومي لمطوري Full Stack .NET Web Developer من وزارة الاتصالات، والتتويج بالمركز الأول على مستوى الجمهورية لمشروع شريان."
-  },
+  
   {
     id: "zagazig-cs-degree",
     title: "بكالوريوس علوم الحاسب (Bachelor of Science in CS)",
