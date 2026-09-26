@@ -38,6 +38,11 @@ export default function Teaching() {
   // Live session photos array
   const sessionPhotos = [
     {
+      src: "/assets/teaching/ischool-live-session.png",
+      title: "محاضرة حية ومباشرة لتطبيق ومتابعة الأكواد أونلاين على iSchool",
+      desc: "لقطة واقعية أثناء شرح مفاهيم البرمجة ومتابعة المشاريع وإتاحة الفرصة للطلاب للتفاعل والمشاركة الفعالة."
+    },
+    {
       src: "/assets/teaching/session-live-1.jpg",
       title: "سيشن حية لتطوير الويب والـ Web Development أونلاين بـ iSchool",
       desc: "شرح تفاعلي وبناء مشاريع عملية حقيقية مع الطلاب والتأكد من الفهم الكامل كود بكود."
@@ -221,13 +226,13 @@ export default function Teaching() {
                 }}
               >
                 <div 
-                  style={{ position: "relative", height: "230px", overflow: "hidden", cursor: "pointer" }}
+                  style={{ position: "relative", height: "250px", overflow: "hidden", cursor: "pointer", backgroundColor: "#f8fafc" }}
                   onClick={() => setZoomedImage(photo)}
                 >
                   <img 
                     src={photo.src} 
                     alt={photo.title}
-                    style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s ease" }}
+                    style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", transition: "transform 0.4s ease" }}
                   />
                   <div 
                     style={{
