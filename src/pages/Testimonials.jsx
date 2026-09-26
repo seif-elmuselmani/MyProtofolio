@@ -26,10 +26,12 @@ export default function Testimonials() {
   // Filter approved testimonials
   const approvedTestimonials = (testimonialsList || []).filter(t => t.status !== "pending");
 
-  const filteredTestimonials = approvedTestimonials.filter(t => {
+    const filteredTestimonials = approvedTestimonials.filter(t => {
+    if (activeFilter === "ischool") return t.category === "ischool" || (t.company && t.company.includes("iSchool"));
+    if (activeFilter === "parent") return t.category === "parent" || (t.role && t.role.includes("ولي أمر"));
+    if (activeFilter === "student") return t.category === "student" || (t.role && t.role.includes("طالب"));
     if (activeFilter === "nti") return (t.company && t.company.includes("NTI")) || (t.source && t.source.includes("NTI"));
-    if (activeFilter === "nafezly") return (t.source && t.source.includes("Nafezly")) || (t.company && t.company.includes("Nafezly"));
-    if (activeFilter === "linkedin") return (t.source && t.source.includes("LinkedIn"));
+    if (activeFilter === "nafezly") return (t.source && t.source.includes("Nafezly")) || (t.company && t.company.includes("Nafezly")) || (t.company && t.company.includes("Kafiil"));
     return true;
   });
 
@@ -97,11 +99,13 @@ export default function Testimonials() {
             boxShadow: "0 2px 10px rgba(15, 23, 42, 0.04)"
           }}
         >
-          {[
+                    {[
             { key: "all", label: `كافة التوصيات (${approvedTestimonials.length})` },
+            { key: "ischool", label: "إشادات قيادات iSchool" },
+            { key: "parent", label: "آراء أولياء الأمور" },
+            { key: "student", label: "رسالات شكر الطلاب" },
             { key: "nti", label: "توصيات NTI الرسمية" },
-            { key: "nafezly", label: "عملاء مستقل / نفذلي" },
-            { key: "linkedin", label: "توصيات LinkedIn" }
+            { key: "nafezly", label: "عملاء مستقل / نفذلي" }
           ].map((tab) => {
             const isActive = activeFilter === tab.key;
             return (
@@ -246,26 +250,53 @@ export default function Testimonials() {
                       </div>
                     </div>
 
-                    <button
-                      onClick={() => setSelectedProofTestimonial(test)}
-                      title="معاينة التوثيق والإثبات"
-                      style={{
-                        width: "36px",
-                        height: "36px",
-                        borderRadius: "10px",
-                        backgroundColor: "#f1f5f9",
-                        border: "1px solid #cbd5e1",
-                        color: "#2563eb",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        cursor: "pointer",
-                        flexShrink: 0,
-                        transition: "all 0.2s ease"
-                      }}
-                    >
-                      <Eye size={16} />
-                    </button>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                      {(test.proofUrl || test.link) && (
+                        <a
+                          href={test.proofUrl || test.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="زيارة رابط التوثيق الأصلي ↗"
+                          style={{
+                            width: "36px",
+                            height: "36px",
+                            borderRadius: "10px",
+                            backgroundColor: "#eff6ff",
+                            border: "1px solid #bfdbfe",
+                            color: "#2563eb",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            flexShrink: 0,
+                            textDecoration: "none",
+                            transition: "all 0.2s ease"
+                          }}
+                        >
+                          <ExternalLink size={16} />
+                        </a>
+                      )}
+
+                      <button
+                        onClick={() => setSelectedProofTestimonial(test)}
+                        title="معاينة التوثيق والإثبات"
+                        style={{
+                          width: "36px",
+                          height: "36px",
+                          borderRadius: "10px",
+                          backgroundColor: "#f1f5f9",
+                          border: "1px solid #cbd5e1",
+                          color: "#2563eb",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          cursor: "pointer",
+                          flexShrink: 0,
+                          transition: "all 0.2s ease"
+                        }}
+                      >
+                        <Eye size={16} />
+                      </button>
+                    </div>
 
                   </div>
                 </div>

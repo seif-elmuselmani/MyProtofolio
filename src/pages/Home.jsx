@@ -582,26 +582,53 @@ export default function Home() {
                         </div>
                       </div>
 
-                      <button
-                        onClick={() => setSelectedProofTestimonial(test)}
-                        title="معاينة التوثيق والإثبات"
-                        style={{
-                          width: "36px",
-                          height: "36px",
-                          borderRadius: "10px",
-                          backgroundColor: "#f1f5f9",
-                          border: "1px solid #cbd5e1",
-                          color: "#2563eb",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          cursor: "pointer",
-                          flexShrink: 0,
-                          transition: "all 0.2s ease"
-                        }}
-                      >
-                        <Eye size={16} />
-                      </button>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                        {(test.proofUrl || test.link) && (
+                          <a
+                            href={test.proofUrl || test.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="زيارة رابط التوثيق الأصلي ↗"
+                            style={{
+                              width: "36px",
+                              height: "36px",
+                              borderRadius: "10px",
+                              backgroundColor: "#eff6ff",
+                              border: "1px solid #bfdbfe",
+                              color: "#2563eb",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              flexShrink: 0,
+                              textDecoration: "none",
+                              transition: "all 0.2s ease"
+                            }}
+                          >
+                            <ExternalLink size={16} />
+                          </a>
+                        )}
+
+                        <button
+                          onClick={() => setSelectedProofTestimonial(test)}
+                          title="معاينة التوثيق والإثبات"
+                          style={{
+                            width: "36px",
+                            height: "36px",
+                            borderRadius: "10px",
+                            backgroundColor: "#f1f5f9",
+                            border: "1px solid #cbd5e1",
+                            color: "#2563eb",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            cursor: "pointer",
+                            flexShrink: 0,
+                            transition: "all 0.2s ease"
+                          }}
+                        >
+                          <Eye size={16} />
+                        </button>
+                      </div>
 
                     </div>
                   </div>

@@ -2,6 +2,7 @@ import './admin/admin.css';
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import DynamicSeoManager from './components/DynamicSeoManager';
 import Footer from './components/Footer';
 
 import Home from './pages/Home';
@@ -50,7 +51,8 @@ function MainLayout() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative', backgroundColor: 'var(--bg-canvas)' }}>
-      <Navbar />
+      <DynamicSeoManager />
+        <Navbar />
       <main style={{ flexGrow: 1 }}>
         <Routes>
           <Route path="/" element={<Home />} />

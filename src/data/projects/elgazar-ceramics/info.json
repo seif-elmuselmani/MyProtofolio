@@ -1,0 +1,19 @@
+{
+  "id": "elgazar-ceramics",
+  "titleAr": "منظومة ومعرض السيد الجزار للسيراميك والبورسلين (Freelance Production Project)",
+  "titleEn": "Elgazar Ceramics Commercial Freelance E-Commerce System",
+  "category": "fullstack",
+  "year": "2026",
+  "liveUrl": "https://www.elgazar-ceramics.store/",
+  "coverImage": "/assets/projects/elgazar-ceramics/elgazar-hero.png",
+  "badge": "💼 Commercial Freelance Project",
+  "tags": ["React.js", "Node.js", "Express.js", "MongoDB Atlas", "Freelance Project", "E-Commerce Catalog", "Admin Dashboard", "TailwindCSS"],
+  "highlights": [
+    "مشروع تجاري حقيقي تم تسليمه بنجاح لعميل حر (Production Commercial Freelance Deliverable)",
+    "منصة سحابية ديناميكية متصلة بقاعدة بيانات MongoDB Atlas لإدارة عدد غير محدود من الأصناف والخصومات",
+    "لوحة تحكم إدارية محمية (Admin Dashboard) لإدارة الكتالوج، الأسعار، والمخزون بشكل ديناميكي",
+    "محرك حاسبة أمتار وكراتين فوري (Tile & Carton Calculator) لحساب التكلفة والكميات للعملاء",
+    "ربط طلبات واستفسارات المنتجات فورياً مع مسئول مبيعات المعرض عبر الواتساب",
+    "دعم تصدير كشوف المنتجات تلقائياً والتكامل مع رموز الـ QR Code للتسويق الميداني"
+  ]
+}

@@ -1,19 +1,20 @@
 {
   "id": "shuryan",
-  "titleAr": "مشروع 'شريان' (Shuryan)",
-  "titleEn": "Shuryan Blood Donation Emergency Network",
-  "role": "Backend Engineer (.NET & Clean Architecture)",
+  "titleAr": "منظومة 'شريان' الشاملة للرعاية الصحية والاستشارات الطبية (ShurYan Healthcare Platform)",
+  "titleEn": "ShurYan Enterprise Telehealth & Healthcare Platform",
+  "role": "Backend Lead & System Architect (.NET 8 & Clean Architecture)",
   "award": "🏆 1st Place Republic Winner (DEPI - Ministry of Communications MCIT)",
   "category": "backend",
   "year": "2025",
-  "liveUrl": "https://seif-elmuselmani-portfolio.netlify.app/",
-  "githubBackendUrl": "https://github.com/seif-elmuselmani",
-  "backendTech": ["ASP.NET Core Web API", "C#", "Entity Framework Core", "Clean Architecture", "SQL Server", "SOLID", "JWT Auth"],
+  "liveUrl": "https://shuryan-healthcare-system.vercel.app/",
+  "githubBackendUrl": "https://github.com/seif-elmuselmani/shuryan-healthcare-system",
+  "backendTech": ["ASP.NET Core .NET 8", "C#", "Clean Architecture", "Google Gemini AI", "SignalR", "Leaflet & OSM", "Haversine Formula", "SQL Server", "JWT & RBAC"],
   "coverImage": "/assets/profile/seif-with-dr-hesham-farouk-depi.png",
   "highlights": [
     "الفوز بالمركز الأول على مستوى الجمهورية في مسار Full Stack .NET (DEPI)",
     "تكريم رسمي بحضور مستشار وزير الاتصالات للتطوير التكنولوجي د. هشام فاروق",
-    "تطبيق مبادئ SOLID و Clean Architecture لضمان التوسع والربط الفوري مع غرف الطوارئ",
-    "معمارية قواعد بيانات SQL Server عالية الكفاءة مع Indexing دقيق للجداول الحرجة"
+    "تصميم وتطبيق 4 رحلات مستخدم كاملة (Doctor, Pharmacy, Laboratory, Verifier)",
+    "توليد ومكاملة Gemini AI Chatbot مع حراسة الـ Prompts وحفظ تاريخ الـ Chat",
+    "تحديد موقع الصيدليات القريبة بـ Haversine Formula والـ Geocoding بـ OpenStreetMap Nominatim"
   ]
 }

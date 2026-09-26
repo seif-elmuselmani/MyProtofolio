@@ -237,24 +237,48 @@ export default function TestimonialProofModal({ isOpen, onClose, testimonial }) 
           </div>
 
           {/* Modal Footer */}
-          <div style={{ padding: "1.25rem 1.75rem", backgroundColor: "#ffffff", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            {proofImage ? (
-              <button
-                onClick={() => setIsZoomed(true)}
-                className="btn-primary"
-                style={{ padding: "0.6rem 1.35rem", fontSize: "0.88rem" }}
-              >
-                <Maximize2 size={15} />
-                <span>عرض وثيقة الإثبات مكبّرة</span>
-              </button>
-            ) : (
-              <div></div>
-            )}
+          <div style={{ padding: "1.25rem 1.75rem", backgroundColor: "#ffffff", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.75rem" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
+              {(testimonial.proofUrl || testimonial.link) && (
+                <a
+                  href={testimonial.proofUrl || testimonial.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                  style={{
+                    padding: "0.6rem 1.25rem",
+                    fontSize: "0.88rem",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.45rem",
+                    backgroundColor: "#2563eb",
+                    color: "#ffffff",
+                    borderRadius: "10px",
+                    textDecoration: "none",
+                    fontWeight: "700"
+                  }}
+                >
+                  <ExternalLink size={15} />
+                  <span>زيارة رابط المنشور / التوثيق الأصلي ↗</span>
+                </a>
+              )}
+
+              {proofImage && (
+                <button
+                  onClick={() => setIsZoomed(true)}
+                  className="btn-secondary"
+                  style={{ padding: "0.6rem 1.25rem", fontSize: "0.88rem", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
+                >
+                  <Maximize2 size={15} />
+                  <span>معاينة الصورة مكبّرة</span>
+                </button>
+              )}
+            </div>
 
             <button
               onClick={onClose}
               className="btn-secondary"
-              style={{ padding: "0.6rem 1.5rem", fontSize: "0.88rem" }}
+              style={{ padding: "0.6rem 1.25rem", fontSize: "0.88rem" }}
             >
               إغلاق النافذة
             </button>

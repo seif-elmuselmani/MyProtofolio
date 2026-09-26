@@ -224,9 +224,22 @@ export default function TabTestimonials({ showToast }) {
               <h3 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#0f172a', marginBottom: '0.2rem' }}>
                 {t.name}
               </h3>
-              <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: '600', marginBottom: '0.75rem' }}>
+              <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: '600', marginBottom: '0.4rem' }}>
                 {t.role} • {t.company}
               </div>
+              {(t.proofUrl || t.link) && (
+                <div style={{ marginBottom: '0.75rem' }}>
+                  <a
+                    href={t.proofUrl || t.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ fontSize: '0.78rem', color: '#2563eb', fontWeight: '700', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}
+                  >
+                    <ExternalLink size={13} />
+                    <span>رابط التوثيق الأصلي ↗</span>
+                  </a>
+                </div>
+              )}
 
               <p style={{ fontSize: '0.85rem', color: '#475569', lineHeight: 1.6, marginBottom: '1rem' }}>
                 "{t.content}"
@@ -308,6 +321,17 @@ export default function TabTestimonials({ showToast }) {
                 value={editingTestimonial.content || ''}
                 onChange={(e) => setEditingTestimonial({ ...editingTestimonial, content: e.target.value })}
                 required
+              />
+            </div>
+
+            <div className="admin-form-group">
+              <label className="admin-label">رابط المنشور الأصلي / التوثيق (LinkedIn / Nafezly / Kafiil)</label>
+              <input
+                type="text"
+                className="admin-input"
+                placeholder="https://..."
+                value={editingTestimonial.proofUrl || editingTestimonial.link || ''}
+                onChange={(e) => setEditingTestimonial({ ...editingTestimonial, proofUrl: e.target.value, link: e.target.value })}
               />
             </div>
 

@@ -170,28 +170,60 @@ export const categories = [
 ];
 
 export const webProjects = [
-  {
+      {
+    id: "elgazar-ceramics",
+    title: "منظومة ومعرض السيد الجزار للسيراميك والبورسلين (Freelance Production Project)",
+    subtitle: "منصة تجارية متكاملة تم تطويرها لعميل (Freelance Client) لإدارة الكتالوج الرقمي والمخزون وحاسبة السيراميك",
+    category: "fullstack",
+    featured: true,
+    year: "2026",
+    image: "/assets/projects/elgazar-ceramics/elgazar-hero.png",
+    badge: "💼 Commercial Freelance Project",
+    tags: ["React.js", "Node.js", "Express.js", "MongoDB Atlas", "Freelance Project", "E-Commerce Catalog", "Admin Dashboard", "TailwindCSS"],
+    summary: "منظومة تجارية حية تم تطويرها كـ مشروع تجاري لعميل حر (Freelance Production Client). تتيح للمستخدمين تصفح كتالوج رقمي ديناميكي غير محدود من الموديلات، مع حاسبة فورية لحساب الأمتار والكراتين، وتكامل مباشر مع الواتساب، ولوحة تحكم إدارية (Admin Dashboard) تتيح للمعرض إضافة وتحديث المنتجات والأسعار والخصومات بسهولة.",
+    liveUrl: "https://www.elgazar-ceramics.store/",
+    caseStudy: {
+      client: "عميل تجاري حر (Freelance Production Client) — معرض السيد الجزار للسيراميك",
+      challenge: "تطوير تطبيق ويب تجاري متكامل لحسابات ومعروضات معرض سيراميك، يتيح تصفح عدد غير محدود من الأصناف مع حاسبة كراتين وأمتار دقيقة وتسهيل التواصل والطلب.",
+      solution: "تصميم وتنفيذ مشروع Full-Stack متكامل (React + Node.js/Express + MongoDB Atlas) يوفر تجربة تصفح سريعة للعملاء، مع لوحة تحكم إدارية سهلة (Admin Dashboard) وتأمين البيانات وتكامل الواتساب المباشر.",
+      highlights: [
+        "مشروع تجاري حقيقي تم تسليمه بنجاح لعميل حر (Production Commercial Freelance Deliverable)",
+        "منصة سحابية ديناميكية متصلة بقاعدة بيانات MongoDB Atlas لإدارة عدد غير محدود من الأصناف والخصومات",
+        "لوحة تحكم إدارية محمية (Admin Dashboard) لإدارة الكتالوج، الأسعار، والمخزون بشكل ديناميكي",
+        "محرك حاسبة أمتار وكراتين فوري (Tile & Carton Calculator) لحساب التكلفة والكميات للعملاء",
+        "ربط طلبات واستفسارات المنتجات فورياً مع مسئول مبيعات المعرض عبر الواتساب",
+        "دعم تصدير كشوف المنتجات تلقائياً والتكامل مع رموز الـ QR Code للتسويق الميداني"
+      ]
+    }
+  },
+      {
     id: "shuryan-depi",
-    title: "مشروع 'شريان' (Shuryan)",
-    subtitle: "الحائز على المركز الأول على مستوى الجمهورية (Top 1 Nationwide) في مبادرة DEPI",
+    title: "منظومة 'شُريان' الشاملة للرعاية الصحية والاستشارات الطبية (ShurYan Healthcare Platform)",
+    subtitle: "منظومة هندسية متكاملة لربط المرضى والأطباء والصيدليات والمعامل مع دعم الذكاء الاصطناعي والخرائط التفاعلية (.NET 8 Clean Architecture)",
     category: "backend",
     featured: true,
     year: "2025",
     image: "/assets/profile/seif-with-dr-hesham-farouk-depi.png",
-    badge: "🏆 1st Place Nationwide Winner",
-    tags: ["ASP.NET Core Web API", "C#", "EF Core", "Clean Architecture", "SQL Server", "SOLID", "JWT Auth"],
-    summary: "منصة قومية متقدمة لربط بنوك الدم والمستشفيات بالمتبرعين في حالات الطوارئ الحرجة. توليت هندسة وبرمجة الـ Backend والـ APIs بالكامل مع تطبيق معايير Clean Architecture و SOLID لضمان سرعة الاستجابة اللحظية والأمان الصارم للبيانات الطبية.",
-    liveUrl: "https://seif-elmuselmani-portfolio.netlify.app/",
-    githubUrl: "https://github.com/seif-elmuselmani",
+    badge: "🏆 1st Place Republic Winner (DEPI)",
+    tags: [".NET 8", "Clean Architecture", "Gemini AI", "Leaflet & OSM", "SignalR", "Haversine Formula", "SQL Server", "JWT & RBAC"],
+    summary: "منظومة سحابية رائدة للرعاية الصحية توفر 4 رحلات عمل متكاملة (مرضى، أطباء، صيدليات، معامل، ومتحققين Verifier). تشمل الاستشارات عن بُعد، الروشتات الرقمية، طلب وتوصيل الأدوية، حجز وسحب عينات التحاليل من المنزل، البحث الجغرافي عن أقرب الصيدليات بـ Haversine Formula، شات بوت طبي متكامل بـ Gemini AI، وتوثيق تراخيص وتفعيل مقدمي الخدمة.",
+    liveUrl: "https://shuryan-healthcare-system.vercel.app/",
+    githubUrl: "https://github.com/seif-elmuselmani/shuryan-healthcare-system",
     caseStudy: {
-      client: "Digital Egypt Pioneers Initiative (DEPI) - Ministry of Communications (MCIT) & EYouth",
-      challenge: "معالجة طلبات التبرع بالدم الحرجة في أجزاء من الثانية مع مزامنة فورية بين غرف الطوارئ في المستشفيات وبنوك الدم المركزية بأعلى معايير الحماية وموثوقية البيانات.",
-      solution: "تصميم بنية تحتية قوية بـ ASP.NET Core مع Entity Framework Core وتطبيق Repository Pattern و Clean Architecture لفصل طبقات العمليات وتأمين نقاط النهاية عبر JWT Tokens وصلاحيات الأدوار المتقدمة.",
+      client: "مبادرة رواد مصر الرقمية (DEPI) — وزارة الاتصالات وتكنولوجيا المعلومات (MCIT) & EYouth",
+      challenge: "إيجاد حل جذري لمشاكل الرعاية الصحية في مصر (صعوبة العثور على أطباء معتمدين، تزوير أو عدم موثوقية العيادات والصيدليات والمعامل، ضياع الملف الطبي للمريض، مشقة البحث عن الأدوية، ومشوار التحاليل الطبية المجهد).",
+      solution: "تطوير منصة موحدة بـ ASP.NET Core (.NET 8 Clean Architecture & DDD) مع 4 رحلات مستخدم مخصصة ورئيسية، ودعم نظام توثيق صارم (Verifier Document Verification) للمستندات وكارنيه النقابة، واستخدام Leaflet + OSM مع Nominatim Reverse Geocoding، وحساب أقرب 3 صيدليات بالـ Haversine Formula في الباك-اند، ودمج شات بوت Gemini AI مع تخصيص الـ Prompts حسب الدور (Patient vs Doctor).",
       highlights: [
-        "الفوز بالمركز الأول على مستوى الجمهورية (1st Place Nationwide) في مسار Full Stack .NET",
-        "تكريم رسمي في حفل الختام بحضور مستشار وزير الاتصالات للتطوير التكنولوجي د. هشام فاروق",
-        "تطبيق مبادئ SOLID و Clean Architecture لتسهيل التوسع والربط البرمجي",
-        "معمارية قواعد بيانات SQL Server عالية الكفاءة مع Indexing دقيق للجداول الحرجة"
+        "الفوز بالمركز الأول على مستوى الجمهورية (1st Place Nationwide Winner) في مسار Full Stack .NET",
+        "تكريم رسمي بحضور مستشار وزير الاتصالات للتطوير التكنولوجي د. هشام فاروق",
+        "معمارية صلبة بـ Clean Architecture & Repository Pattern & Unit of Work لضمان فصل منطق العمل وسهولة الـ Testing والتكيف مع المقاييس الكبيرة (Scalability)",
+        "نظام توثيق محكم (Verifier Journey) يفحص بطاقات النقابة وتراخيص الصيدليات والمعامل قبل تفعيل الحسابات بالمنصة",
+        "دمج ذكاء اصطناعي طبي بـ Google Gemini API يدعم المحادثات التفاعلية وحفظ تاريخ المحادثات بـ System Prompts محددة لكل دور",
+        "استعلام جغرافي عالي الأداء لحساب أقرب الصيدليات للمريض بدقة سرية في الباك-اند باستخدام معادلة Haversine Formula",
+        "تتبع الموقع الجغرافي التفاعلي وتحويل الإحداثيات إلى عناوين عربية تفصيلية بـ OpenStreetMap Nominatim API و Leaflet",
+        "تحديثات لحظية فورية عبر SignalR لإرسال نتائج التحاليل وإشعارات الروشتات والطلبات مباشرة بدون الحاجة لإعادة التحميل",
+        "إدارة السجل الطبي الموحد للمريض (Unified EHR) يشمل الأمراض المزمنة، الحساسية، العمليات السابقة، الروشتات، والتحاليل",
+        "تأمين شامل بـ JWT Authentication و Role-Based Access Control (RBAC) لـ 6 أدوار مختلفة وحماية من هجمات CORS و Input Validation"
       ]
     }
   },
@@ -235,7 +267,7 @@ export const webProjects = [
     tags: ["React.js", "Modern UI", "Interactive Portal", "Vite", "Responsive Design"],
     summary: "بوابة تفاعلية عصرية لشركة دعاية وإعلان تدمج بين استعراض باقات التسويق والخدمات وتقديم تجربة مستخدم ديناميكية فائقة السرعة مع ربط مباشر بقنوات التواصل وحساب التكلفة.",
     liveUrl: "https://adsamy.vercel.app",
-    githubUrl: "https://github.com/seif-elmuselmani",
+    githubUrl: "https://github.com/seif-elmuselmani/shuryan-healthcare-system",
     caseStudy: {
       client: "Adsamy Media Agency",
       challenge: "تطوير واجهة عصرية تعكس الهوية المؤسسية الفاخرة للشركة وتتيح استعراض الباقات والخدمات مع سرعة فائقة وتجاوب 100%.",
@@ -259,7 +291,7 @@ export const webProjects = [
     tags: ["MongoDB", "Express.js", "Angular", "Node.js", "JWT Auth", "REST APIs"],
     summary: "تطبيق ويب متكامل تم بناؤه خلال تدريب الـ 210 ساعة بمعهد تكنولوجيا الاتصالات (NTI)، يشتمل على لوحة تحكم Angular كاملة وخوادم Node.js/Express وقاعدة بيانات MongoDB مع تأمين الـ Authentication.",
     liveUrl: "https://seif-elmuselmani-portfolio.netlify.app/",
-    githubUrl: "https://github.com/seif-elmuselmani",
+    githubUrl: "https://github.com/seif-elmuselmani/shuryan-healthcare-system",
     caseStudy: {
       client: "المعهد القومي للاتصالات (NTI)",
       challenge: "تطبيق معايير الـ Full-Stack وتأمين عمليات الـ CRUD والـ Role-based Authorization بين Angular و Node.js.",
@@ -381,15 +413,32 @@ export const credentialsList = certificatesList;
 
 export const testimonialsList = [
   {
+    id: "ischool-official",
+    name: "iSchool (Official Account)",
+    role: "Official Corporate EdTech Account (203,700+ Followers)",
+    company: "iSchool",
+    date: "سبتمبر 2026",
+    image: "/assets/testimonials/testimonial-ischool-official-page.jpg",
+    source: "LinkedIn Official iSchool Page",
+    proofUrl: "https://lnkd.in/p/eeNVTHqd",
+    link: "https://lnkd.in/p/eeNVTHqd",
+    quote: "Amazing job, Keep shining iSchoolian 💙✨",
+    badge: "🏢 إشادة الحساب الرسمي لشركة iSchool",
+    category: "ischool"
+  },
+  {
     id: "sherif-adel",
     name: "أ. شريف عادل (Sherif Adel)",
-    role: "مسئول مقر المعهد القومي للاتصالات (NTI) وموجه",
+    role: "مسئول مقر المعهد القومي للإتصالات (NTI) وموجه",
     company: "National Telecommunication Institute (NTI)",
-    date: "13 مايو 2026",
+    date: "13 مارس 2026",
     image: "/assets/testimonials/testimonial-sherif-adel-nti.png",
     source: "LinkedIn Official Recommendation",
+    proofUrl: "https://www.linkedin.com/in/seif-elmuselmani",
+    link: "https://www.linkedin.com/in/seif-elmuselmani",
     quote: "In my capacity as the administrative officer at the branch, I am pleased to highly recommend Seif ElMuselmani, who was one of the outstanding students during his time in the NTI program. Seif demonstrated a strong commitment to learning and continuous self-development. He consistently attended sessions, actively participated in discussions and practical activities, and showed an impressive ability to quickly grasp concepts and apply them effectively in a structured manner. In addition, he possesses a positive attitude, strong teamwork skills, and a high sense of responsibility, making him a valuable asset to any organization he joins.",
-    badge: "🏛️ توصية إدارية وتوجيهية"
+    badge: "🏛️ توصية إدارية وتوجيهية",
+    category: "nti"
   },
   {
     id: "rayan-mohamed",
@@ -399,30 +448,109 @@ export const testimonialsList = [
     date: "12 مارس 2026",
     image: "/assets/testimonials/testimonial-rayan-mohamed-nti.png",
     source: "LinkedIn Official Recommendation",
+    proofUrl: "https://www.linkedin.com/in/seif-elmuselmani",
+    link: "https://www.linkedin.com/in/seif-elmuselmani",
     quote: "I had the pleasure of working with Seif during his training in the MEAN Stack track. Seif is one of the most dedicated and hardworking trainees I have met, and his passion for learning and continuous improvement is very clear. What truly distinguishes Seif is his technical curiosity and his desire to understand every detail. He consistently asked thoughtful questions and paid close attention to the small details in the explanations to ensure he fully understood the concepts. I believe Seif has a very promising future in software development, and I highly recommend him for any opportunity in Web Development.",
-    badge: "⚡ توصية خبير تقني"
+    badge: "⚡ توصية خبير تقني",
+    category: "nti"
   },
   {
     id: "ahmed-hassan-nafezly",
     name: "أحمد حسن (Ahmed Hassan)",
     role: "عميل تجاري موثق",
     company: "منصة نفذلي للعمل الحر (Nafezly)",
-    date: "تقييم صفقة موثقة",
+    date: "تقييم حديث",
     image: "/assets/testimonials/testimonial-nafezly-5stars-ahmed-hassan.png",
     source: "Nafezly Verified 5-Star Deal",
+    proofUrl: "https://nafezly.com/service/78706?ref=68d965b6317de",
+    link: "https://nafezly.com/service/78706?ref=68d965b6317de",
     quote: "تقييم 5.0 من 5.0 نجوم في كافة المعايير: جودة العمل، الاحترافية بالتعامل، سرعة التواصل، الخبرة بمجال العمل، احترام موعد التسليم بنسبة 100% ورغبة تامة في التعامل مرة أخرى.",
-    badge: "⭐ 5.0 / 5.0 تقييم ممتاز"
+    badge: "⭐ 5.0 / 5.0 تقييم ممتاز",
+    category: "freelance"
   },
   {
     id: "omar-yasser-kafiil",
     name: "عمر ياسر (Omar Yasser)",
     role: "عميل تجاري موثق",
-    company: "منصة كفيل للخدمات المصغرة (Kafiil)",
-    date: "تقييم خدمة موثقة",
+    company: "منصة كفيل للأعمال (Kafiil)",
+    date: "تقييم حديث",
     image: "/assets/testimonials/testimonial-kafiil-5stars-omar-yasser.png",
-    source: "Kafiil Verified 5-Star Review",
-    quote: "تقييم عام 5 نجوم مع إشادة تامة بجودة العمل، التواصل والتعاون، والالتزام الكامل بالمواعيد المتفق عليها لبطاقات الويب التفاعلية.",
-    badge: "⭐ 5.0 / 5.0 تقييم ممتاز"
+    source: "Kafiil Verified 5-Star Deal",
+    proofUrl: "https://kafiil.com/service/225185-%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D8%A8%D8%B7%D8%A7%D9%82%D8%A9-%D8%AA%D9%87%D9%86%D8%A6%D8%A9-%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A9-%D8%AA%D9%81%D8%A7%D8%B9%D9%84%D9%8A%D8%A9-%D9%84%D9%84%D8%AA%D8%AE%D8%B1%D8%AC%D8%8C-%D8%A7%D9%84%D8%B2%D9%81%D8%A7?ref=605587cb29",
+    link: "https://kafiil.com/service/225185-%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D8%A8%D8%B7%D8%A7%D9%82%D8%A9-%D8%AA%D9%87%D9%86%D8%A6%D8%A9-%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A9-%D8%AA%D9%81%D8%A7%D8%B9%D9%84%D9%8A%D8%A9-%D9%84%D9%84%D8%AA%D8%AE%D8%B1%D8%AC%D8%8C-%D8%A7%D9%84%D8%B2%D9%81%D8%A7?ref=605587cb29",
+    quote: "ممتاز جدا وسريع وانصح جدا جدا بالتعامل معه واشكر الباشمهندس جدا علي اخلاقه ورقي تعامله.",
+    badge: "⭐ 5.0 / 5.0 تقييم ممتاز",
+    category: "freelance"
+  },
+  {
+    id: "muhammad-gawish",
+    name: "Muhammad Gawish",
+    role: "Co-Founder & CEO at iSchool | Edtech | Endeavor Entrepreneur",
+    company: "iSchool",
+    date: "سبتمبر 2026",
+    image: "/assets/testimonials/testimonial-ischool-ceo-muhammad-gawish.jpg",
+    source: "LinkedIn Executive Endorsement",
+    proofUrl: "https://lnkd.in/p/g_7djWjp",
+    link: "https://lnkd.in/p/g_7djWjp",
+    quote: "جميل ما شاء الله عليك يا Seif ElMuselmani بالتوفيق و النجاح دايما ان شاء الله 👏🚀🔥💙",
+    badge: "🚀 إشادة الرئيس التنفيذي لـ iSchool",
+    category: "ischool"
+  },
+  {
+    id: "aya-saad",
+    name: "Aya Saad",
+    role: "Project Manager @iSchool | EdTech & B2G Projects",
+    company: "iSchool",
+    date: "سبتمبر 2026",
+    image: "/assets/testimonials/testimonial-ischool-pm-aya-saad.jpg",
+    source: "LinkedIn Official Endorsement",
+    proofUrl: "https://lnkd.in/p/g_7djWjp",
+    link: "https://lnkd.in/p/g_7djWjp",
+    quote: "فكرة إن الطلاب يشرحوا بطريقتهم رائعة يا سيف، بتبني الفهم والثقة مع بعض 💙",
+    badge: "🎓 إشادة مديرة مشاريع iSchool",
+    category: "ischool"
+  },
+  {
+    id: "salma-khashaba",
+    name: "سلمى خشبة (Salma Khashaba)",
+    role: "ولي أمر الطالبة ملك — تجربة تدريبية وتقنية",
+    company: "أولياء أمور طلاب iSchool & DEMI",
+    date: "يوليو 2026",
+    image: "/assets/testimonials/testimonial-parent-salma-khashaba.jpg",
+    source: "LinkedIn Parent Recommendation",
+    proofUrl: "https://lnkd.in/p/emGPyist",
+    link: "https://lnkd.in/p/emGPyist",
+    quote: "حضرتك تستاهل كل خير والله كفايه الأثر الكبير الي سبته مع الولاد ملك كانت مبسوطه قوي بوجود حضرتك معاها أن شاء الله يكون لينا فرصه ثانيه وحضرتك تديها تاني",
+    badge: "❤️ إشادة ولي أمر وتقدير تربوي",
+    category: "parent"
+  },
+  {
+    id: "yazan-mohamed",
+    name: "الطالب يزن محمد (Yazan Mohamed)",
+    role: "طالب بمبادرة براعم مصر الرقمية (DEMI) — الصف الرابع الابتدائي",
+    company: "iSchool & DEMI Summer Camp",
+    date: "أغسطس 2026",
+    image: "/assets/testimonials/testimonial-student-gratitude.jpg",
+    source: "WhatsApp & Certificate of Appreciation",
+    proofUrl: "https://lnkd.in/p/emGPyist",
+    link: "https://lnkd.in/p/emGPyist",
+    quote: "شكراً ليك يا باشمهندس على الي قدمته ليا من دعم ومساعدة وحب وبجد حضرتك كنت من احلى الفترات الي قضيتها مع مدرس في المبادره وشكراً ليك يا باشمهندس ❤️",
+    badge: "📜 شهادة تقدير وإشادة طالب",
+    category: "student"
+  },
+  {
+    id: "student-gratitude",
+    name: "إشادة وتعبير شكر من طالب/ة",
+    role: "طالب/ة بمبادرة براعم مصر الرقمية (DEMI)",
+    company: "iSchool & DEMI Training Program",
+    date: "أغسطس 2026",
+    image: "/assets/testimonials/testimonial-student-yazan-mohamed.jpg",
+    source: "WhatsApp Student Feedback",
+    proofUrl: "https://lnkd.in/p/emGPyist",
+    link: "https://lnkd.in/p/emGPyist",
+    quote: "ازي حضرتك يا مستر حبا اقول لي حضرتك ان الخمس ايام كانوا احلا خمس ايام بجد شكرا على جهودك معنا شكرا شكرا على كل حاجه حلوه عملتها معنا واحنا حبناك جدا ويارب نتقابل تاني شكرا لحضرتك ❤️🥰",
+    badge: "❤️ شكر وتقدير من الطلاب",
+    category: "student"
   }
 ];
 
