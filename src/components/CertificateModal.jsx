@@ -270,10 +270,12 @@ export default function CertificateModal({ cert, onClose, onNext, onPrev, curren
             <Calendar size={16} color="var(--brand-primary)" />
             <span>التاريخ: <strong>{cert.date || cert.issueDate}</strong></span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-            <ShieldCheck size={16} color="var(--brand-emerald)" />
-            <span>التحقق الرقمي: <strong>{cert.verificationId || cert.credentialId}</strong></span>
-          </div>
+          {(cert.verificationId || cert.credentialId) && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
+              <ShieldCheck size={16} color="var(--brand-emerald)" />
+              <span>التحقق الرقمي: <strong>{cert.verificationId || cert.credentialId}</strong></span>
+            </div>
+          )}
         </div>
 
         {/* Description */}

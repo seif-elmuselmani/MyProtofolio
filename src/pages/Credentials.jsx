@@ -234,12 +234,14 @@ export default function Credentials() {
                     {cert.description}
                   </p>
 
-                  <div style={{ padding: '0.65rem 0.85rem', backgroundColor: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0', marginBottom: '1.25rem' }}>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '600' }}>بيانات التحقق والاعتماد:</div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--brand-emerald)', fontWeight: '700', marginTop: '0.15rem' }}>
-                      {cert.verificationId}
+                  {cert.verificationId && (
+                    <div style={{ padding: '0.65rem 0.85rem', backgroundColor: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0', marginBottom: '1.25rem' }}>
+                      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '600' }}>رقم الاعتماد / كود التحقق:</div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--brand-emerald)', fontWeight: '700', marginTop: '0.15rem' }}>
+                        {cert.verificationId}
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   {/* Footer Button */}
                   <div style={{ borderTop: '1px solid #e2e8f0', paddingTop: '1rem' }}>

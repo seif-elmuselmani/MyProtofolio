@@ -292,10 +292,10 @@ export const certificatesList = [
     id: "zagazig-cs-degree",
     title: "بكالوريوس علوم الحاسب (Bachelor of Science in CS)",
     issuer: "جامعة الزقازيق - كلية الحاسبات والمعلومات",
-    date: "يوليو 2026",
+    date: "2026",
     issueDate: "2026",
     category: "academic",
-    verificationId: "ZAG-CS-2026-REG-OFFICIAL",
+    verificationId: "",
     badge: "المؤهل الجامعي الرسمي",
     image: "/assets/certificates/cert-zagazig-cs-degree.jpg",
     pdfUrl: "",
@@ -308,11 +308,11 @@ export const certificatesList = [
     date: "ديسمبر 2025",
     issueDate: "2025-12",
     category: "mcit",
-    verificationId: "DEPI-R3-FS-DOTNET-2025",
+    verificationId: "",
     badge: "الشهادة الرئاسية الرسمية",
     image: "/assets/certificates/cert-depi-fullstack-dotnet.jpg",
     pdfUrl: "/assets/certificates/cert-depi-fullstack-dotnet.pdf",
-    description: "شهادة الاعتماد الرئاسية الرسمية لإتمام منحة DEPI المكثفة في تطوير البرمجيات المتكاملة بأسلوب Full Stack .NET Framework & Web API بالتعاون مع المعهد القومي للاتصالات NTI."
+    description: "شهادة الاعتماد الرسمية لإتمام منحة DEPI الرئاسية في تطوير البرمجيات المتكاملة بأسلوب Full Stack .NET بالتعاون مع المعهد القومي للاتصالات NTI."
   },
   {
     id: "depi-business-english-berlitz",
@@ -321,37 +321,11 @@ export const certificatesList = [
     date: "ديسمبر 2025",
     issueDate: "2025-12",
     category: "english",
-    verificationId: "BERLITZ-DEPI-R3-ENG-2025",
+    verificationId: "",
     badge: "شهادة Berlitz المعتمدة",
     image: "/assets/certificates/cert-depi-english-berlitz-official.jpg",
     pdfUrl: "/assets/certificates/DEPI_Official_Certificate_Saif_Al-Din.pdf",
-    description: "شهادة إتمام رسمية معتمدة للدورة الثالثة (Round 3) في مهارات التواصل والتفاوض باللغة الإنجليزية في بيئة العمل مقدمة من بيرلتز مصر بالتعاون مع وزارة الاتصالات MCIT."
-  },
-  {
-    id: "depi-english-track-cert",
-    title: "اعتماد مسار اللغة الإنجليزية والتواصل المؤسسي (DEPI English Track)",
-    issuer: "Digital Egypt Pioneers Initiative (DEPI)",
-    date: "ديسمبر 2025",
-    issueDate: "2025-12",
-    category: "english",
-    verificationId: "DEPI-ENG-TRACK-OFFICIAL",
-    badge: "اعتماد مهارات التواصل",
-    image: "/assets/certificates/cert-depi-english-track.png",
-    pdfUrl: "",
-    description: "وثيقة اعتماد استكمال جميع وحدات وااختبارات مسار اللغة الإنجليزية للأعمال واللغة التقنية ضمن مبادرة مصر الرقمية."
-  },
-  {
-    id: "depi-english-badge",
-    title: "الشارة الرقمية لمسار اللغة الإنجليزية للأعمال (Business English Badge)",
-    issuer: "Berlitz & Digital Egypt Pioneers Initiative",
-    date: "ديسمبر 2025",
-    issueDate: "2025-12",
-    category: "english",
-    verificationId: "BADGE-BERLITZ-DEPI-2025",
-    badge: "Badge رقمي معتمد",
-    image: "/assets/certificates/Business_English_Track_Badge.png",
-    pdfUrl: "",
-    description: "شارة التميز الرقمية المعتمدة لإتقان مهارات التواصل واللغة الإنجليزية للأعمال بالمعايير الدولية."
+    description: "شهادة إتمام معتمدة للدورة الثالثة (Round 3) في مهارات التواصل والتفاوض باللغة الإنجليزية للأعمال مقدمة من بيرلتز مصر بالتعاون مع وزارة الاتصالات MCIT."
   },
   {
     id: "nti-fullstack-210h",
@@ -360,7 +334,7 @@ export const certificatesList = [
     date: "ديسمبر 2025",
     issueDate: "2025-12",
     category: "mcit",
-    verificationId: "NTI-2025-210H-FS-DOTNET",
+    verificationId: "",
     badge: "اعتماد NTI 210H",
     image: "/assets/certificates/cert-nti-210h.jpg",
     pdfUrl: "",
@@ -368,12 +342,12 @@ export const certificatesList = [
   },
   {
     id: "mcit-ai-freelance",
-    title: "شهادة الذكاء الاصطناعي ومختبرات العمل الحر (MCIT AI & Freelancing)",
+    title: "شهادة الذكاء الاصطناعي والعمل الحر (MCIT AI & Freelancing)",
     issuer: "وزارة الاتصالات وتكنولوجيا المعلومات (MCIT)",
     date: "2025",
     issueDate: "2025",
     category: "ai",
-    verificationId: "MCIT-AI-FREE-2025",
+    verificationId: "",
     badge: "اعتماد وزارة الاتصالات",
     image: "/assets/certificates/cert-ai-freelance-mcit.png",
     pdfUrl: "",
@@ -386,7 +360,7 @@ export const certificatesList = [
     date: "2025",
     issueDate: "2025",
     category: "ai",
-    verificationId: "MSFT-MCIT-AI-2025",
+    verificationId: "",
     badge: "اعتماد Microsoft & MCIT",
     image: "/assets/certificates/cert-ai-microsoft-mcit.png",
     pdfUrl: "",
@@ -399,24 +373,24 @@ export const certificatesList = [
     date: "2025",
     issueDate: "2025",
     category: "ai",
-    verificationId: "ITI-DL-ESSENTIALS-2025",
+    verificationId: "",
     badge: "اعتماد معهد ITI",
     image: "/assets/certificates/cert-deeplearning-iti.png",
     pdfUrl: "",
-    description: "شهادة تخصصية في الشبكات العصبية الاصطناعية وتطبيقات التعلم العميق المعالجة بواسطة معهد تكنولوجيا المعلومات."
+    description: "شهادة تخصصية في الشبكات العصبية الاصطناعية وتطبيقات التعلم العميق المقدمة من معهد تكنولوجيا المعلومات."
   },
   {
     id: "iti-python",
-    title: "شهادة البرمجة وتطبيقات Python المعالجة (ITI Python)",
+    title: "شهادة البرمجة وتطبيقات Python (ITI Python)",
     issuer: "معهد تكنولوجيا المعلومات (ITI)",
     date: "2025",
     issueDate: "2025",
     category: "tools",
-    verificationId: "ITI-PY-CORE-2025",
+    verificationId: "",
     badge: "اعتماد معهد ITI",
     image: "/assets/certificates/cert-python-iti.png",
     pdfUrl: "",
-    description: "شهادة معتمدة في البرمجة المتقدمة وهياكل البيانات بلغة Python مقدمة من معهد تكنولوجيا المعلومات."
+    description: "شهادة معتمدة في البرمجة وهياكل البيانات بلغة Python مقدمة من معهد تكنولوجيا المعلومات."
   },
   {
     id: "almdrasa-git",
@@ -425,7 +399,7 @@ export const certificatesList = [
     date: "2025",
     issueDate: "2025",
     category: "tools",
-    verificationId: "ALM-GIT-GH-2025",
+    verificationId: "",
     badge: "اعتماد احترافي",
     image: "/assets/certificates/cert-git-github-almdrasa.png",
     pdfUrl: "",
@@ -438,11 +412,11 @@ export const certificatesList = [
     date: "2025",
     issueDate: "2025",
     category: "databases",
-    verificationId: "HR-SQL-BASIC-VERIFIED",
-    badge: "اعتماد عالمي",
+    verificationId: "",
+    badge: "اعتماد HackerRank",
     image: "/assets/certificates/cert-sql-basic-hackerrank.png",
     pdfUrl: "",
-    description: "شهادة تقييم المهارات المعتمدة عالمياً من HackerRank في استعلامات وتصميم قواعد البيانات SQL."
+    description: "شهادة تقييم المهارات المعتمدة من HackerRank في استعلامات وتصميم قواعد البيانات SQL."
   },
   {
     id: "hackerrank-sql-inter",
@@ -451,11 +425,11 @@ export const certificatesList = [
     date: "2025",
     issueDate: "2025",
     category: "databases",
-    verificationId: "HR-SQL-INTER-VERIFIED",
-    badge: "اعتماد عالمي متقدم",
+    verificationId: "",
+    badge: "اعتماد HackerRank",
     image: "/assets/certificates/cert-sql-intermediate-hackerrank.png",
     pdfUrl: "",
-    description: "شهادة تقييم المهارات المتخصصة والمتقدمة من HackerRank في معالجة واستعلامات SQL المعقدة."
+    description: "شهادة تقييم المهارات المتخصصة والمتقدمة من HackerRank في استعلامات SQL المعقدة."
   }
 ];
 
