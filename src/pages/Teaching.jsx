@@ -1,116 +1,675 @@
-import React from 'react';
-import { GraduationCap, Users, Clock, Award, CheckCircle2, ArrowUpLeft, Briefcase, BookOpen, Send, Sparkles } from 'lucide-react';
-import { usePortfolioData } from '../context/DynamicPortfolioContext';
-// Static fallback removed, dynamic hook enabled
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { 
+  GraduationCap, 
+  Users, 
+  Clock, 
+  Award, 
+  CheckCircle2, 
+  Sparkles, 
+  Download, 
+  ExternalLink, 
+  MessageSquare, 
+  Maximize2, 
+  X, 
+  Code2, 
+  Cpu, 
+  Brain, 
+  HeartHandshake, 
+  Star, 
+  Building2, 
+  ShieldCheck,
+  ChevronRight,
+  Send
+} from "lucide-react";
+import { usePortfolioData } from "../context/DynamicPortfolioContext";
 
 export default function Teaching() {
-  const { personalInfo, trustPartners, webProjects, certificatesList, credentialsList, testimonialsList, presentationDecks, teachingExperience, skillsMatrix, categories } = usePortfolioData();
+  const { personalInfo, teachingExperience, testimonialsList } = usePortfolioData();
+  const [zoomedImage, setZoomedImage] = useState(null);
 
   const { stats, experienceList } = teachingExperience;
 
+  // Filter iSchool, Parent, and NTI Testimonials for high conversion
+  const featuredTestimonials = (testimonialsList || []).filter(t => 
+    t.category === "ischool" || t.category === "parent" || t.category === "student" || t.category === "nti"
+  );
+
+  // Live session photos array
+  const sessionPhotos = [
+    {
+      src: "/assets/teaching/session-live-1.jpg",
+      title: "سيشن حية لتطوير الويب والـ Web Development أونلاين بـ iSchool",
+      desc: "شرح تفاعلي وبناء مشاريع عملية حقيقية مع الطلاب والتأكد من الفهم الكامل كود بكود."
+    },
+    {
+      src: "/assets/teaching/session-live-2.jpg",
+      title: "معسكر مبادرة براعم مصر الرقمية (DEMI) بالتعاون مع وزارة الاتصالات",
+      desc: "تدريب الطلاب على التفكير الحاسوبي (Computational Thinking) والبرمجة بالـ MBlock و Scratch."
+    },
+    {
+      src: "/assets/teaching/session-live-3.jpg",
+      title: "جلسات الـ Live Coding ومراجعة مشاريع الطلاب وتطبيق Peer Teaching",
+      desc: "إتاحة الفرصة للطلاب للشرح والتعبير عن أكوادهم لبناء الشخصية التقنية والثقة بالنفس."
+    }
+  ];
+
+  // Scholarship Proofs
+  const scholarshipProofs = [
+    {
+      title: "🏆 تكريم المركز الأول على مستوى الجمهورية (مبادرة DEPI)",
+      issuer: "وزارة الاتصالات وتكنولوجيا المعلومات (MCIT) بالتعاون مع EYouth",
+      image: "/assets/profile/seif-with-dr-hesham-farouk-depi.png",
+      date: "2025 - 2026",
+      desc: "صورة التكريم الرسمي بحضور مستشار وزير الاتصالات للتطوير التكنولوجي د. هشام فاروق بعد الحصول على المرتبة الأولى على مستوى الجمهورية في مسار Full Stack .NET."
+    },
+    {
+      title: "🎓 منحة زمالة المعهد القومي للاتصالات (NTI) - 210 ساعة تدريبية",
+      issuer: "National Telecommunication Institute (NTI)",
+      image: "/assets/certificates/cert-depi-fullstack-dotnet.jpg",
+      date: "2026",
+      desc: "منحة تدريبية مكثفة واحترافية في بناء المعماريات السحابية والأنظمة المعقدة بتقدير امتياز وتوصية رسمية من قيادات المعهد."
+    },
+    {
+      title: "🤖 منح معهد تكنولوجيا المعلومات (ITI) و Microsoft AI",
+      issuer: "ITI & Microsoft Certificate Program",
+      image: "/assets/certificates/cert-deeplearning-iti.png",
+      date: "2026",
+      desc: "شهادات معتمدة في أساسيات الذكاء الاصطناعي وبناء نماذج الـ Deep Learning وتوظيفها مهنياً."
+    }
+  ];
+
   return (
-    <div className="animate-fade-in" style={{ paddingTop: '6.5rem', minHeight: '85vh', paddingBottom: '5rem' }}>
+    <div className="animate-fade-in" style={{ paddingTop: "6.5rem", minHeight: "85vh", paddingBottom: "5rem", backgroundColor: "#f8fafc" }}>
       <div className="container-custom">
         
-        {/* Page Header */}
-        <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <div className="pill-badge pill-emerald" style={{ marginBottom: '0.75rem' }}>
-            <GraduationCap size={15} />
-            <span>التدريس، التدريب القيادي ونقل المعرفة</span>
-          </div>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: '900', color: 'var(--text-primary)', marginBottom: '0.75rem' }}>
-            التدريب التقني والخبرات الميدانية
-          </h1>
-          <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', maxWidth: '700px', margin: '0 auto' }}>
-            مدرب تقني رئيسي (Main Technical Coding Tutor) في iSchool ومبادرة براعم مصر الرقمية (DEMI) بالتعاون مع وزارة الاتصالات.
-          </p>
-        </div>
-
-        {/* Stats Row */}
+        {/* Tutor Pitch Header */}
         <div 
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
-            gap: '1.25rem',
-            marginBottom: '4rem'
+          className="corporate-card"
+          style={{ 
+            padding: "3.5rem 2.5rem", 
+            textAlign: "center", 
+            backgroundColor: "#ffffff",
+            borderRadius: "24px",
+            boxShadow: "0 10px 30px -5px rgba(15, 23, 42, 0.05)",
+            border: "1px solid #cbd5e1",
+            marginBottom: "3.5rem"
           }}
         >
-          <div className="corporate-card" style={{ padding: '1.75rem', textAlign: 'center', backgroundColor: '#ffffff' }}>
-            <div style={{ fontSize: '2.25rem', fontWeight: '900', color: 'var(--brand-emerald)', marginBottom: '0.25rem' }}>{stats.totalStudents}</div>
-            <div style={{ fontSize: '0.95rem', color: 'var(--text-primary)', fontWeight: '700' }}>طالب تم تدريبهم</div>
+          <div className="pill-badge pill-emerald" style={{ marginBottom: "1.25rem", display: "inline-flex", alignItems: "center", gap: "0.45rem" }}>
+            <GraduationCap size={16} />
+            <span>Senior CS & STEM Coding Tutor | iSchool & MCIT Partner</span>
           </div>
-          <div className="corporate-card" style={{ padding: '1.75rem', textAlign: 'center', backgroundColor: '#ffffff' }}>
-            <div style={{ fontSize: '2.25rem', fontWeight: '900', color: 'var(--brand-primary)', marginBottom: '0.25rem' }}>{stats.hoursTaught}</div>
-            <div style={{ fontSize: '0.95rem', color: 'var(--text-primary)', fontWeight: '700' }}>ساعات تدريس وجلسات عملية</div>
-          </div>
-          <div className="corporate-card" style={{ padding: '1.75rem', textAlign: 'center', backgroundColor: '#ffffff' }}>
-            <div style={{ fontSize: '1.85rem', fontWeight: '900', color: 'var(--brand-prestige)', marginBottom: '0.25rem' }}>Main Tutor</div>
-            <div style={{ fontSize: '0.95rem', color: 'var(--text-primary)', fontWeight: '700' }}>iSchool Coding Instructor</div>
-          </div>
-          <div className="corporate-card" style={{ padding: '1.75rem', textAlign: 'center', backgroundColor: '#ffffff' }}>
-            <div style={{ fontSize: '2.25rem', fontWeight: '900', color: '#2563eb', marginBottom: '0.25rem' }}>8,388+</div>
-            <div style={{ fontSize: '0.95rem', color: 'var(--text-primary)', fontWeight: '700' }}>متابع على LinkedIn</div>
+
+          <h1 style={{ fontSize: "clamp(2rem, 4.5vw, 3.2rem)", fontWeight: "900", color: "var(--text-primary)", marginBottom: "1.25rem", lineHeight: 1.2 }}>
+            إعداد أجيال البرمجة، الذكاء الاصطناعي، والتفكير المنطقي
+          </h1>
+
+          <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", maxWidth: "780px", margin: "0 auto 2.25rem", lineHeight: 1.85, fontWeight: "500" }}>
+            مدرب تقني رئيسي (Main Technical Tutor) في منصة **iSchool** ومبادرة **براعم مصر الرقمية (DEMI)** بالتعاون مع **وزارة الاتصالات وتكنولوجيا المعلومات**. متمرس في تبسيط العلوم الحاسوبية المعقدة، وبناء الثقة بالنفس للأطفال والشباب، وتخريج طلاب قادريين على بناء مشاريع حقيقية.
+          </p>
+
+          {/* High Conversion CTA Action Buttons */}
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
+            <a
+              href="/assets/documents/seif-elden-resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+              style={{
+                padding: "0.85rem 1.85rem",
+                fontSize: "1rem",
+                fontWeight: "800",
+                backgroundColor: "#2563eb",
+                color: "#ffffff",
+                borderRadius: "12px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.6rem",
+                textDecoration: "none",
+                boxShadow: "0 10px 25px -5px rgba(37, 99, 235, 0.4)"
+              }}
+            >
+              <Download size={18} />
+              <span>تحميل السيرة الذاتية المخصصة للتدريس (Tutor CV PDF)</span>
+            </a>
+
+            <Link
+              to="/testimonials?filter=ischool"
+              className="btn-secondary"
+              style={{
+                padding: "0.85rem 1.65rem",
+                fontSize: "0.98rem",
+                fontWeight: "700",
+                borderRadius: "12px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                textDecoration: "none",
+                backgroundColor: "#ffffff",
+                border: "1.5px solid #cbd5e1",
+                color: "#0f172a"
+              }}
+            >
+              <Star size={17} color="#f59e0b" fill="#f59e0b" />
+              <span>عرض تقييمات أولياء الأمور والطلاب (10+)</span>
+            </Link>
           </div>
         </div>
 
-        {/* Real Professional Experiences */}
-        <div style={{ marginBottom: '4.5rem' }}>
-          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-            <h2 style={{ fontSize: '2rem', fontWeight: '900', color: 'var(--text-primary)' }}>
-              السجل المهني والمسيرة العملية
-            </h2>
+        {/* High-Impact Proof Stats Bar */}
+        <div 
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: "1.25rem",
+            marginBottom: "4.5rem"
+          }}
+        >
+          <div className="corporate-card" style={{ padding: "1.85rem", textAlign: "center", backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
+            <div style={{ fontSize: "2.4rem", fontWeight: "900", color: "#059669", marginBottom: "0.3rem" }}>{stats.totalStudents || "500+"}</div>
+            <div style={{ fontSize: "0.95rem", color: "#0f172a", fontWeight: "800" }}>طالب وطالبة تم تدريبهم</div>
+            <div style={{ fontSize: "0.8rem", color: "#64748b", marginTop: "0.2rem" }}>iSchool & DEMI Summer Camp</div>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
-            {experienceList.map((exp, idx) => (
-              <div key={idx} className="corporate-card" style={{ padding: '2rem', backgroundColor: '#ffffff' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.75rem' }}>
-                  <div>
-                    <h3 style={{ fontSize: '1.35rem', fontWeight: '800', color: 'var(--text-primary)' }}>{exp.role}</h3>
-                    <div style={{ fontSize: '0.95rem', color: 'var(--brand-primary)', fontWeight: '700', marginTop: '0.2rem' }}>
-                      {exp.company} • <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>{exp.location}</span>
-                    </div>
+          <div className="corporate-card" style={{ padding: "1.85rem", textAlign: "center", backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
+            <div style={{ fontSize: "2.4rem", fontWeight: "900", color: "#2563eb", marginBottom: "0.3rem" }}>{stats.hoursTaught || "250+"}</div>
+            <div style={{ fontSize: "0.95rem", color: "#0f172a", fontWeight: "800" }}>ساعة تدريس وتفاعل مباشر</div>
+            <div style={{ fontSize: "0.8rem", color: "#64748b", marginTop: "0.2rem" }}>جلسات عمل وتطبيق كود شغال</div>
+          </div>
+
+          <div className="corporate-card" style={{ padding: "1.85rem", textAlign: "center", backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
+            <div style={{ fontSize: "1.9rem", fontWeight: "900", color: "#d97706", marginBottom: "0.3rem" }}>🏆 المركز الأول</div>
+            <div style={{ fontSize: "0.95rem", color: "#0f172a", fontWeight: "800" }}>أول على الجمهورية بـ DEPI</div>
+            <div style={{ fontSize: "0.8rem", color: "#64748b", marginTop: "0.2rem" }}>وزارة الاتصالات وتكنولوجيا المعلومات</div>
+          </div>
+
+          <div className="corporate-card" style={{ padding: "1.85rem", textAlign: "center", backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
+            <div style={{ fontSize: "2.4rem", fontWeight: "900", color: "#7c3aed", marginBottom: "0.3rem" }}>100%</div>
+            <div style={{ fontSize: "0.95rem", color: "#0f172a", fontWeight: "800" }}>معدل رضى وأثر تربوي مثبت</div>
+            <div style={{ fontSize: "0.8rem", color: "#64748b", marginTop: "0.2rem" }}>إشادات أولياء الأمور والقيادات</div>
+          </div>
+        </div>
+
+        {/* Live Interactive Sessions Photo Gallery Section */}
+        <div style={{ marginBottom: "5rem" }}>
+          <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
+            <div className="pill-badge pill-blue" style={{ marginBottom: "0.75rem", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+              <Code2 size={15} />
+              <span>شواهد حية من القاعات وجلسات التدريب أونلاين</span>
+            </div>
+            <h2 style={{ fontSize: "2.2rem", fontWeight: "900", color: "#0f172a" }}>
+              معرض الجلسات والسيشنات التفاعلية المباشرة
+            </h2>
+            <p style={{ color: "#64748b", fontSize: "1.02rem", maxWidth: "650px", margin: "0.5rem auto 0" }}>
+              نظرة داخل قاعات التدريب الافتراضية وكيفية إدارة السيشن وتطبيق مبدأ التعلم التفاعلي.
+            </p>
+          </div>
+
+          <div 
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              gap: "1.75rem"
+            }}
+          >
+            {sessionPhotos.map((photo, idx) => (
+              <div 
+                key={idx}
+                className="corporate-card"
+                style={{ 
+                  backgroundColor: "#ffffff", 
+                  borderRadius: "20px", 
+                  overflow: "hidden", 
+                  border: "1px solid #e2e8f0",
+                  transition: "all 0.3s ease",
+                  display: "flex",
+                  flexDirection: "column"
+                }}
+              >
+                <div 
+                  style={{ position: "relative", height: "230px", overflow: "hidden", cursor: "pointer" }}
+                  onClick={() => setZoomedImage(photo)}
+                >
+                  <img 
+                    src={photo.src} 
+                    alt={photo.title}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s ease" }}
+                  />
+                  <div 
+                    style={{
+                      position: "absolute",
+                      bottom: "0.75rem",
+                      right: "0.75rem",
+                      backgroundColor: "rgba(15, 23, 42, 0.8)",
+                      color: "#ffffff",
+                      padding: "0.35rem 0.75rem",
+                      borderRadius: "9999px",
+                      fontSize: "0.78rem",
+                      fontWeight: "700",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.35rem"
+                    }}
+                  >
+                    <Maximize2 size={13} />
+                    <span>تكبير الصورة</span>
                   </div>
-                  <span className="pill-badge pill-emerald">
-                    {exp.period}
-                  </span>
                 </div>
 
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.7, marginBottom: '1.25rem' }}>
-                  {exp.description}
-                </p>
-
-                <div style={{ borderTop: '1px solid #e2e8f0', paddingTop: '1rem' }}>
-                  <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    {exp.highlights.map((h, i) => (
-                      <li key={i} style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                        <CheckCircle2 size={16} color="var(--brand-emerald)" style={{ flexShrink: 0, marginTop: '2px' }} />
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div style={{ padding: "1.5rem", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                  <div>
+                    <h3 style={{ fontSize: "1.1rem", fontWeight: "800", color: "#0f172a", marginBottom: "0.5rem", lineHeight: 1.4 }}>
+                      {photo.title}
+                    </h3>
+                    <p style={{ fontSize: "0.88rem", color: "#475569", lineHeight: 1.6 }}>
+                      {photo.desc}
+                    </p>
+                  </div>
+                  <div style={{ marginTop: "1rem", paddingTop: "0.75rem", borderTop: "1px solid #f1f5f9", display: "flex", alignItems: "center", gap: "0.4rem", color: "#059669", fontSize: "0.82rem", fontWeight: "700" }}>
+                    <CheckCircle2 size={15} />
+                    <span>جلسات موثقة ومباشرة</span>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* CTA */}
-        <div className="corporate-card" style={{ padding: '3rem 2rem', textAlign: 'center', backgroundColor: '#eff6ff', borderColor: '#bfdbfe' }}>
-          <h3 style={{ fontSize: '1.6rem', fontWeight: '900', color: 'var(--text-primary)', marginBottom: '0.75rem' }}>
-            ترغب في التعاون التدريبي أو تنظيم ورش عمل برمجية؟
-          </h3>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.98rem', maxWidth: '600px', margin: '0 auto 1.75rem', lineHeight: 1.6 }}>
-            متاح لتقديم ورش العمل التقنية في معمارية البرمجيات، مفاهيم .NET & Backend، وتدريب النشء على التفكير الخوارزمي.
+        {/* Scholarships & Government Grants Section with Proof Photos */}
+        <div style={{ marginBottom: "5rem" }}>
+          <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
+            <div className="pill-badge pill-gold" style={{ marginBottom: "0.75rem", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+              <Award size={15} />
+              <span>المنح الحكومية والاعتمادات الرسمية</span>
+            </div>
+            <h2 style={{ fontSize: "2.2rem", fontWeight: "900", color: "#0f172a" }}>
+              المنح التدريبية والتكريمات الرسمية
+            </h2>
+            <p style={{ color: "#64748b", fontSize: "1.02rem", maxWidth: "680px", margin: "0.5rem auto 0" }}>
+              توثيق المنح المكثفة والتكريمات الرسمية من وزارة الاتصالات وتكنولوجيا المعلومات والشركاء الدوليين.
+            </p>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
+            {scholarshipProofs.map((item, index) => (
+              <div 
+                key={index}
+                className="corporate-card"
+                style={{ 
+                  padding: "2rem", 
+                  backgroundColor: "#ffffff", 
+                  borderRadius: "20px", 
+                  border: "1px solid #e2e8f0",
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                  gap: "2rem",
+                  alignItems: "center"
+                }}
+              >
+                <div>
+                  <div style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", padding: "0.35rem 0.75rem", borderRadius: "9999px", backgroundColor: "#eff6ff", color: "#2563eb", fontSize: "0.82rem", fontWeight: "800", marginBottom: "0.85rem" }}>
+                    <Building2 size={14} />
+                    <span>{item.issuer}</span>
+                  </div>
+
+                  <h3 style={{ fontSize: "1.35rem", fontWeight: "900", color: "#0f172a", marginBottom: "0.75rem", lineHeight: 1.35 }}>
+                    {item.title}
+                  </h3>
+
+                  <p style={{ color: "#475569", fontSize: "0.95rem", lineHeight: 1.75, marginBottom: "1.25rem" }}>
+                    {item.desc}
+                  </p>
+
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#059669", fontWeight: "700", fontSize: "0.88rem" }}>
+                    <ShieldCheck size={17} />
+                    <span>منحة رسمية معتمدة وموثقة بالشهادات والتكريمات</span>
+                  </div>
+                </div>
+
+                <div 
+                  style={{ 
+                    position: "relative", 
+                    height: "220px", 
+                    borderRadius: "16px", 
+                    overflow: "hidden", 
+                    border: "2px solid #3b82f6",
+                    cursor: "pointer",
+                    boxShadow: "0 10px 25px rgba(37, 99, 235, 0.15)"
+                  }}
+                  onClick={() => setZoomedImage({ src: item.image, title: item.title, desc: item.desc })}
+                >
+                  <img 
+                    src={item.image} 
+                    alt={item.title}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                  <div 
+                    style={{
+                      position: "absolute",
+                      bottom: "0.75rem",
+                      left: "0.75rem",
+                      backgroundColor: "rgba(15, 23, 42, 0.85)",
+                      color: "#ffffff",
+                      padding: "0.35rem 0.75rem",
+                      borderRadius: "9999px",
+                      fontSize: "0.78rem",
+                      fontWeight: "700",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.35rem"
+                    }}
+                  >
+                    <Maximize2 size={13} />
+                    <span>معاينة صورة التكريم/الشهادة</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Psychological Social Proof & Testimonials Link Section */}
+        <div style={{ marginBottom: "5rem" }}>
+          <div 
+            className="corporate-card"
+            style={{ 
+              padding: "3rem 2.25rem", 
+              backgroundColor: "#0f172a", 
+              color: "#ffffff", 
+              borderRadius: "24px",
+              boxShadow: "0 20px 40px rgba(15, 23, 42, 0.25)",
+              border: "1px solid #1e293b"
+            }}
+          >
+            <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: "0.45rem", padding: "0.4rem 1rem", borderRadius: "9999px", backgroundColor: "rgba(255,255,255,0.1)", color: "#38bdf8", fontSize: "0.85rem", fontWeight: "800", marginBottom: "1rem" }}>
+                <MessageSquare size={16} />
+                <span>إشادات القيادات التنفيذية وأولياء الأمور</span>
+              </div>
+              <h2 style={{ fontSize: "2.2rem", fontWeight: "900", color: "#ffffff", marginBottom: "0.75rem" }}>
+                ماذا يقول الرؤساء المباشرون وأولياء الأمور عن أسلوب تدريسي؟
+              </h2>
+              <p style={{ color: "#94a3b8", fontSize: "1.02rem", maxWidth: "650px", margin: "0 auto", lineHeight: 1.7 }}>
+                شهادات حقيقية وموثقة على LinkedIn ومنصات التدريب الرسمية تعكس الأثر التقني والتربوي الكبير.
+              </p>
+            </div>
+
+            <div 
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+                gap: "1.5rem",
+                marginBottom: "2.5rem"
+              }}
+            >
+              {featuredTestimonials.slice(0, 3).map((test, i) => (
+                <div 
+                  key={i}
+                  style={{
+                    backgroundColor: "rgba(30, 41, 59, 0.8)",
+                    padding: "1.75rem",
+                    borderRadius: "18px",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between"
+                  }}
+                >
+                  <div>
+                    <div style={{ fontSize: "0.8rem", color: "#38bdf8", fontWeight: "800", marginBottom: "0.5rem" }}>
+                      {test.badge || test.company}
+                    </div>
+                    <p style={{ fontSize: "0.92rem", color: "#e2e8f0", lineHeight: 1.75, fontStyle: "italic", marginBottom: "1.25rem" }}>
+                      "{test.quote.length > 160 ? test.quote.substring(0, 160) + "..." : test.quote}"
+                    </p>
+                  </div>
+
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", paddingTop: "0.75rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+                    <div style={{ fontWeight: "800", color: "#ffffff", fontSize: "0.92rem" }}>
+                      {test.name}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* High Conversion CTA Link to Full Testimonials */}
+            <div style={{ textAlign: "center" }}>
+              <Link
+                to="/testimonials?filter=ischool"
+                className="btn-primary"
+                style={{
+                  padding: "0.95rem 2.25rem",
+                  fontSize: "1rem",
+                  fontWeight: "900",
+                  backgroundColor: "#059669",
+                  color: "#ffffff",
+                  borderRadius: "14px",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.6rem",
+                  textDecoration: "none",
+                  boxShadow: "0 10px 25px -5px rgba(5, 150, 105, 0.4)"
+                }}
+              >
+                <span>عرض كافة تقييمات وتوصيات التدريس الموثقة (10+) ↗</span>
+                <ChevronRight size={18} />
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Teaching Methodology & Gamified Curriculum Section */}
+        <div style={{ marginBottom: "5rem" }}>
+          <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
+            <h2 style={{ fontSize: "2rem", fontWeight: "900", color: "#0f172a" }}>
+              منهجية الشرح والأسلوب التربوي والتقني
+            </h2>
+            <p style={{ color: "#64748b", fontSize: "1rem", maxWidth: "600px", margin: "0.5rem auto 0" }}>
+              4 ركائز حاسمة أعتمد عليها لضمان تحويل المفاهيم الجافة إلى متعة شغف وإنجاز عملي.
+            </p>
+          </div>
+
+          <div 
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+              gap: "1.5rem"
+            }}
+          >
+            <div className="corporate-card" style={{ padding: "1.75rem", backgroundColor: "#ffffff" }}>
+              <div style={{ width: "48px", height: "48px", borderRadius: "12px", backgroundColor: "#eff6ff", color: "#2563eb", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>
+                <Cpu size={24} />
+              </div>
+              <h3 style={{ fontSize: "1.15rem", fontWeight: "800", color: "#0f172a", marginBottom: "0.5rem" }}>Project-Based Learning</h3>
+              <p style={{ fontSize: "0.88rem", color: "#475569", lineHeight: 1.6 }}>الطلاب لا يحفظون الأكواد؛ بل يتم تكليفهم ببناء مشاريع حقيقية بنهاية كل جلسة لرؤية النتيجة بأعينهم.</p>
+            </div>
+
+            <div className="corporate-card" style={{ padding: "1.75rem", backgroundColor: "#ffffff" }}>
+              <div style={{ width: "48px", height: "48px", borderRadius: "12px", backgroundColor: "#ecfdf5", color: "#059669", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>
+                <HeartHandshake size={24} />
+              </div>
+              <h3 style={{ fontSize: "1.15rem", fontWeight: "800", color: "#0f172a", marginBottom: "0.5rem" }}>Peer Teaching & Confidence</h3>
+              <p style={{ fontSize: "0.88rem", color: "#475569", lineHeight: 1.6 }}>إتاحة الفرصة للطلاب لشرح منطقهم البرمجي لزملائهم لبناء ثقتهم بنفسهم ومهارات التحدث والقيادة.</p>
+            </div>
+
+            <div className="corporate-card" style={{ padding: "1.75rem", backgroundColor: "#ffffff" }}>
+              <div style={{ width: "48px", height: "48px", borderRadius: "12px", backgroundColor: "#fef3c7", color: "#d97706", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>
+                <Brain size={24} />
+              </div>
+              <h3 style={{ fontSize: "1.15rem", fontWeight: "800", color: "#0f172a", marginBottom: "0.5rem" }}>Computational Thinking</h3>
+              <p style={{ fontSize: "0.88rem", color: "#475569", lineHeight: 1.6 }}>تدريب عقل الطالب على تفكيك التحديات المعقدة إلى خطوات منطقية متسلسلة قبل الشروع في كتابة الأكواد.</p>
+            </div>
+
+            <div className="corporate-card" style={{ padding: "1.75rem", backgroundColor: "#ffffff" }}>
+              <div style={{ width: "48px", height: "48px", borderRadius: "12px", backgroundColor: "#f3e8ff", color: "#7c3aed", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>
+                <Sparkles size={24} />
+              </div>
+              <h3 style={{ fontSize: "1.15rem", fontWeight: "800", color: "#0f172a", marginBottom: "0.5rem" }}>Gamified Challenges</h3>
+              <p style={{ fontSize: "0.88rem", color: "#475569", lineHeight: 1.6 }}>تحويل التحديات البرمجية إلى مسابقات تفاعلية مشوقة تدفع الطلاب للحماس والتركيز والابتكار.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Dedicated Instructor Application & Contact Card */}
+        <div 
+          className="corporate-card"
+          style={{ 
+            padding: "3.5rem 2rem", 
+            textAlign: "center", 
+            backgroundColor: "#ffffff", 
+            borderRadius: "24px",
+            border: "2px solid #2563eb",
+            boxShadow: "0 15px 35px rgba(37, 99, 235, 0.1)"
+          }}
+        >
+          <div className="pill-badge pill-blue" style={{ marginBottom: "1rem", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+            <Send size={15} />
+            <span>متاح حالياً للمسارات التدريبية والشراكات التعليمية</span>
+          </div>
+
+          <h2 style={{ fontSize: "2rem", fontWeight: "900", color: "#0f172a", marginBottom: "0.75rem" }}>
+            هل تبحث عن مدرب تقني (CS & Coding Tutor) ذو كفاءة وأثر مثبت؟
+          </h2>
+
+          <p style={{ color: "#475569", fontSize: "1.05rem", maxWidth: "650px", margin: "0 auto 2rem", lineHeight: 1.75 }}>
+            يسعدني مناقشة الانضمام كـ Instructor / Coding Tutor للمسارات البرمجية في المنصات التعليمية، المدارس الدولية، أو المبادرات الحكومية.
           </p>
-          <Link to="/contact" className="btn-primary" style={{ padding: '0.75rem 1.75rem' }}>
-            <span>تواصل لتنسيق التدريب والورش</span>
-            <ArrowUpLeft size={16} />
-          </Link>
+
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
+            <a
+              href="/assets/documents/seif-elden-resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+              style={{
+                padding: "0.85rem 1.85rem",
+                fontSize: "1rem",
+                fontWeight: "800",
+                backgroundColor: "#2563eb",
+                color: "#ffffff",
+                borderRadius: "12px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                textDecoration: "none"
+              }}
+            >
+              <Download size={18} />
+              <span>تحميل الـ Tutor CV (PDF)</span>
+            </a>
+
+            <a
+              href="https://api.whatsapp.com/send/?phone=201223817860&text=أهلاً سيف، نرغب في مناقشة فرصة تدريبية كـ Tutor"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+              style={{
+                padding: "0.85rem 1.85rem",
+                fontSize: "1rem",
+                fontWeight: "800",
+                backgroundColor: "#059669",
+                color: "#ffffff",
+                borderRadius: "12px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                textDecoration: "none"
+              }}
+            >
+              <MessageSquare size={18} />
+              <span>محادثة فورية عبر WhatsApp</span>
+            </a>
+          </div>
         </div>
 
       </div>
+
+      {/* Lightbox Image Modal */}
+      {zoomedImage && (
+        <div 
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 100000,
+            backgroundColor: "rgba(15, 23, 42, 0.95)",
+            backdropFilter: "blur(12px)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "1.5rem"
+          }}
+          onClick={() => setZoomedImage(null)}
+        >
+          <div 
+            style={{
+              position: "absolute",
+              top: "1.5rem",
+              right: "1.5rem",
+              left: "1.5rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              zIndex: 10
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ color: "#ffffff", fontWeight: "800", fontSize: "1rem", backgroundColor: "rgba(0,0,0,0.5)", padding: "0.5rem 1rem", borderRadius: "9999px" }}>
+              {zoomedImage.title}
+            </div>
+
+            <button
+              onClick={() => setZoomedImage(null)}
+              style={{
+                padding: "0.65rem 1.25rem",
+                borderRadius: "9999px",
+                backgroundColor: "#ffffff",
+                color: "#0f172a",
+                border: "none",
+                fontWeight: "800",
+                fontSize: "0.9rem",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.4rem"
+              }}
+            >
+              <X size={18} />
+              <span>إغلاق التكبير</span>
+            </button>
+          </div>
+
+          <div 
+            style={{
+              maxWidth: "95vw",
+              maxHeight: "85vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img 
+              src={zoomedImage.src} 
+              alt={zoomedImage.title} 
+              style={{
+                maxWidth: "100%",
+                maxHeight: "85vh",
+                objectFit: "contain",
+                borderRadius: "16px",
+                boxShadow: "0 20px 50px rgba(0,0,0,0.5)",
+                border: "2px solid rgba(255,255,255,0.15)"
+              }}
+            />
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
