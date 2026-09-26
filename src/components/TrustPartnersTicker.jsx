@@ -1,48 +1,46 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { CheckCircle2, ShieldCheck, FileCheck, ExternalLink, Download, X, Award } from 'lucide-react';
+import { CheckCircle2, FileCheck, ExternalLink, Download, X, Award } from 'lucide-react';
 import { usePortfolioData } from '../context/DynamicPortfolioContext';
 
 export default function TrustPartnersTicker() {
   const { trustPartners } = usePortfolioData();
   const [selectedProof, setSelectedProof] = useState(null);
-  const [isPaused, setIsPaused] = useState(false);
 
   if (!trustPartners || trustPartners.length === 0) return null;
 
   return (
     <section 
       style={{ 
-        padding: '4rem 0', 
+        padding: '4.5rem 0', 
         backgroundColor: '#ffffff',
         borderTop: '1px solid #e2e8f0',
         borderBottom: '1px solid #e2e8f0',
-        position: 'relative',
-        overflow: 'hidden'
+        position: 'relative'
       }}
     >
       <div className="container-custom">
         
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-          <div className="pill-badge pill-gold" style={{ marginBottom: '0.65rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <div className="pill-badge pill-gold" style={{ marginBottom: '0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
             <Award size={14} />
             <span>الشركاء والجهات المعتمدة رسمياً</span>
           </div>
-          <h2 style={{ fontSize: '2rem', fontWeight: '900', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
+          <h2 style={{ fontSize: '2.25rem', fontWeight: '900', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
             مؤسسات الاعتماد والجهات الرسمية الراعية
           </h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.98rem', maxWidth: '640px', margin: '0 auto' }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: '1rem', maxWidth: '680px', margin: '0 auto' }}>
             اعتمادات وتكريمات موثقة رسمياً من وزارة الاتصالات، مايكروسوفت، جامعة الزقازيق، معهد NTI، ومبادرة مصر الرقمية.
           </p>
         </div>
 
-        {/* Partners Grid / Ticker */}
+        {/* Partners Grid */}
         <div 
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '1.25rem'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: '1.5rem'
           }}
         >
           {trustPartners.map((partner) => (
@@ -50,29 +48,29 @@ export default function TrustPartnersTicker() {
               key={partner.id}
               className="corporate-card"
               style={{
-                padding: '1.25rem 1.5rem',
+                padding: '1.5rem',
                 backgroundColor: '#ffffff',
-                borderRadius: '16px',
+                borderRadius: '20px',
                 border: '1px solid #e2e8f0',
                 display: 'flex',
-                alignItems: 'center',
+                flexDirection: 'column',
                 justifyContent: 'space-between',
-                gap: '1rem',
-                cursor: 'pointer',
                 transition: 'all 0.25s ease',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.02)'
+                boxShadow: '0 4px 15px rgba(0,0,0,0.02)'
               }}
-              onClick={() => setSelectedProof(partner)}
-              title={`اضغط لاستعراض وثيقة إثبات اعتماد ${partner.name}`}
             >
-              {/* Partner Logo */}
+              {/* Top: Brand Logo Box */}
               <div 
                 style={{
-                  height: '42px',
+                  height: '52px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  flexShrink: 0
+                  marginBottom: '1.25rem',
+                  padding: '0.5rem',
+                  backgroundColor: '#f8fafc',
+                  borderRadius: '12px',
+                  border: '1px solid #f1f5f9'
                 }}
               >
                 <img 
@@ -80,42 +78,54 @@ export default function TrustPartnersTicker() {
                   alt={partner.name}
                   style={{
                     maxHeight: '38px',
-                    maxWidth: '130px',
+                    maxWidth: '170px',
                     objectFit: 'contain'
                   }}
                 />
               </div>
 
-              {/* Partner Verification Info */}
-              <div style={{ textAlign: 'left', flexGrow: 1 }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '0.35rem' }}>
-                  <span style={{ fontWeight: '800', color: 'var(--text-primary)', fontSize: '0.92rem' }}>
+              {/* Middle: Partner Info & Badge */}
+              <div style={{ marginBottom: '1.25rem', textAlign: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', marginBottom: '0.4rem' }}>
+                  <span style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-primary)' }}>
                     {partner.name}
                   </span>
-                  <CheckCircle2 size={15} color="#10b981" />
+                  <CheckCircle2 size={16} color="#10b981" />
                 </div>
-                
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '0.5rem', marginTop: '0.25rem' }}>
-                  {partner.badge && (
-                    <span 
-                      style={{ 
-                        fontSize: '0.72rem', 
-                        fontWeight: '800', 
-                        color: partner.color || '#2563eb', 
-                        backgroundColor: partner.bgColor || '#eff6ff', 
-                        padding: '0.15rem 0.5rem', 
-                        borderRadius: '6px'
-                      }}
-                    >
-                      {partner.badge}
-                    </span>
-                  )}
-                  <span style={{ fontSize: '0.75rem', color: 'var(--brand-primary)', fontWeight: '700', display: 'inline-flex', alignItems: 'center', gap: '0.2rem' }}>
-                    <span>استعراض التوثيق</span>
-                    <ExternalLink size={12} />
+
+                {partner.badge && (
+                  <span 
+                    style={{ 
+                      fontSize: '0.78rem', 
+                      fontWeight: '800', 
+                      color: partner.color || '#2563eb', 
+                      backgroundColor: partner.bgColor || '#eff6ff', 
+                      padding: '0.25rem 0.75rem', 
+                      borderRadius: '9999px',
+                      display: 'inline-block'
+                    }}
+                  >
+                    {partner.badge}
                   </span>
-                </div>
+                )}
               </div>
+
+              {/* Bottom: Action Button */}
+              <button
+                onClick={() => setSelectedProof(partner)}
+                className="btn-secondary"
+                style={{
+                  width: '100%',
+                  justifyContent: 'center',
+                  padding: '0.55rem 1rem',
+                  fontSize: '0.85rem',
+                  backgroundColor: '#f8fafc',
+                  border: '1px solid #cbd5e1'
+                }}
+              >
+                <span>استعراض التوثيق المعتمد</span>
+                <ExternalLink size={14} />
+              </button>
 
             </div>
           ))}
@@ -123,13 +133,13 @@ export default function TrustPartnersTicker() {
 
       </div>
 
-      {/* Proof Modal */}
+      {/* Proof Document Modal */}
       {selectedProof && createPortal(
         <div 
           style={{
             position: 'fixed',
             inset: 0,
-            zIndex: 220,
+            zIndex: 250,
             backgroundColor: 'rgba(15, 23, 42, 0.82)',
             backdropFilter: 'blur(12px)',
             display: 'flex',
@@ -188,7 +198,7 @@ export default function TrustPartnersTicker() {
               </button>
             </div>
 
-            {/* Proof Document Content Viewer */}
+            {/* Proof Content Viewer */}
             <div style={{ flex: 1, overflowY: 'auto', padding: '1.5rem', backgroundColor: '#0f172a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               {selectedProof.proofType === 'pdf' ? (
                 <iframe 

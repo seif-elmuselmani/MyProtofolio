@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 32" width="140" height="32">
-  <rect x="0" y="2" width="28" height="28" rx="8" fill="#E11D48"/>
-  <circle cx="14" cy="10" r="3" fill="#FFFFFF"/>
-  <rect x="11.5" y="15" width="5" height="9" rx="2" fill="#FFFFFF"/>
-  <text x="36" y="22" font-family="'Outfit', 'Inter', sans-serif" font-weight="900" font-size="16" fill="#9F1239">iSchool</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 40" width="150" height="40">
+  <rect x="0" y="5" width="30" height="30" rx="8" fill="#E11D48"/>
+  <circle cx="15" cy="13" r="3" fill="#FFFFFF"/>
+  <rect x="12.5" y="18" width="5" height="10" rx="1.5" fill="#FFFFFF"/>
+  <text x="38" y="26" font-family="'Outfit', sans-serif" font-weight="900" font-size="17" fill="#E11D48">iSchool</text>
 </svg>
