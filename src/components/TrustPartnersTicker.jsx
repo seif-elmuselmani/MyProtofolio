@@ -133,7 +133,13 @@ export default function TrustPartnersTicker() {
 
                 {/* Proof Document Modal Button */}
                 <button
-                  onClick={() => setSelectedProof(partner)}
+                  onClick={() => {
+      if (partner.id === 'ischool' || partner.proofType === 'route') {
+        navigate(partner.linkUrl || '/teaching');
+      } else {
+        setSelectedProof(partner);
+      }
+    }}
                   className="btn-secondary"
                   style={{
                     width: '100%',

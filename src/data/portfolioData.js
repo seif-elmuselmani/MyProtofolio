@@ -151,12 +151,12 @@ export const trustPartners = [
     category: "أكاديمية تعليمية",
     color: "#e11d48",
     bgColor: "#fff1f2",
-    logo: "/assets/partners/ischool-real.png",
+    logo: "/assets/partners/ischool-logo.svg",
     linkUrl: "/teaching",
-    linkText: "الانتقال لقسم خبرة التدريس التقني",
-    proofUrl: "/assets/documents/CV_Computer_Science_And_ICT_Tutor.pdf",
-    proofTitle: "وثيقة اعتماد وتكليف التدريس البرمجي في أكاديمية iSchool ومبادرة براعم مصر",
-    proofType: "pdf"
+    linkText: "الانتقال لقسم التدريس التقني",
+    proofUrl: "/teaching",
+    proofTitle: "الخبرة والتدريس التقني في أكاديمية iSchool ومبادرة براعم مصر",
+    proofType: "route"
   }
 ];
 
