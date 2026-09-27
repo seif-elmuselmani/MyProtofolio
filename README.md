@@ -5,15 +5,28 @@
 ![React](https://img.shields.io/badge/React-18.3-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![.NET](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![DEPI Award](https://img.shields.io/badge/DEPI-1st_Place_Winner-D97706?style=for-the-badge&logo=award&logoColor=white)
-![Vercel Ready](https://img.shields.io/badge/Vercel-Production_Ready-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Vercel Live](https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
 <br />
 
 **Official Portfolio Web Application of Saif Elden Muhammad**  
 *Full-Stack Software Engineer (.NET & MEAN) | #1 Republic Winner (DEPI - MCIT) | Coding Instructor at iSchool*
 
-[🌐 View Live Website](http://localhost:5173/) • [💼 LinkedIn Profile](https://www.linkedin.com/in/seif-elmuselmani) • [📂 GitHub Repositories](https://github.com/seif-elmuselmani)
+[🌐 View Live Website](https://my-protofolio-two-theta.vercel.app/) • [💼 LinkedIn Profile](https://www.linkedin.com/in/seif-elmuselmani) • [📂 GitHub Repositories](https://github.com/seif-elmuselmani)
+
+</div>
+
+---
+
+## 📊 Developer Profile & GitHub Achievements
+
+<div align="center">
+
+[![Saif's GitHub Stats](https://github-readme-stats.vercel.app/api?username=seif-elmuselmani&show_icons=true&theme=tokyonight&hide_border=true)](https://github.com/seif-elmuselmani)
+[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=seif-elmuselmani&layout=compact&theme=tokyonight&hide_border=true)](https://github.com/seif-elmuselmani)
 
 </div>
 
