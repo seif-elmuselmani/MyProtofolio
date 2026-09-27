@@ -11,7 +11,8 @@ import {
   ExternalLink,
   GraduationCap,
   Briefcase,
-  CheckCircle2
+  CheckCircle2,
+  ShieldCheck
 } from 'lucide-react';
 import { usePortfolioData } from '../context/DynamicPortfolioContext';
 import ResumeModal from './ResumeModal';
@@ -35,9 +36,16 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [showResume, setShowResume] = useState(false);
   const [showCvDropdown, setShowCvDropdown] = useState(false);
+  const [isAdminAuth, setIsAdminAuth] = useState(() => {
+    return sessionStorage.getItem('seif_admin_authenticated') === 'true';
+  });
 
   const cvDropdownRef = useRef(null);
   const location = useLocation();
+
+  useEffect(() => {
+    setIsAdminAuth(sessionStorage.getItem('seif_admin_authenticated') === 'true');
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -244,6 +252,30 @@ export default function Navbar() {
                 </div>
               )}
             </div>
+
+            {/* Authenticated Admin Quick Gate Button */}
+            {isAdminAuth && (
+              <Link
+                to="/vault-gate-9x7k2"
+                className="btn-primary"
+                style={{
+                  padding: '0.48rem 0.95rem',
+                  fontSize: '0.84rem',
+                  borderRadius: '12px',
+                  backgroundColor: '#0f172a',
+                  color: '#38bdf8',
+                  border: '1px solid #1e293b',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                  boxShadow: '0 4px 14px rgba(15, 23, 42, 0.25)',
+                  textDecoration: 'none'
+                }}
+              >
+                <ShieldCheck size={16} color="#38bdf8" />
+                <span>لوحة التحكم</span>
+              </Link>
+            )}
 
             {/* Direct Contact CTA */}
             <Link
