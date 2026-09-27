@@ -1,4 +1,4 @@
-# 🚀 Saif Elden - Software Engineer Personal Portfolio
+#  Saif Elden - Software Engineer Personal Portfolio
 
 <div align="center">
 
