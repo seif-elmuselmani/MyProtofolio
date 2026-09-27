@@ -676,32 +676,12 @@ export const teachingExperience = {
 export const cvArchive = [
   {
     id: 'cv-1',
-    title: 'English ATS Resume (PDF)',
-    subtitle: 'السيرة الذاتية الرسمية بالإنجليزية المتوافقة مع أنظمة الـ ATS للشركات العالمية',
-    fileUrl: '/assets/documents/Resume_FullStack_Engineer_English_ATS.pdf',
-    badge: 'English ATS',
+    title: 'STEM & Programming Instructor Official CV',
+    subtitle: 'السيرة الذاتية المعتمدة للتدريس التقني والبرمجة (iSchool, DEPI & STEM)',
+    fileUrl: '/assets/documents/CV_Computer_Science_And_ICT_Tutor.pdf',
+    badge: 'Official Instructor CV',
     badgeColor: '#2563eb',
     active: true,
     isDefault: true
-  },
-  {
-    id: 'cv-2',
-    title: 'Full-Stack & Backend Official CV 2026',
-    subtitle: 'السيرة الذاتية الشاملة المعتمدة 2026 (.NET, Node.js & Architecture)',
-    fileUrl: '/assets/documents/CV_FullStack_Software_Engineer_Official_2026.pdf',
-    badge: 'Official 2026',
-    badgeColor: '#059669',
-    active: true,
-    isDefault: false
-  },
-  {
-    id: 'cv-3',
-    title: 'Computer Science & ICT Tutor CV',
-    subtitle: 'سيرة الخبرات التدريبية والتعليمية (iSchool & مبادرة DEPI)',
-    fileUrl: '/assets/documents/CV_Computer_Science_And_ICT_Tutor.pdf',
-    badge: 'Tech Instructor',
-    badgeColor: '#d97706',
-    active: true,
-    isDefault: false
   }
 ];

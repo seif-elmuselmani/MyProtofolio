@@ -114,7 +114,7 @@ export default function Teaching() {
           {/* High Conversion CTA Action Buttons */}
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
             <a
-              href="/assets/documents/seif-elden-resume.pdf"
+              href="/assets/documents/CV_Computer_Science_And_ICT_Tutor.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"
@@ -589,7 +589,7 @@ export default function Teaching() {
 
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
             <a
-              href="/assets/documents/seif-elden-resume.pdf"
+              href="/assets/documents/CV_Computer_Science_And_ICT_Tutor.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"

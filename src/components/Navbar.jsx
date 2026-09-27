@@ -73,20 +73,8 @@ export default function Navbar() {
 
   const cvOptions = [
     {
-      title: 'English ATS Resume (PDF)',
-      subtitle: 'السيرة الذاتية الرسمية بالإنجليزية للشركات العالمية',
-      icon: Briefcase,
-      link: '/assets/documents/Resume_FullStack_Engineer_English_ATS.pdf'
-    },
-    {
-      title: 'Full-Stack & Backend Official CV 2026',
-      subtitle: 'السيرة الذاتية الشاملة المعتمدة 2026 (.NET & MEAN)',
-      icon: CheckCircle2,
-      link: '/assets/documents/CV_FullStack_Software_Engineer_Official_2026.pdf'
-    },
-    {
-      title: 'Computer Science & ICT Tutor CV',
-      subtitle: 'سيرة الخبرات التعليمية والتدريب التقني (iSchool & DEMI)',
+      title: 'STEM & Programming Instructor Official CV',
+      subtitle: 'السيرة الذاتية المعتمدة للتدريس التقني والبرمجة (iSchool & DEPI)',
       icon: GraduationCap,
       link: '/assets/documents/CV_Computer_Science_And_ICT_Tutor.pdf'
     }
