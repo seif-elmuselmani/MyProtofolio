@@ -30,7 +30,13 @@ export function DynamicPortfolioProvider({ children }) {
 
   const [credentialsList, setCredentialsList] = useState(() => {
     const saved = localStorage.getItem(STORAGE_KEYS.CREDENTIALS);
-    return saved ? JSON.parse(saved) : (defaultData.credentialsList || defaultData.certificatesList || []);
+    const defaults = defaultData.credentialsList || defaultData.certificatesList || [];
+    if (!saved) return defaults;
+    const parsed = JSON.parse(saved);
+    return parsed.map(c => {
+      const def = defaults.find(d => d.id === c.id);
+      return def ? { ...c, image: def.image, pdfUrl: def.pdfUrl } : c;
+    });
   });
 
   const [teachingExperience, setTeachingExperience] = useState(() => {
@@ -59,7 +65,13 @@ export function DynamicPortfolioProvider({ children }) {
 
   const [trustPartners, setTrustPartners] = useState(() => {
     const saved = localStorage.getItem(STORAGE_KEYS.PARTNERS);
-    return saved ? JSON.parse(saved) : (defaultData.trustPartners || []);
+    if (!saved) return defaultData.trustPartners || [];
+    const parsed = JSON.parse(saved);
+    // Sync logo paths from defaultData to ensure updated assets display correctly
+    return parsed.map(p => {
+      const defaultP = (defaultData.trustPartners || []).find(dp => dp.id === p.id);
+      return defaultP ? { ...p, logo: defaultP.logo } : p;
+    });
   });
 
   const [categories, setCategories] = useState(() => {

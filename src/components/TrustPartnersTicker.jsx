@@ -41,8 +41,9 @@ export default function TrustPartnersTicker() {
         <div 
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))',
-            gap: '1.5rem'
+            gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+            gap: '1.5rem',
+            alignItems: 'stretch'
           }}
         >
           {trustPartners.map((partner) => (
@@ -56,22 +57,22 @@ export default function TrustPartnersTicker() {
                 border: '1px solid #e2e8f0',
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'space-between',
-                transition: 'all 0.25s ease',
-                boxShadow: '0 4px 15px rgba(0,0,0,0.02)'
+                height: '100%',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.03)'
               }}
             >
               {/* Top: Brand Logo Box */}
               <div 
                 style={{
-                  height: '60px',
+                  height: '75px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '1.25rem',
-                  padding: '0.5rem 1rem',
+                  padding: '0.6rem 1.25rem',
                   backgroundColor: '#f8fafc',
-                  borderRadius: '14px',
+                  borderRadius: '16px',
                   border: '1px solid #f1f5f9',
                   overflow: 'hidden'
                 }}
@@ -80,20 +81,21 @@ export default function TrustPartnersTicker() {
                   src={partner.logo} 
                   alt={partner.name}
                   style={{
-                    maxHeight: '44px',
-                    maxWidth: '180px',
-                    objectFit: 'contain'
+                    maxHeight: '48px',
+                    maxWidth: '100%',
+                    objectFit: 'contain',
+                    filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.04))'
                   }}
                 />
               </div>
 
               {/* Middle: Partner Title & Badge */}
-              <div style={{ marginBottom: '1.25rem', textAlign: 'center' }}>
+              <div style={{ marginBottom: '1.5rem', textAlign: 'center', minHeight: '76px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', marginBottom: '0.4rem' }}>
-                  <span style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-primary)' }}>
+                  <span style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-primary)', lineHeight: '1.3' }}>
                     {partner.name}
                   </span>
-                  <CheckCircle2 size={16} color="#10b981" />
+                  <CheckCircle2 size={16} color="#10b981" style={{ flexShrink: 0 }} />
                 </div>
 
                 {partner.badge && (
@@ -105,7 +107,8 @@ export default function TrustPartnersTicker() {
                       backgroundColor: partner.bgColor || '#eff6ff', 
                       padding: '0.25rem 0.75rem', 
                       borderRadius: '9999px',
-                      display: 'inline-block'
+                      display: 'inline-block',
+                      marginTop: '0.2rem'
                     }}
                   >
                     {partner.badge}
@@ -114,7 +117,7 @@ export default function TrustPartnersTicker() {
               </div>
 
               {/* Bottom Actions: Internal Link + Proof Modal */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem', marginTop: 'auto' }}>
                 
                 {/* Internal Section Router Link */}
                 <Link
@@ -124,35 +127,39 @@ export default function TrustPartnersTicker() {
                     width: '100%',
                     justifyContent: 'center',
                     padding: '0.55rem 1rem',
-                    fontSize: '0.85rem'
+                    fontSize: '0.85rem',
+                    whiteSpace: 'nowrap',
+                    textOverflow: 'ellipsis',
+                    overflow: 'hidden'
                   }}
                 >
-                  <span>{partner.linkText || 'الانتقال لقسم التوثيق'}</span>
+                  <span>{partner.linkText || 'استعراض الاعتماد'}</span>
                   <ArrowUpLeft size={15} />
                 </Link>
 
                 {/* Proof Document Modal Button */}
                 <button
                   onClick={() => {
-      if (partner.id === 'ischool' || partner.proofType === 'route') {
-        navigate(partner.linkUrl || '/teaching');
-      } else {
-        setSelectedProof(partner);
-      }
-    }}
+                    if (partner.id === 'ischool' || partner.proofType === 'route') {
+                      navigate(partner.linkUrl || '/teaching');
+                    } else {
+                      setSelectedProof(partner);
+                    }
+                  }}
                   className="btn-secondary"
                   style={{
                     width: '100%',
                     justifyContent: 'center',
-                    padding: '0.45rem 1rem',
+                    padding: '0.5rem 1rem',
                     fontSize: '0.8rem',
                     backgroundColor: '#ffffff',
                     border: '1px solid #e2e8f0',
-                    color: 'var(--text-secondary)'
+                    color: 'var(--text-secondary)',
+                    whiteSpace: 'nowrap'
                   }}
                 >
-                  <Eye size={13} />
-                  <span>معاينة المستند الرسمي 🔍</span>
+                  <Eye size={14} />
+                  <span>معاينة الوثيقة الرسمية</span>
                 </button>
 
               </div>
