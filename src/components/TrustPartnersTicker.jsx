@@ -55,6 +55,8 @@ export default function TrustPartnersTicker() {
                   <img 
                     src={partner.logo} 
                     alt={partner.name}
+                    loading="lazy"
+                    decoding="async"
                     style={{
                       maxHeight: '48px',
                       maxWidth: '100%',
