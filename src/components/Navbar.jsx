@@ -120,11 +120,13 @@ export default function Navbar() {
             </div>
 
             <div>
-              <div style={{ fontWeight: '800', fontSize: '1.08rem', display: 'flex', alignItems: 'center', gap: '0.55rem', color: '#0f172a' }}>
-                <span>{personalInfo.name || 'سيف الدين محمد'}</span>
+              <div style={{ fontWeight: '800', fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#0f172a' }}>
+                <span>
+                  سيف الدين<span className="name-last-word"> محمد</span>
+                </span>
                 
                 {/* Live Pulse Status Badge */}
-                <span className="pill-badge pill-emerald" style={{ padding: '0.15rem 0.6rem', fontSize: '0.72rem', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                <span className="pill-badge pill-emerald status-badge-mobile" style={{ padding: '0.15rem 0.6rem', fontSize: '0.72rem', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
                   <span className="live-pulse-dot"></span>
                   <span>متاح للعمل</span>
                 </span>
@@ -196,10 +198,7 @@ export default function Navbar() {
                 }}
               >
                 <FileText size={15} color="#2563eb" />
-                <span className="cv-btn-text">
-                  <span className="hidden-mobile">السيرة الذاتية (CV)</span>
-                  <span className="show-mobile-only">CV</span>
-                </span>
+                <span className="cv-btn-text">CV</span>
                 <ChevronDown size={13} style={{ transform: showCvDropdown ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }} />
               </button>
 
@@ -448,6 +447,13 @@ export default function Navbar() {
           }
         }
         @media (max-width: 768px) {
+          .name-last-word {
+            display: none !important;
+          }
+          .status-badge-mobile {
+            padding: 0.1rem 0.4rem !important;
+            font-size: 0.65rem !important;
+          }
           .show-mobile-only {
             display: inline !important;
           }
