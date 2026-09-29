@@ -184,7 +184,8 @@ export const categories = [
   { id: "fullstack", label: "تطبيقات Full-Stack & E-Commerce", nameAr: "تطبيقات Full-Stack & E-Commerce", nameEn: "Full-Stack & E-Commerce" },
   { id: "backend", label: "أنظمة .NET & Enterprise Backend", nameAr: "أنظمة .NET & Enterprise Backend", nameEn: ".NET & Enterprise" },
   { id: "ai-health", label: "أنظمة الذكاء الاصطناعي الطبية", nameAr: "أنظمة الذكاء الاصطناعي الطبية", nameEn: "AI Healthcare" },
-  { id: "frontend", label: "منصات الويب والـ Portals", nameAr: "منصات الويب والـ Portals", nameEn: "Web Portals" }
+  { id: "frontend", label: "منصات الويب والـ Portals", nameAr: "منصات الويب والـ Portals", nameEn: "Web Portals" },
+  { id: "mobile-uiux", label: "تصميم واجهات الموبايل UI/UX", nameAr: "تصميم واجهات الموبايل UI/UX", nameEn: "Mobile UI/UX Design" }
 ];
 
 export const webProjects = [
@@ -301,6 +302,32 @@ export const webProjects = [
       ]
     }
   },
+  {
+    id: "workout-fitness-app",
+    title: "تصميم واجهة وتجربة مستخدم تطبيق اللياقة والتمارين الرياضية (Workout Mobile App UI/UX)",
+    subtitle: "تصميم تفاعلي كامل في Figma لشاشات إعداد الملف الشخصي، جداول التمارين، والمؤقت الزمني اللحظي (iOS & Android)",
+    category: "mobile-uiux",
+    featured: true,
+    year: "2026",
+    image: "/assets/projects/workout_app/workout-hero.jpg",
+    badge: "📱 Mobile App UI/UX Design",
+    tags: ["Figma", "UI/UX Design", "Mobile App", "iOS & Android UI", "User Onboarding", "Fitness & Health App", "Prototyping", "Dark Theme UI"],
+    summary: "تصميم واجهة وتجربة مستخدم عصرية وفاخرة بـ Figma لتطبيق التمارين واللياقة البدنية. يغطي 16 شاشة فريدة تشمل رحلة إعداد الملف الشخصي والهدف الرياضي، جداول تمارين العضلات (Push/Pull/Legs) والكارديو، مؤقت زمني لحظي للجولات، وسجل الأداء الرياضي.",
+    liveUrl: "https://www.figma.com/proto/t3dYKczAtBdzPON3q4logE/Untitled?node-id=138-768&starting-point-node-id=138%3A768&t=k2nQ6K73WedOAC7S-1",
+    figmaUrl: "https://www.figma.com/design/t3dYKczAtBdzPON3q4logE/Untitled?node-id=0-1&p=f&t=IDVbocFPNLTcVuAc-0",
+    caseStudy: {
+      client: "مشروع تصميم واجهات وتجربة مستخدم (Mobile UI/UX Design Project)",
+      challenge: "تصميم تجربة مستخدم سلسة ومحفزة لتطبيق لياقة بدنية يتيح للمستخدمين تحديد أهدافهم الرياضية وإدارة جداول تمارينهم وتتبع المؤقت الزمني أثناء التمرين دون تشتيت.",
+      solution: "بناء نظام تصميم داكن (Dark Theme UI) متكامل في Figma مع اعتماد اللون الأصفر الذهبي (#FFB800) كهوية بصرية مشجعة، وتصميم 16 شاشة تغطي كافة مراحل الاستخدام من التسجيل، إدخال بيانات الجسم، اختيار التمارين، تتبع العداد والمؤقت اللحظي، وإشعارات إنجاز الأهداف.",
+      highlights: [
+        "تصميم 16 شاشة كاملة وفريدة في Figma بأسلوب Pixel-Perfect متجاوب 100% مع iOS و Android",
+        "رحلة إعداد مستخدم تفاعلية (User Onboarding) تشمل تحديد الجنس، العمر، الوزن، والهدف الرياضي (Build Muscle, Lose Weight...)",
+        "تقسيم علمي للتمارين الرياضية بناءً على مجموعات العضلات (Push, Pull, Legs) بالإضافة لتراكر الكارديو",
+        "شاشة مؤقت تفاعلية (Active Exercise Timer & Rep Counter) تمنح المستخدم تركيزاً مثالياً أثناء أداء الجلسة",
+        "نظام ألوان وهيئة بصري داكن (Energetic Gold & Dark Slate) يعزز الطاقات الإيجابية ويرفع معدل استمرارية الاستخدام"
+      ]
+    }
+  }
 ];
 
 export const certificatesList = [
