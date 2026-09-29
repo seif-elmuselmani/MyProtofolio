@@ -196,7 +196,10 @@ export default function Navbar() {
                 }}
               >
                 <FileText size={15} color="#2563eb" />
-                <span className="cv-btn-text">السيرة الذاتية (CV)</span>
+                <span className="cv-btn-text">
+                  <span className="hidden-mobile">السيرة الذاتية (CV)</span>
+                  <span className="show-mobile-only">CV</span>
+                </span>
                 <ChevronDown size={13} style={{ transform: showCvDropdown ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }} />
               </button>
 
@@ -285,7 +288,10 @@ export default function Navbar() {
               }}
             >
               <Send size={14} />
-              <span>تواصل مباشر</span>
+              <span className="contact-btn-text">
+                <span className="hidden-mobile">تواصل مباشر</span>
+                <span className="show-mobile-only">تواصل</span>
+              </span>
             </Link>
 
             {/* Mobile Menu Toggle Button */}
@@ -412,6 +418,13 @@ export default function Navbar() {
 
       {/* Style for responsive nav display */}
       <style>{`
+        .show-mobile-only {
+          display: none !important;
+        }
+        .hidden-mobile {
+          display: inline !important;
+        }
+
         @media (min-width: 1240px) {
           .desktop-nav {
             display: flex !important;
@@ -434,13 +447,20 @@ export default function Navbar() {
             display: none !important;
           }
         }
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
+          .show-mobile-only {
+            display: inline !important;
+          }
+          .hidden-mobile {
+            display: none !important;
+          }
           .navbar-actions-container {
             gap: 0.35rem !important;
           }
           .navbar-action-btn {
-            padding: 0.4rem 0.6rem !important;
-            font-size: 0.76rem !important;
+            padding: 0.4rem 0.65rem !important;
+            font-size: 0.78rem !important;
+            border-radius: 10px !important;
           }
         }
       `}</style>
