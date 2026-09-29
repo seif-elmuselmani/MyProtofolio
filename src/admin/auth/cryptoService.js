@@ -1,9 +1,18 @@
 // PBKDF2-SHA256 Cryptographic Authentication & Security Service
 
-const DEFAULT_SALT = "seif_studio_crypto_salt_2026_top1_depi_scholar";
-const DEFAULT_USERNAME = "seif";
+const DEFAULT_SALT = (typeof import.meta !== "undefined" && import.meta.env && import.meta.env.VITE_ADMIN_SALT) 
+  ? import.meta.env.VITE_ADMIN_SALT 
+  : "seif_studio_crypto_salt_2026_top1_depi_scholar";
+
+const DEFAULT_USERNAME = (typeof import.meta !== "undefined" && import.meta.env && import.meta.env.VITE_ADMIN_USERNAME) 
+  ? import.meta.env.VITE_ADMIN_USERNAME 
+  : "seif";
+
 // Salted PBKDF2 hash of 'seif-admin-2026'
-const DEFAULT_HASH = "8f3b2046fa3b5938db02c9ffea8245ba5f5348ff2e5c8e41be8627ec7f4da7e1";
+const DEFAULT_HASH = (typeof import.meta !== "undefined" && import.meta.env && import.meta.env.VITE_ADMIN_HASH) 
+  ? import.meta.env.VITE_ADMIN_HASH 
+  : "8f3b2046fa3b5938db02c9ffea8245ba5f5348ff2e5c8e41be8627ec7f4da7e1";
+
 
 export async function hashCredentials(username, password, salt = DEFAULT_SALT) {
   const encoder = new TextEncoder();
