@@ -102,6 +102,7 @@ export default function Credentials() {
 
           {/* Filter Pills */}
           <div 
+            className="category-tabs-wrapper"
             style={{
               display: 'flex',
               justifyContent: 'center',

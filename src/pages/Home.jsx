@@ -366,10 +366,10 @@ export default function Home() {
       <BentoHighlights />
 
       {/* Featured Case Studies / Web Projects */}
-      <section style={{ padding: '5rem 0', backgroundColor: '#f8fafc' }}>
+      <section className="home-section" style={{ padding: '4.5rem 0', backgroundColor: '#f8fafc' }}>
         <div className="container-custom">
           
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem', flexWrap: 'wrap', gap: '1rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem' }}>
             <div>
               <div className="pill-badge pill-blue" style={{ marginBottom: '0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
                 <Code2 size={14} />
@@ -385,20 +385,27 @@ export default function Home() {
             </Link>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '2rem' }}>
-            {featuredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
+          {/* Swipe Hint Badge for Mobile Devices */}
+          <div className="swipe-hint-badge" style={{ marginBottom: '1rem' }}>
+            <span>👈 اسحب للأفق لمشاهدة كافة المشاريع المميزة 👉</span>
+          </div>
+
+          <div className="mobile-carousel-wrapper">
+            <div className="mobile-carousel-grid home-featured-grid">
+              {featuredProjects.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </div>
           </div>
 
         </div>
       </section>
 
       {/* Preview Certificates & Qualifications */}
-      <section style={{ padding: '5rem 0', backgroundColor: '#ffffff', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
+      <section className="home-section" style={{ padding: '4.5rem 0', backgroundColor: '#ffffff', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
         <div className="container-custom">
           
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem', flexWrap: 'wrap', gap: '1rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem' }}>
             <div>
               <div className="pill-badge pill-gold" style={{ marginBottom: '0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
                 <Award size={14} />
@@ -414,49 +421,58 @@ export default function Home() {
             </Link>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem' }}>
-            {previewCertificates.map((cert) => (
-              <div 
-                key={cert.id}
-                className="corporate-card"
-                style={{ padding: '1.5rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
-                onClick={() => setSelectedCert(cert)}
-              >
-                <div>
-                  <div style={{ height: '140px', borderRadius: '12px', overflow: 'hidden', backgroundColor: '#f8fafc', marginBottom: '1rem', border: '1px solid #e2e8f0', padding: '0.5rem' }}>
-                    <img 
-                      src={cert.image} 
-                      alt={cert.title} 
-                      style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                    />
-                  </div>
-                  <div style={{ fontSize: '0.78rem', color: 'var(--brand-primary)', fontWeight: '700', marginBottom: '0.25rem' }}>
-                    {cert.issuer}
-                  </div>
-                  <h4 style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '0.5rem', lineHeight: 1.4 }}>
-                    {cert.title}
-                  </h4>
-                </div>
+          {/* Swipe Hint Badge for Mobile Devices */}
+          <div className="swipe-hint-badge" style={{ marginBottom: '1rem' }}>
+            <span>👈 اسحب للأفق لمشاهدة أحدث الشهادات والاعتمادات 👉</span>
+          </div>
 
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid #f1f5f9' }}>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{cert.date}</span>
-                  <span style={{ fontSize: '0.82rem', color: 'var(--brand-primary)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                    <span>معاينة</span>
-                    <ArrowUpLeft size={14} />
-                  </span>
+          <div className="mobile-carousel-wrapper">
+            <div className="mobile-carousel-grid home-certs-grid">
+              {previewCertificates.map((cert) => (
+                <div 
+                  key={cert.id}
+                  className="corporate-card cert-preview-card"
+                  style={{ padding: '1.5rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+                  onClick={() => setSelectedCert(cert)}
+                >
+                  <div>
+                    <div style={{ height: '140px', borderRadius: '12px', overflow: 'hidden', backgroundColor: '#f8fafc', marginBottom: '1rem', border: '1px solid #e2e8f0', padding: '0.5rem' }}>
+                      <img 
+                        src={cert.image} 
+                        alt={cert.title} 
+                        loading="lazy"
+                        decoding="async"
+                        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                      />
+                    </div>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--brand-primary)', fontWeight: '700', marginBottom: '0.25rem' }}>
+                      {cert.issuer}
+                    </div>
+                    <h4 style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '0.5rem', lineHeight: 1.4 }}>
+                      {cert.title}
+                    </h4>
+                  </div>
+
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid #f1f5f9' }}>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{cert.date}</span>
+                    <span style={{ fontSize: '0.82rem', color: 'var(--brand-primary)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                      <span>معاينة</span>
+                      <ArrowUpLeft size={14} />
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
         </div>
       </section>
 
       {/* Verified Testimonials Preview (Matching Certificates Pattern) */}
-      <section style={{ padding: '5rem 0', backgroundColor: '#ffffff', borderTop: '1px solid #e2e8f0' }}>
+      <section className="home-section" style={{ padding: '4.5rem 0', backgroundColor: '#ffffff', borderTop: '1px solid #e2e8f0' }}>
         <div className="container-custom">
           
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem', flexWrap: 'wrap', gap: '1rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem' }}>
             <div>
               <div className="pill-badge pill-emerald" style={{ marginBottom: '0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
                 <Star size={14} />
@@ -496,31 +512,31 @@ export default function Home() {
             </div>
           </div>
 
-          <div 
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '1.75rem'
-            }}
-          >
-            {previewTestimonials.map((test) => {
-              const quoteText = test.quote || test.content || "";
-              return (
-                <div 
-                  key={test.id}
-                  className="corporate-card"
-                  style={{
-                    padding: "2.25rem",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    backgroundColor: "#ffffff",
-                    borderRadius: "22px",
-                    border: "1px solid #cbd5e1",
-                    boxShadow: "0 4px 18px rgba(15, 23, 42, 0.04)",
-                    height: "100%"
-                  }}
-                >
+          {/* Swipe Hint Badge for Mobile Devices */}
+          <div className="swipe-hint-badge" style={{ marginBottom: '1rem' }}>
+            <span>👈 اسحب للأفق لمشاهدة آراء الموجهين والعملاء 👉</span>
+          </div>
+
+          <div className="mobile-carousel-wrapper">
+            <div className="mobile-carousel-grid home-testimonials-grid">
+              {previewTestimonials.map((test) => {
+                const quoteText = test.quote || test.content || "";
+                return (
+                  <div 
+                    key={test.id}
+                    className="corporate-card testimonial-preview-card"
+                    style={{
+                      padding: "2rem",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      backgroundColor: "#ffffff",
+                      borderRadius: "22px",
+                      border: "1px solid #cbd5e1",
+                      boxShadow: "0 4px 18px rgba(15, 23, 42, 0.04)",
+                      height: "100%"
+                    }}
+                  >
                   <div>
                     {/* Rating Stars & Official Verification Badge Header */}
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem", flexWrap: "wrap", gap: "0.5rem" }}>
@@ -629,13 +645,12 @@ export default function Home() {
                           <Eye size={16} />
                         </button>
                       </div>
-
                     </div>
                   </div>
-
                 </div>
               );
-            })}
+              })}
+            </div>
           </div>
 
         </div>

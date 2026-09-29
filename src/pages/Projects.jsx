@@ -110,6 +110,7 @@ export default function Projects() {
 
           {/* Dynamic Categories Tabs (Only Non-Zero Categories) */}
           <div 
+            className="category-tabs-wrapper"
             style={{
               display: 'flex',
               justifyContent: 'center',
