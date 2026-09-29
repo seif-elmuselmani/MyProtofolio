@@ -12,160 +12,132 @@ export default function TrustPartnersTicker() {
   if (!trustPartners || trustPartners.length === 0) return null;
 
   return (
-    <section 
-      style={{ 
-        padding: '4.5rem 0', 
-        backgroundColor: '#ffffff',
-        borderTop: '1px solid #e2e8f0',
-        borderBottom: '1px solid #e2e8f0',
-        position: 'relative'
-      }}
-    >
+    <section className="trust-partners-section">
       <div className="container-custom">
         
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        <div className="trust-partners-header" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
           <div className="pill-badge pill-gold" style={{ marginBottom: '0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
             <Award size={14} />
             <span>الشركاء والجهات المعتمدة رسمياً</span>
           </div>
-          <h2 style={{ fontSize: '2.25rem', fontWeight: '900', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
+          <h2 style={{ fontWeight: '900', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
             مؤسسات الاعتماد والجهات الرسمية الراعية
           </h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: '1rem', maxWidth: '680px', margin: '0 auto' }}>
+          <p style={{ color: 'var(--text-muted)', maxWidth: '680px', margin: '0 auto' }}>
             اعتمادات وتكريمات موثقة رسمياً من وزارة الاتصالات، مايكروسوفت، جامعة الزقازيق، معهد NTI، ومبادرة مصر الرقمية.
           </p>
+
+          {/* Swipe Hint for Mobile Touch Devices */}
+          <div className="swipe-hint-badge" style={{ marginTop: '0.85rem' }}>
+            <span>👈 اسحب للأفق لمشاهدة كافة الجهات والاعتمادات الرسمية 👉</span>
+          </div>
         </div>
 
-        {/* Partners Grid */}
-        <div 
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-            gap: '1.5rem',
-            alignItems: 'stretch'
-          }}
-        >
-          {trustPartners.map((partner) => (
-            <div
-              key={partner.id}
-              className="corporate-card"
-              style={{
-                padding: '1.5rem',
-                backgroundColor: '#ffffff',
-                borderRadius: '20px',
-                border: '1px solid #e2e8f0',
-                display: 'flex',
-                flexDirection: 'column',
-                height: '100%',
-                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.03)'
-              }}
-            >
-              {/* Top: Brand Logo Box */}
-              <div 
+        {/* Partners Carousel / Grid */}
+        <div className="partners-grid-wrapper">
+          <div className="partners-grid">
+            {trustPartners.map((partner) => (
+              <div
+                key={partner.id}
+                className="corporate-card partner-card"
                 style={{
-                  height: '75px',
+                  backgroundColor: '#ffffff',
+                  border: '1px solid #e2e8f0',
                   display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '1.25rem',
-                  padding: '0.6rem 1.25rem',
-                  backgroundColor: '#f8fafc',
-                  borderRadius: '16px',
-                  border: '1px solid #f1f5f9',
-                  overflow: 'hidden'
+                  flexDirection: 'column',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  boxShadow: '0 4px 15px rgba(0, 0, 0, 0.03)'
                 }}
               >
-                <img 
-                  src={partner.logo} 
-                  alt={partner.name}
-                  style={{
-                    maxHeight: '48px',
-                    maxWidth: '100%',
-                    objectFit: 'contain',
-                    filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.04))'
-                  }}
-                />
-              </div>
-
-              {/* Middle: Partner Title & Badge */}
-              <div style={{ marginBottom: '1.5rem', textAlign: 'center', minHeight: '76px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', marginBottom: '0.4rem' }}>
-                  <span style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-primary)', lineHeight: '1.3' }}>
-                    {partner.name}
-                  </span>
-                  <CheckCircle2 size={16} color="#10b981" style={{ flexShrink: 0 }} />
+                {/* Top: Brand Logo Box */}
+                <div className="partner-logo-box">
+                  <img 
+                    src={partner.logo} 
+                    alt={partner.name}
+                    style={{
+                      maxHeight: '48px',
+                      maxWidth: '100%',
+                      objectFit: 'contain',
+                      filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.04))'
+                    }}
+                  />
                 </div>
 
-                {partner.badge && (
-                  <span 
-                    style={{ 
-                      fontSize: '0.78rem', 
-                      fontWeight: '800', 
-                      color: partner.color || '#2563eb', 
-                      backgroundColor: partner.bgColor || '#eff6ff', 
-                      padding: '0.25rem 0.75rem', 
-                      borderRadius: '9999px',
-                      display: 'inline-block',
-                      marginTop: '0.2rem'
+                {/* Middle: Partner Title & Badge */}
+                <div className="partner-info-box">
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', marginBottom: '0.4rem' }}>
+                    <span style={{ fontWeight: '800', color: 'var(--text-primary)', lineHeight: '1.3' }}>
+                      {partner.name}
+                    </span>
+                    <CheckCircle2 size={16} color="#10b981" style={{ flexShrink: 0 }} />
+                  </div>
+
+                  {partner.badge && (
+                    <span 
+                      style={{ 
+                        fontSize: '0.78rem', 
+                        fontWeight: '800', 
+                        color: partner.color || '#2563eb', 
+                        backgroundColor: partner.bgColor || '#eff6ff', 
+                        padding: '0.25rem 0.75rem', 
+                        borderRadius: '9999px',
+                        display: 'inline-block',
+                        marginTop: '0.2rem'
+                      }}
+                    >
+                      {partner.badge}
+                    </span>
+                  )}
+                </div>
+
+                {/* Bottom Actions: Internal Link + Proof Modal */}
+                <div className="partner-actions-box">
+                  
+                  {/* Internal Section Router Link */}
+                  <Link
+                    to={partner.linkUrl || '/credentials'}
+                    className="btn-primary partner-btn-primary"
+                    style={{
+                      width: '100%',
+                      justifyContent: 'center',
+                      whiteSpace: 'nowrap',
+                      textOverflow: 'ellipsis',
+                      overflow: 'hidden'
                     }}
                   >
-                    {partner.badge}
-                  </span>
-                )}
-              </div>
+                    <span>{partner.linkText || 'استعراض الاعتماد'}</span>
+                    <ArrowUpLeft size={15} />
+                  </Link>
 
-              {/* Bottom Actions: Internal Link + Proof Modal */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem', marginTop: 'auto' }}>
-                
-                {/* Internal Section Router Link */}
-                <Link
-                  to={partner.linkUrl || '/credentials'}
-                  className="btn-primary"
-                  style={{
-                    width: '100%',
-                    justifyContent: 'center',
-                    padding: '0.55rem 1rem',
-                    fontSize: '0.85rem',
-                    whiteSpace: 'nowrap',
-                    textOverflow: 'ellipsis',
-                    overflow: 'hidden'
-                  }}
-                >
-                  <span>{partner.linkText || 'استعراض الاعتماد'}</span>
-                  <ArrowUpLeft size={15} />
-                </Link>
+                  {/* Proof Document Modal Button */}
+                  <button
+                    onClick={() => {
+                      if (partner.id === 'ischool' || partner.proofType === 'route') {
+                        navigate(partner.linkUrl || '/teaching');
+                      } else {
+                        setSelectedProof(partner);
+                      }
+                    }}
+                    className="btn-secondary partner-btn-secondary"
+                    style={{
+                      width: '100%',
+                      justifyContent: 'center',
+                      backgroundColor: '#ffffff',
+                      border: '1px solid #e2e8f0',
+                      color: 'var(--text-secondary)',
+                      whiteSpace: 'nowrap'
+                    }}
+                  >
+                    <Eye size={14} />
+                    <span>معاينة الوثيقة الرسمية</span>
+                  </button>
 
-                {/* Proof Document Modal Button */}
-                <button
-                  onClick={() => {
-                    if (partner.id === 'ischool' || partner.proofType === 'route') {
-                      navigate(partner.linkUrl || '/teaching');
-                    } else {
-                      setSelectedProof(partner);
-                    }
-                  }}
-                  className="btn-secondary"
-                  style={{
-                    width: '100%',
-                    justifyContent: 'center',
-                    padding: '0.5rem 1rem',
-                    fontSize: '0.8rem',
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #e2e8f0',
-                    color: 'var(--text-secondary)',
-                    whiteSpace: 'nowrap'
-                  }}
-                >
-                  <Eye size={14} />
-                  <span>معاينة الوثيقة الرسمية</span>
-                </button>
+                </div>
 
               </div>
-
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
       </div>
