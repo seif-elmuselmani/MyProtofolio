@@ -130,7 +130,7 @@ export default function Navbar() {
                 </span>
               </div>
 
-              <div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: '600', whiteSpace: 'nowrap' }}>
+              <div className="brand-subtitle-text" style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: '600', whiteSpace: 'nowrap' }}>
                 {personalInfo.title || 'Full-Stack Software Engineer | Tech Instructor'}
               </div>
             </div>
@@ -143,7 +143,7 @@ export default function Navbar() {
               alignItems: 'center', 
               gap: '0.2rem',
               backgroundColor: 'rgba(241, 245, 249, 0.85)',
-              padding: '0.35rem 0.6rem',
+              padding: '0.35rem 0.5rem',
               borderRadius: '9999px',
               border: '1px solid #e2e8f0',
               boxShadow: '0 2px 8px rgba(15, 23, 42, 0.03)'
@@ -157,9 +157,9 @@ export default function Navbar() {
                   key={item.path}
                   to={item.path}
                   style={{
-                    padding: '0.45rem 0.9rem',
+                    padding: '0.4rem 0.75rem',
                     borderRadius: '9999px',
-                    fontSize: '0.86rem',
+                    fontSize: '0.83rem',
                     fontWeight: isActive ? '800' : '600',
                     color: isActive ? '#2563eb' : '#475569',
                     backgroundColor: isActive ? '#ffffff' : 'transparent',
@@ -175,27 +175,29 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Action CTAs */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          {/* Action CTAs Container */}
+          <div className="navbar-actions-container" style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', flexShrink: 0, whiteSpace: 'nowrap' }}>
             
             {/* Multi-CV Dropdown Trigger */}
             <div style={{ position: 'relative' }} ref={cvDropdownRef}>
               <button
                 type="button"
                 onClick={() => setShowCvDropdown(!showCvDropdown)}
-                className="admin-btn admin-btn-secondary"
+                className="admin-btn admin-btn-secondary navbar-action-btn"
                 style={{
-                  padding: '0.5rem 0.95rem',
-                  fontSize: '0.84rem',
+                  padding: '0.48rem 0.85rem',
+                  fontSize: '0.82rem',
                   borderRadius: '12px',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.45rem'
+                  gap: '0.35rem',
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0
                 }}
               >
-                <FileText size={16} color="#2563eb" />
-                <span className="hidden-mobile">السيرة الذاتية (CV)</span>
-                <ChevronDown size={14} style={{ transform: showCvDropdown ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }} />
+                <FileText size={15} color="#2563eb" />
+                <span className="cv-btn-text">السيرة الذاتية (CV)</span>
+                <ChevronDown size={13} style={{ transform: showCvDropdown ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }} />
               </button>
 
               {/* Glass Dropdown Menu */}
@@ -247,20 +249,22 @@ export default function Navbar() {
                 to="/vault-gate-9x7k2"
                 className="btn-primary"
                 style={{
-                  padding: '0.48rem 0.95rem',
-                  fontSize: '0.84rem',
+                  padding: '0.45rem 0.85rem',
+                  fontSize: '0.82rem',
                   borderRadius: '12px',
                   backgroundColor: '#0f172a',
                   color: '#38bdf8',
                   border: '1px solid #1e293b',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.45rem',
+                  gap: '0.35rem',
                   boxShadow: '0 4px 14px rgba(15, 23, 42, 0.25)',
-                  textDecoration: 'none'
+                  textDecoration: 'none',
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0
                 }}
               >
-                <ShieldCheck size={16} color="#38bdf8" />
+                <ShieldCheck size={15} color="#38bdf8" />
                 <span>لوحة التحكم</span>
               </Link>
             )}
@@ -268,14 +272,19 @@ export default function Navbar() {
             {/* Direct Contact CTA */}
             <Link
               to="/contact"
-              className="admin-btn admin-btn-primary"
+              className="admin-btn admin-btn-primary navbar-action-btn"
               style={{
-                padding: '0.5rem 1.15rem',
-                fontSize: '0.84rem',
-                borderRadius: '12px'
+                padding: '0.48rem 0.95rem',
+                fontSize: '0.82rem',
+                borderRadius: '12px',
+                whiteSpace: 'nowrap',
+                flexShrink: 0,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.35rem'
               }}
             >
-              <Send size={15} />
+              <Send size={14} />
               <span>تواصل مباشر</span>
             </Link>
 
@@ -403,23 +412,35 @@ export default function Navbar() {
 
       {/* Style for responsive nav display */}
       <style>{`
-        @media (min-width: 1120px) {
+        @media (min-width: 1240px) {
           .desktop-nav {
             display: flex !important;
           }
           .mobile-toggle {
+            display: none !important;
+          }
+          .brand-subtitle-text {
+            display: block !important;
+          }
+        }
+        @media (max-width: 1239px) {
+          .desktop-nav {
+            display: none !important;
+          }
+          .mobile-toggle {
+            display: flex !important;
+          }
+          .brand-subtitle-text {
             display: none !important;
           }
         }
-        @media (max-width: 1119px) {
-          .desktop-nav {
-            display: none !important;
+        @media (max-width: 640px) {
+          .navbar-actions-container {
+            gap: 0.35rem !important;
           }
-          .mobile-toggle {
-            display: flex !important;
-          }
-          .hidden-mobile {
-            display: none;
+          .navbar-action-btn {
+            padding: 0.4rem 0.6rem !important;
+            font-size: 0.76rem !important;
           }
         }
       `}</style>
