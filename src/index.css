@@ -60,15 +60,23 @@ html {
   scroll-behavior: smooth;
   background-color: var(--bg-canvas);
   color: var(--text-primary);
+}
+
+html[dir="rtl"], html[dir="rtl"] body {
   font-family: var(--font-arabic);
   direction: rtl;
+}
+
+html[dir="ltr"], html[dir="ltr"] body {
+  font-family: var(--font-latin);
+  direction: ltr;
 }
 
 body {
   min-height: 100vh;
   background-color: var(--bg-canvas);
   color: var(--text-primary);
-  font-family: var(--font-arabic);
+
   overflow-x: hidden;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
