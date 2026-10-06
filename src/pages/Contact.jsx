@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Send, MessageSquare, Mail, MapPin, CheckCircle2, Copy, Sparkles, Clock, Linkedin, Briefcase, Code, GraduationCap, ArrowUpLeft } from 'lucide-react';
 import { usePortfolioData } from '../context/DynamicPortfolioContext';
+import { useLanguage } from '../context/LanguageContext';
 import Toast from '../components/Toast';
 
 export default function Contact() {
   const { personalInfo } = usePortfolioData();
+  const { isRTL } = useLanguage();
 
   const [submitted, setSubmitted] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
@@ -26,12 +28,13 @@ export default function Contact() {
 
   const copyToClipboard = (text, label) => {
     navigator.clipboard.writeText(text);
-    showToast(`تم نسخ ${label} إلى الحافظة بنجاح!`);
+    showToast(isRTL ? `تم نسخ ${label} إلى الحافظة بنجاح!` : `${label} copied to clipboard!`);
   };
 
-  const handlePersonaSelect = (topicTitle) => {
-    setFormData((prev) => ({ ...prev, subject: topicTitle }));
-    showToast(`تم تحديد خيار: "${topicTitle}"`);
+  const handlePersonaSelect = (arTitle, enTitle) => {
+    const selectedTitle = isRTL ? arTitle : enTitle;
+    setFormData((prev) => ({ ...prev, subject: selectedTitle }));
+    showToast(isRTL ? `تم تحديد خيار: "${selectedTitle}"` : `Selected topic: "${selectedTitle}"`);
   };
 
   const handleSubmit = (e) => {
@@ -56,7 +59,7 @@ export default function Contact() {
             }}
           >
             <Sparkles size={16} />
-            <span>تواصل واستشارات مباشرة</span>
+            <span>{isRTL ? 'تواصل واستشارات مباشرة' : 'Direct Contact & Consultation'}</span>
           </div>
 
           <h1 
@@ -68,11 +71,15 @@ export default function Contact() {
               lineHeight: 1.3
             }}
           >
-            سواء كنت تبحث عن تعيين مهندس Full-Stack، بناء مشروع متكامل، أو تدريب تقني...
+            {isRTL 
+              ? 'سواء كنت تبحث عن تعيين مهندس Full-Stack، بناء مشروع متكامل، أو تدريب تقني...'
+              : 'Whether you are hiring a Full-Stack Engineer, building a web system, or seeking tech tutoring...'}
           </h1>
 
           <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', maxWidth: '750px', margin: '0 auto', lineHeight: 1.7 }}>
-            اختر نوع الفرصة أدناه لملء الموضوع فوراً، أو تواصل معي عبر الواتساب للمحادثة التفاعلية السريعة.
+            {isRTL 
+              ? 'اختر نوع الفرصة أدناه لملء الموضوع فوراً، أو تواصل معي عبر الواتساب للمحادثة التفاعلية السريعة.'
+              : 'Select an option below to set your inquiry topic instantly, or connect via WhatsApp for fast responses.'}
           </p>
         </div>
 
@@ -88,13 +95,13 @@ export default function Contact() {
           {/* Chip 1: Hiring */}
           <button
             type="button"
-            onClick={() => handlePersonaSelect('انضمام لفريق العمل كـ Full-Stack Engineer')}
+            onClick={() => handlePersonaSelect('انضمام لفريق العمل كـ Full-Stack Engineer', 'Hiring Full-Stack Software Engineer')}
             style={{
-              backgroundColor: formData.subject.includes('انضمام') ? '#eff6ff' : '#ffffff',
-              border: formData.subject.includes('انضمام') ? '2px solid #2563eb' : '1px solid #e2e8f0',
+              backgroundColor: (formData.subject.includes('انضمام') || formData.subject.includes('Hiring')) ? '#eff6ff' : '#ffffff',
+              border: (formData.subject.includes('انضمام') || formData.subject.includes('Hiring')) ? '2px solid #2563eb' : '1px solid #e2e8f0',
               borderRadius: '16px',
               padding: '1.35rem',
-              textAlign: 'right',
+              textAlign: isRTL ? 'right' : 'left',
               cursor: 'pointer',
               boxShadow: '0 4px 15px rgba(0,0,0,0.03)',
               transition: 'all 0.25s ease'
@@ -102,28 +109,28 @@ export default function Contact() {
             className="persona-chip-card"
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.6rem' }}>
-              <div style={{ width: '40px', height: '40px', borderRadius: '10px', backgroundColor: '#eff6ff', color: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '10px', backgroundColor: '#eff6ff', color: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 <Briefcase size={20} />
               </div>
               <h4 style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-primary)', margin: 0 }}>
-                تضمين مهندس Full-Stack
+                {isRTL ? 'تضمين مهندس Full-Stack' : 'Hire Full-Stack Engineer'}
               </h4>
             </div>
             <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
-              بحث عن مهندس متمرس لبناء وتطوير أنظمة متكاملة وحلول برمجية عالية الأداء.
+              {isRTL ? 'بحث عن مهندس متمرس لبناء وتطوير أنظمة متكاملة وحلول برمجية عالية الأداء.' : 'Looking for an experienced engineer to build high-performance backend systems and web applications.'}
             </p>
           </button>
 
           {/* Chip 2: Building Project */}
           <button
             type="button"
-            onClick={() => handlePersonaSelect('تطوير وبناء مشروع / نظام متكامل')}
+            onClick={() => handlePersonaSelect('تطوير وبناء مشروع / نظام متكامل', 'Build Custom Web System & Project')}
             style={{
-              backgroundColor: formData.subject.includes('تطوير') ? '#eff6ff' : '#ffffff',
-              border: formData.subject.includes('تطوير') ? '2px solid #2563eb' : '1px solid #e2e8f0',
+              backgroundColor: (formData.subject.includes('تطوير') || formData.subject.includes('Build')) ? '#eff6ff' : '#ffffff',
+              border: (formData.subject.includes('تطوير') || formData.subject.includes('Build')) ? '2px solid #2563eb' : '1px solid #e2e8f0',
               borderRadius: '16px',
               padding: '1.35rem',
-              textAlign: 'right',
+              textAlign: isRTL ? 'right' : 'left',
               cursor: 'pointer',
               boxShadow: '0 4px 15px rgba(0,0,0,0.03)',
               transition: 'all 0.25s ease'
@@ -131,28 +138,28 @@ export default function Contact() {
             className="persona-chip-card"
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.6rem' }}>
-              <div style={{ width: '40px', height: '40px', borderRadius: '10px', backgroundColor: '#ecfdf5', color: '#059669', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '10px', backgroundColor: '#ecfdf5', color: '#059669', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 <Code size={20} />
               </div>
               <h4 style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-primary)', margin: 0 }}>
-                بناء مشروع / موقع متكامل
+                {isRTL ? 'بناء مشروع / موقع متكامل' : 'Build Custom Web System'}
               </h4>
             </div>
             <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
-              لديك فكرة أو مشروع ترغب في تنفيذه بأحدث معايير الأمان والسرعة.
+              {isRTL ? 'لديك فكرة أو مشروع ترغب في تنفيذه بأحدث معايير الأمان والسرعة.' : 'Have a project or web app idea you want built with top speed and security standards.'}
             </p>
           </button>
 
           {/* Chip 3: Instructor / Workshop */}
           <button
             type="button"
-            onClick={() => handlePersonaSelect('تدريب تقني وتنسيق ورشة عمل برمجية')}
+            onClick={() => handlePersonaSelect('تدريب تقني وتنسيق ورشة عمل برمجية', 'Tech Tutoring & CS Workshops')}
             style={{
-              backgroundColor: formData.subject.includes('تدريب') ? '#eff6ff' : '#ffffff',
-              border: formData.subject.includes('تدريب') ? '2px solid #2563eb' : '1px solid #e2e8f0',
+              backgroundColor: (formData.subject.includes('تدريب') || formData.subject.includes('Tutoring')) ? '#eff6ff' : '#ffffff',
+              border: (formData.subject.includes('تدريب') || formData.subject.includes('Tutoring')) ? '2px solid #2563eb' : '1px solid #e2e8f0',
               borderRadius: '16px',
               padding: '1.35rem',
-              textAlign: 'right',
+              textAlign: isRTL ? 'right' : 'left',
               cursor: 'pointer',
               boxShadow: '0 4px 15px rgba(0,0,0,0.03)',
               transition: 'all 0.25s ease'
@@ -160,15 +167,15 @@ export default function Contact() {
             className="persona-chip-card"
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.6rem' }}>
-              <div style={{ width: '40px', height: '40px', borderRadius: '10px', backgroundColor: '#fff7ed', color: '#d97706', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '10px', backgroundColor: '#fff7ed', color: '#d97706', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 <GraduationCap size={20} />
               </div>
               <h4 style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-primary)', margin: 0 }}>
-                محاضر وتدريب تقني
+                {isRTL ? 'محاضر وتدريب تقني' : 'Tech Instructor & Workshops'}
               </h4>
             </div>
             <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
-              طلب مدرب معتمد لقيادة معسكرات برمجية أو تدريب فرق التطوير.
+              {isRTL ? 'طلب مدرب معتمد لقيادة معسكرات برمجية أو تدريب فرق التطوير.' : 'Hire a certified tutor to lead coding bootcamps, workshops, or engineering teams.'}
             </p>
           </button>
         </div>
@@ -179,7 +186,7 @@ export default function Contact() {
           {/* Direct Channels (5 Cols) */}
           <div style={{ gridColumn: 'span 5' }} className="contact-channels-col">
             <h2 style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '1.5rem' }}>
-              قنوات التواصل المباشر
+              {isRTL ? 'قنوات التواصل المباشر' : 'Direct Channels'}
             </h2>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginBottom: '2rem' }}>
@@ -208,7 +215,7 @@ export default function Contact() {
                     }} 
                   />
                   <span style={{ fontSize: '0.82rem', fontWeight: '800', color: '#047857' }}>
-                    متصل الآن • الرد السريع عبر WhatsApp
+                    {isRTL ? 'متصل الآن • الرد السريع عبر WhatsApp' : 'Online Now • Fast Track Response via WhatsApp'}
                   </span>
                 </div>
 
@@ -223,14 +230,18 @@ export default function Contact() {
                       <MessageSquare size={24} />
                     </div>
                     <div>
-                      <div style={{ fontSize: '0.8rem', color: '#047857', fontWeight: '700' }}>محادثة فورية مباشرة (Fast Track)</div>
-                      <div style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-primary)' }}>تواصل عبر WhatsApp ↗</div>
+                      <div style={{ fontSize: '0.8rem', color: '#047857', fontWeight: '700' }}>
+                        {isRTL ? 'محادثة فورية مباشرة (Fast Track)' : 'Direct Instant Chat (Fast Track)'}
+                      </div>
+                      <div style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-primary)' }}>
+                        {isRTL ? 'تواصل عبر WhatsApp ↗' : 'Chat via WhatsApp ↗'}
+                      </div>
                     </div>
                   </a>
 
                   <button
-                    onClick={() => copyToClipboard(personalInfo?.phone || '+201223817860', 'رقم الواتساب')}
-                    title="نسخ الرقم"
+                    onClick={() => copyToClipboard(personalInfo?.phone || '+201223817860', isRTL ? 'رقم الواتساب' : 'WhatsApp Number')}
+                    title={isRTL ? "نسخ الرقم" : "Copy Number"}
                     style={{ backgroundColor: '#f8fafc', border: '1px solid #cbd5e1', color: 'var(--text-secondary)', cursor: 'pointer', padding: '0.6rem', borderRadius: '10px' }}
                   >
                     <Copy size={18} />
@@ -253,8 +264,12 @@ export default function Contact() {
                     <Linkedin size={22} />
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>شبكة الأعمال والتواصل الرسمي</div>
-                    <div style={{ fontSize: '0.98rem', fontWeight: '800', color: 'var(--text-primary)' }}>صفحة LinkedIn الرسمية ↗</div>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                      {isRTL ? 'شبكة الأعمال والتواصل الرسمي' : 'Official Professional Network'}
+                    </div>
+                    <div style={{ fontSize: '0.98rem', fontWeight: '800', color: 'var(--text-primary)' }}>
+                      {isRTL ? 'صفحة LinkedIn الرسمية ↗' : 'Official LinkedIn Profile ↗'}
+                    </div>
                   </div>
                 </a>
               </div>
@@ -268,9 +283,13 @@ export default function Contact() {
                   <MapPin size={22} />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>المقر والتغطية الاستشارية</div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                    {isRTL ? 'المقر والتغطية الاستشارية' : 'Location & Global Coverage'}
+                  </div>
                   <div style={{ fontSize: '0.92rem', fontWeight: '800', color: 'var(--text-primary)' }}>
-                    {personalInfo?.location || "مصر (توقيت القاهرة GMT+3 • العمل عن بُعد واستشارات الأنظمة المتقدمة)"}
+                    {isRTL 
+                      ? (personalInfo?.location || "مصر (توقيت القاهرة GMT+3 • العمل عن بُعد واستشارات الأنظمة المتقدمة)") 
+                      : (personalInfo?.locationEn || "Egypt (Cairo GMT+3 • Remote Engineering & Global Consultancy)")}
                   </div>
                 </div>
               </div>
@@ -281,10 +300,10 @@ export default function Contact() {
             <div className="corporate-card" style={{ padding: '1.5rem', backgroundColor: '#f8fafc', borderRadius: '16px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#047857', marginBottom: '0.5rem', fontWeight: '700', fontSize: '0.92rem' }}>
                 <Clock size={18} />
-                <span>التزام بالسرعة والاحترافية</span>
+                <span>{isRTL ? 'التزام بالسرعة والاحترافية' : 'Speed & Professional Guarantee'}</span>
               </div>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
-                أقوم بمراجعة كافة الاستفسارات والفرص الوردة والرد عليها باهتمام بالغة في غضون ساعات قليلة.
+                {isRTL ? 'أقوم بمراجعة كافة الاستفسارات والفرص الوردة والرد عليها باهتمام بالغة في غضون ساعات قليلة.' : 'I review all incoming inquiries and opportunities promptly, returning messages within a few hours.'}
               </p>
             </div>
           </div>
@@ -298,51 +317,55 @@ export default function Contact() {
                     <CheckCircle2 size={36} />
                   </div>
                   <h3 style={{ fontSize: '1.45rem', fontWeight: '900', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
-                    تم استلام تفاصيل رسالتك بنجاح!
+                    {isRTL ? 'تم استلام تفاصيل رسالتك بنجاح!' : 'Your message has been received successfully!'}
                   </h3>
                   <p style={{ color: 'var(--text-secondary)', fontSize: '0.98rem', marginBottom: '1.5rem', lineHeight: 1.6 }}>
-                    شكراً لتواصلك، سأقوم بمراجعة الموضوع والتواصل معك في أقرب وقت ممكن.
+                    {isRTL ? 'شكراً لتواصلك، سأقوم بمراجعة الموضوع والتواصل معك في أقرب وقت ممكن.' : 'Thank you for reaching out! I will review your inquiry and respond as soon as possible.'}
                   </p>
                   <button onClick={() => setSubmitted(false)} className="btn-secondary">
-                    إرسال استفسار آخر
+                    {isRTL ? 'إرسال استفسار آخر' : 'Send Another Inquiry'}
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                   <h3 style={{ fontSize: '1.35rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '0.2rem' }}>
-                    أرسل رسالة تفصيلية
+                    {isRTL ? 'أرسل رسالة تفصيلية' : 'Send a Detailed Message'}
                   </h3>
                   <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '0.75rem' }}>
-                    اكتب تفاصيل طلبك أو الفرصة، وسأتواصل معك مباشرة.
+                    {isRTL ? 'اكتب تفاصيل طلبك أو الفرصة، وسأتواصل معك مباشرة.' : 'Fill out your requirements or opportunity details below and I will respond directly.'}
                   </p>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.4rem', fontWeight: '700' }}>الاسم بالكامل</label>
+                    <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.4rem', fontWeight: '700' }}>
+                      {isRTL ? 'الاسم بالكامل' : 'Full Name'}
+                    </label>
                     <input 
                       type="text" 
                       required 
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="مثال: م. أحمد مصطفى" 
-                      style={{ width: '100%', padding: '0.85rem 1rem', borderRadius: '10px', backgroundColor: '#f8fafc', border: '1px solid #cbd5e1', color: 'var(--text-primary)', outline: 'none' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.4rem', fontWeight: '700' }}>موضوع الرسالة / نطاق التعاون</label>
-                    <input 
-                      type="text" 
-                      required
-                      value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      placeholder="اكتب موضوع الرسالة هنا (أو اختر من البطاقات الثلاث أعلاه)..." 
+                      placeholder={isRTL ? "مثال: م. أحمد مصطفى" : "e.g. John Doe"} 
                       style={{ width: '100%', padding: '0.85rem 1rem', borderRadius: '10px', backgroundColor: '#f8fafc', border: '1px solid #cbd5e1', color: 'var(--text-primary)', outline: 'none' }}
                     />
                   </div>
 
                   <div>
                     <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.4rem', fontWeight: '700' }}>
-                      البريد الإلكتروني <span style={{ color: 'var(--text-muted)', fontWeight: 'normal' }}>(اختياري للرد)</span>
+                      {isRTL ? 'موضوع الرسالة / نطاق التعاون' : 'Subject / Scope of Cooperation'}
+                    </label>
+                    <input 
+                      type="text" 
+                      required
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      placeholder={isRTL ? "اكتب موضوع الرسالة هنا (أو اختر من البطاقات الثلاث أعلاه)..." : "Enter subject (or pick one of the 3 cards above)..."} 
+                      style={{ width: '100%', padding: '0.85rem 1rem', borderRadius: '10px', backgroundColor: '#f8fafc', border: '1px solid #cbd5e1', color: 'var(--text-primary)', outline: 'none' }}
+                    />
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.4rem', fontWeight: '700' }}>
+                      {isRTL ? 'البريد الإلكتروني' : 'Email Address'} <span style={{ color: 'var(--text-muted)', fontWeight: 'normal' }}>{isRTL ? '(اختياري للرد)' : '(Optional for reply)'}</span>
                     </label>
                     <input 
                       type="email" 
@@ -354,20 +377,22 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.4rem', fontWeight: '700' }}>الرسالة والتفاصيل</label>
+                    <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.4rem', fontWeight: '700' }}>
+                      {isRTL ? 'الرسالة والتفاصيل' : 'Message & Details'}
+                    </label>
                     <textarea 
                       rows={4}
                       required
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="اشرح باختصار متطلباتك أو طبيعة الفرصة أو النظام الذي ترغب في بنائه..." 
+                      placeholder={isRTL ? "اشرح باختصار متطلباتك أو طبيعة الفرصة أو النظام الذي ترغب في بنائه..." : "Briefly describe your requirements, project idea, or opportunity scope..."} 
                       style={{ width: '100%', padding: '0.85rem 1rem', borderRadius: '10px', backgroundColor: '#f8fafc', border: '1px solid #cbd5e1', color: 'var(--text-primary)', outline: 'none', resize: 'vertical' }}
                     />
                   </div>
 
                   <button type="submit" className="btn-primary" style={{ marginTop: '0.5rem', padding: '0.9rem', justifyContent: 'center' }}>
-                    <span>إرسال الرسالة الآن</span>
-                    <ArrowUpLeft size={18} />
+                    <span>{isRTL ? 'إرسال الرسالة الآن' : 'Send Message Now'}</span>
+                    <ArrowUpLeft size={18} style={{ transform: isRTL ? 'none' : 'rotate(90deg)' }} />
                   </button>
 
                 </form>
@@ -397,4 +422,4 @@ export default function Contact() {
       `}</style>
     </div>
   );
-}
+}
