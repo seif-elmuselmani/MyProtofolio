@@ -14,9 +14,12 @@ import {
   ExternalLink,
   Sparkles,
   CheckCircle,
-  RotateCcw
+  RotateCcw,
+  Globe,
+  FileText
 } from 'lucide-react';
 import { usePortfolioData } from '../context/DynamicPortfolioContext';
+import { useLanguage } from '../context/LanguageContext';
 
 import TabGeneralInfo from './tabs/TabGeneralInfo';
 import TabProjects from './tabs/TabProjects';
@@ -28,7 +31,6 @@ import TabSkills from './tabs/TabSkills';
 import TabTestimonials from './tabs/TabTestimonials';
 import TabSecurity from './tabs/TabSecurity';
 import TabCVManager from './tabs/TabCVManager';
-import { FileText } from 'lucide-react';
 
 import './admin.css';
 
@@ -37,6 +39,7 @@ export function AdminDashboard() {
   const [toastMessage, setToastMessage] = useState('');
   const navigate = useNavigate();
   const { isCustomized, resetToDefaults } = usePortfolioData();
+  const { defaultLanguage, setDefaultLanguage } = useLanguage();
 
   const showToast = (msg) => {
     setToastMessage(msg);
@@ -54,6 +57,11 @@ export function AdminDashboard() {
       resetToDefaults();
       showToast('تمت استعادة البيانات الافتراضية بنجاح!');
     }
+  };
+
+  const handleSetDefaultLang = (lang) => {
+    setDefaultLanguage(lang);
+    showToast(`تم تعيين اللغة الافتراضية للموقع إلى: ${lang === 'en' ? 'الإنجليزية 🇬🇧' : 'العربية 🇪🇬'}`);
   };
 
   const tabs = [
@@ -93,8 +101,47 @@ export function AdminDashboard() {
             </div>
           </div>
 
-          {/* Header Actions */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          {/* Header Actions & Default Language Switcher */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+            
+            {/* Admin Default Language Switcher Button */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', backgroundColor: '#f1f5f9', padding: '0.25rem 0.5rem', borderRadius: '10px', border: '1px solid #cbd5e1' }}>
+              <Globe size={14} color="#2563eb" />
+              <span style={{ fontSize: '0.78rem', fontWeight: '700', color: '#475569' }}>اللغة الافتراضية:</span>
+              <button
+                type="button"
+                onClick={() => handleSetDefaultLang('en')}
+                style={{
+                  padding: '0.25rem 0.55rem',
+                  fontSize: '0.75rem',
+                  fontWeight: '800',
+                  borderRadius: '6px',
+                  border: 'none',
+                  backgroundColor: defaultLanguage === 'en' ? '#2563eb' : 'transparent',
+                  color: defaultLanguage === 'en' ? '#ffffff' : '#64748b',
+                  cursor: 'pointer'
+                }}
+              >
+                English 🇬🇧
+              </button>
+              <button
+                type="button"
+                onClick={() => handleSetDefaultLang('ar')}
+                style={{
+                  padding: '0.25rem 0.55rem',
+                  fontSize: '0.75rem',
+                  fontWeight: '800',
+                  borderRadius: '6px',
+                  border: 'none',
+                  backgroundColor: defaultLanguage === 'ar' ? '#2563eb' : 'transparent',
+                  color: defaultLanguage === 'ar' ? '#ffffff' : '#64748b',
+                  cursor: 'pointer'
+                }}
+              >
+                العربية 🇪🇬
+              </button>
+            </div>
+
             {isCustomized && (
               <button 
                 onClick={handleReset}
@@ -152,8 +199,8 @@ export function AdminDashboard() {
           })}
         </div>
 
-        {/* Tab Content Cards */}
-        <div className="admin-card">
+        {/* Tab Panels */}
+        <div className="admin-tab-content">
           {activeTab === 'general' && <TabGeneralInfo showToast={showToast} />}
           {activeTab === 'projects' && <TabProjects showToast={showToast} />}
           {activeTab === 'credentials' && <TabCredentials showToast={showToast} />}
@@ -168,10 +215,10 @@ export function AdminDashboard() {
 
       </main>
 
-      {/* Floating Success Toast */}
+      {/* Admin Global Toast */}
       {toastMessage && (
-        <div className="admin-toast">
-          <CheckCircle size={20} color="#34d399" />
+        <div className="admin-toast animate-slide-up">
+          <CheckCircle size={18} color="#10b981" />
           <span>{toastMessage}</span>
         </div>
       )}
@@ -179,5 +226,3 @@ export function AdminDashboard() {
     </div>
   );
 }
-
-export default AdminDashboard;

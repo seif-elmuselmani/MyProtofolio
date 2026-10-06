@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import { ExternalLink, Github, Sparkles, Layers } from 'lucide-react';
 import CaseStudyModal from './CaseStudyModal';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function ProjectCard({ project }) {
   const [isCaseStudyOpen, setIsCaseStudyOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const { isRTL } = useLanguage();
+
+  const title = isRTL ? (project.titleAr || project.title) : (project.titleEn || project.title);
+  const subtitle = isRTL ? (project.subtitleAr || project.subtitle) : (project.subtitleEn || project.subtitle);
+  const summary = isRTL ? (project.summaryAr || project.summary) : (project.summaryEn || project.summary);
+  const badge = isRTL ? (project.badgeAr || project.badge) : (project.badgeEn || project.badge);
 
   return (
     <div 
@@ -26,11 +33,11 @@ export default function ProjectCard({ project }) {
       }}
     >
       <div>
-        {/* Project Thumbnail Image Container (Clean & Crisp - No Dark Box Overlays) */}
+        {/* Project Thumbnail Image Container */}
         <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', overflow: 'hidden', backgroundColor: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
           <img 
             src={project.image} 
-            alt={project.title}
+            alt={title}
             loading="lazy"
             decoding="async"
             style={{
@@ -43,18 +50,19 @@ export default function ProjectCard({ project }) {
           />
 
           {/* Distinction / Award Gold Badge */}
-          {project.badge && (
+          {badge && (
             <div 
               style={{
                 position: 'absolute',
                 top: '0.85rem',
-                right: '0.85rem',
+                right: isRTL ? '0.85rem' : 'auto',
+                left: isRTL ? 'auto' : '0.85rem',
                 zIndex: 2
               }}
             >
               <span className="pill-badge pill-gold" style={{ boxShadow: '0 4px 14px rgba(217, 119, 6, 0.35)', whiteSpace: 'nowrap', fontWeight: '800' }}>
                 <Sparkles size={13} />
-                {project.badge}
+                {badge}
               </span>
             </div>
           )}
@@ -63,15 +71,15 @@ export default function ProjectCard({ project }) {
         {/* Card Body */}
         <div style={{ padding: '1.6rem 1.6rem 1rem', display: 'flex', flexDirection: 'column' }}>
           <div style={{ fontSize: '0.82rem', color: '#2563eb', fontWeight: '800', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-            {project.subtitle}
+            {subtitle}
           </div>
           
           <h3 style={{ fontSize: '1.25rem', fontWeight: '900', color: '#0f172a', marginBottom: '0.65rem', lineHeight: 1.35 }}>
-            {project.title}
+            {title}
           </h3>
 
           <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: 1.75, marginBottom: '1.35rem', fontWeight: '500' }}>
-            {project.summary}
+            {summary}
           </p>
 
           {/* Technology Tags */}
@@ -112,7 +120,7 @@ export default function ProjectCard({ project }) {
       >
         <div style={{ display: 'flex', gap: '0.55rem', flexWrap: 'wrap', alignItems: 'center' }}>
           
-          {/* Live System Button (Vibrant Green) */}
+          {/* Live System Button */}
           {project.liveUrl && (
             <a 
               href={project.liveUrl} 
@@ -133,12 +141,12 @@ export default function ProjectCard({ project }) {
                 transition: 'all 0.2s ease'
               }}
             >
-              <span>الموقع الحي</span>
+              <span>{isRTL ? 'الموقع الحي' : 'Live System'}</span>
               <ExternalLink size={14} />
             </a>
           )}
 
-          {/* GitHub Repo Button (Corporate Dark Slate) */}
+          {/* GitHub Repo Button */}
           {project.githubUrl && (
             <a 
               href={project.githubUrl} 
@@ -155,50 +163,50 @@ export default function ProjectCard({ project }) {
                 alignItems: 'center',
                 gap: '0.4rem',
                 textDecoration: 'none',
-                boxShadow: '0 4px 12px rgba(30, 41, 59, 0.18)',
+                boxShadow: '0 4px 12px rgba(30, 41, 59, 0.25)',
                 transition: 'all 0.2s ease'
               }}
             >
               <Github size={14} />
-              <span>GitHub</span>
+              <span>{isRTL ? 'الكود (GitHub)' : 'GitHub Repo'}</span>
             </a>
           )}
-
         </div>
 
-        {/* Case Study Modal Trigger Button (Premium Brand Blue) */}
+        {/* Case Study Modal Trigger Button */}
         {project.caseStudy && (
           <button
             onClick={() => setIsCaseStudyOpen(true)}
             style={{
-              backgroundColor: '#2563eb',
-              color: '#ffffff',
+              backgroundColor: '#eff6ff',
+              color: '#2563eb',
+              border: '1px solid #bfdbfe',
+              padding: '0.5rem 0.95rem',
+              borderRadius: '10px',
               fontSize: '0.84rem',
               fontWeight: '800',
-              cursor: 'pointer',
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.4rem',
-              padding: '0.5rem 1rem',
-              borderRadius: '10px',
-              border: 'none',
-              whiteSpace: 'nowrap',
-              boxShadow: '0 4px 14px rgba(37, 99, 235, 0.28)',
+              cursor: 'pointer',
               transition: 'all 0.2s ease'
             }}
           >
             <Layers size={14} />
-            <span>دراسة الحالة ↗</span>
+            <span>{isRTL ? 'دراسة الحالة والمعمارية' : 'Case Study & Architecture'}</span>
           </button>
         )}
+
       </div>
 
       {/* Case Study Modal */}
-      <CaseStudyModal
-        isOpen={isCaseStudyOpen}
-        onClose={() => setIsCaseStudyOpen(false)}
-        project={project}
-      />
+      {project.caseStudy && (
+        <CaseStudyModal
+          isOpen={isCaseStudyOpen}
+          onClose={() => setIsCaseStudyOpen(false)}
+          project={project}
+        />
+      )}
     </div>
   );
 }

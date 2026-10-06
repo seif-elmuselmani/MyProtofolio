@@ -4,8 +4,12 @@ import { translations } from '../data/translations';
 const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
+  const [defaultLanguage, setDefaultLanguageState] = useState(() => {
+    return localStorage.getItem('portfolio_default_lang') || 'en';
+  });
+
   const [language, setLanguage] = useState(() => {
-    return localStorage.getItem('portfolio_lang') || 'ar';
+    return localStorage.getItem('portfolio_lang') || localStorage.getItem('portfolio_default_lang') || 'en';
   });
 
   useEffect(() => {
@@ -13,6 +17,12 @@ export const LanguageProvider = ({ children }) => {
     document.documentElement.lang = language;
     document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
   }, [language]);
+
+  const setDefaultLanguage = (lang) => {
+    setDefaultLanguageState(lang);
+    localStorage.setItem('portfolio_default_lang', lang);
+    setLanguage(lang);
+  };
 
   const toggleLanguage = () => {
     setLanguage(prev => (prev === 'ar' ? 'en' : 'ar'));
@@ -25,8 +35,7 @@ export const LanguageProvider = ({ children }) => {
       if (current && current[key] !== undefined) {
         current = current[key];
       } else {
-        // Fallback to Arabic if missing
-        let fallback = translations['ar'];
+        let fallback = translations['en'] || translations['ar'];
         for (const k of keys) {
           if (fallback && fallback[k] !== undefined) {
             fallback = fallback[k];
@@ -43,7 +52,7 @@ export const LanguageProvider = ({ children }) => {
   const isRTL = language === 'ar';
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage, t, isRTL }}>
+    <LanguageContext.Provider value={{ language, setLanguage, defaultLanguage, setDefaultLanguage, toggleLanguage, t, isRTL }}>
       {children}
     </LanguageContext.Provider>
   );

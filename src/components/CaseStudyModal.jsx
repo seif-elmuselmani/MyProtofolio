@@ -1,11 +1,20 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import { X, Sparkles, CheckCircle2, ExternalLink, Github, Target, Lightbulb, TrendingUp, Layers } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function CaseStudyModal({ isOpen, onClose, project }) {
+  const { isRTL } = useLanguage();
   if (!isOpen || !project) return null;
 
   const caseStudy = project.caseStudy || {};
+  const title = isRTL ? (project.titleAr || project.title) : (project.titleEn || project.title);
+  const subtitle = isRTL ? (project.subtitleAr || project.subtitle) : (project.subtitleEn || project.subtitle);
+  const badge = isRTL ? (project.badgeAr || project.badge) : (project.badgeEn || project.badge);
+
+  const challenge = isRTL ? (caseStudy.challengeAr || caseStudy.challenge) : (caseStudy.challengeEn || caseStudy.challenge);
+  const solution = isRTL ? (caseStudy.solutionAr || caseStudy.solution) : (caseStudy.solutionEn || caseStudy.solution);
+  const highlights = isRTL ? (caseStudy.highlightsAr || caseStudy.highlights) : (caseStudy.highlightsEn || caseStudy.highlights);
 
   return createPortal(
     <>
@@ -59,10 +68,10 @@ export default function CaseStudyModal({ isOpen, onClose, project }) {
               </div>
               <div>
                 <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0f172a', margin: 0 }}>
-                  دراسة حالة هندسية: {project.title}
+                  {isRTL ? `دراسة حالة هندسية: ${title}` : `Engineering Case Study: ${title}`}
                 </h3>
                 <div style={{ fontSize: '0.82rem', color: '#64748b', fontWeight: '600', marginTop: '0.15rem' }}>
-                  {project.subtitle}
+                  {subtitle}
                 </div>
               </div>
             </div>
@@ -92,10 +101,10 @@ export default function CaseStudyModal({ isOpen, onClose, project }) {
             
             {/* Tags & Badges */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem' }}>
-              {project.badge && (
+              {badge && (
                 <span className="pill-badge pill-gold" style={{ fontSize: '0.8rem', padding: '0.3rem 0.75rem', whiteSpace: 'nowrap' }}>
                   <Sparkles size={13} />
-                  {project.badge}
+                  {badge}
                 </span>
               )}
               {(project.tags || []).map((tag, idx) => (
@@ -106,7 +115,7 @@ export default function CaseStudyModal({ isOpen, onClose, project }) {
             </div>
 
             {/* The Challenge Block */}
-            {caseStudy.challenge && (
+            {challenge && (
               <div 
                 style={{
                   padding: '1.25rem 1.5rem',
@@ -118,16 +127,16 @@ export default function CaseStudyModal({ isOpen, onClose, project }) {
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.92rem', color: '#c2410c', fontWeight: '800', marginBottom: '0.45rem' }}>
                   <Target size={18} />
-                  <span>التحدي والمشكلة (The Challenge)</span>
+                  <span>{isRTL ? 'التحدي والمشكلة (The Challenge)' : 'The Challenge'}</span>
                 </div>
                 <p style={{ fontSize: '0.92rem', color: '#334155', lineHeight: 1.75, margin: 0, fontWeight: '500' }}>
-                  {caseStudy.challenge}
+                  {challenge}
                 </p>
               </div>
             )}
 
             {/* The Solution Block */}
-            {caseStudy.solution && (
+            {solution && (
               <div 
                 style={{
                   padding: '1.25rem 1.5rem',
@@ -139,16 +148,16 @@ export default function CaseStudyModal({ isOpen, onClose, project }) {
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.92rem', color: '#1d4ed8', fontWeight: '800', marginBottom: '0.45rem' }}>
                   <Lightbulb size={18} />
-                  <span>الحل الهندسي (The Engineering Solution)</span>
+                  <span>{isRTL ? 'الحل الهندسي (The Solution)' : 'Engineering Solution'}</span>
                 </div>
                 <p style={{ fontSize: '0.92rem', color: '#334155', lineHeight: 1.75, margin: 0, fontWeight: '500' }}>
-                  {caseStudy.solution}
+                  {solution}
                 </p>
               </div>
             )}
 
             {/* Key Results & Impact List */}
-            {caseStudy.highlights && caseStudy.highlights.length > 0 && (
+            {highlights && highlights.length > 0 && (
               <div 
                 style={{
                   padding: '1.25rem 1.5rem',
@@ -160,10 +169,10 @@ export default function CaseStudyModal({ isOpen, onClose, project }) {
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.92rem', color: '#15803d', fontWeight: '800', marginBottom: '0.75rem' }}>
                   <TrendingUp size={18} />
-                  <span>أبرز النتائج والمؤشرات الهندسية (Key Results & Impact)</span>
+                  <span>{isRTL ? 'أبرز النتائج والمؤشرات الهندسية (Key Results & Impact)' : 'Key Results & Architecture Impact'}</span>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-                  {caseStudy.highlights.map((item, idx) => (
+                  {highlights.map((item, idx) => (
                     <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem' }}>
                       <CheckCircle2 size={16} color="#16a34a" style={{ flexShrink: 0, marginTop: '3px' }} />
                       <span style={{ fontSize: '0.9rem', color: '#1e293b', lineHeight: 1.6, fontWeight: '600' }}>
@@ -210,7 +219,7 @@ export default function CaseStudyModal({ isOpen, onClose, project }) {
                     fontWeight: '700'
                   }}
                 >
-                  <span>زيارة الموقع الحي ↗</span>
+                  <span>{isRTL ? 'زيارة الموقع الحي ↗' : 'Visit Live System ↗'}</span>
                   <ExternalLink size={15} />
                 </a>
               )}
@@ -224,7 +233,7 @@ export default function CaseStudyModal({ isOpen, onClose, project }) {
                   style={{ padding: '0.6rem 1.25rem', fontSize: '0.88rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                 >
                   <Github size={15} />
-                  <span>مستودعات GitHub</span>
+                  <span>{isRTL ? 'مستودعات GitHub' : 'GitHub Repositories'}</span>
                 </a>
               )}
             </div>
@@ -234,7 +243,7 @@ export default function CaseStudyModal({ isOpen, onClose, project }) {
               className="btn-secondary"
               style={{ padding: '0.6rem 1.35rem', fontSize: '0.88rem' }}
             >
-              إغلاق النافذة
+              {isRTL ? 'إغلاق النافذة' : 'Close Modal'}
             </button>
           </div>
         </div>
