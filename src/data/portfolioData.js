@@ -899,13 +899,23 @@ export const teachingExperience = {
 
 export const cvArchive = [
   {
-    id: 'cv-1',
-    title: 'STEM & Programming Instructor Official CV',
-    subtitle: 'Official Approved Instructor & Software Developer Resume',
-    fileUrl: '/assets/documents/CV_Computer_Science_And_ICT_Tutor.pdf',
-    badge: 'Official Instructor CV',
-    badgeColor: '#2563eb',
+    id: 'cv-fullstack',
+    title: 'Full Stack Software Engineer & Technical Instructor Official CV',
+    subtitle: 'Official Approved Resume (.NET & MEAN Stack Specialist)',
+    fileUrl: '/assets/documents/seif-elden-resume.pdf',
+    badge: 'Full Stack CV',
+    badgeColor: '#10b981',
     active: true,
     isDefault: true
+  },
+  {
+    id: 'cv-instructor',
+    title: 'STEM & Programming Instructor Official CV',
+    subtitle: 'Official Approved Instructor & Computer Science Educator Resume',
+    fileUrl: '/assets/documents/CV_Computer_Science_And_ICT_Tutor.pdf',
+    badge: 'Instructor CV',
+    badgeColor: '#2563eb',
+    active: true,
+    isDefault: false
   }
 ];
