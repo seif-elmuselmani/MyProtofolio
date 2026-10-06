@@ -26,6 +26,7 @@ import {
   Eye
 } from 'lucide-react';
 import { usePortfolioData } from '../context/DynamicPortfolioContext';
+import { useLanguage } from '../context/LanguageContext';
 import ProjectCard from '../components/ProjectCard';
 import BentoHighlights from '../components/BentoHighlights';
 import CertificateModal from '../components/CertificateModal';
@@ -36,6 +37,7 @@ import TrustPartnersTicker from '../components/TrustPartnersTicker';
 
 export default function Home() {
   const { personalInfo, trustPartners, webProjects, certificatesList, credentialsList, testimonialsList, presentationDecks, teachingExperience, skillsMatrix, categories } = usePortfolioData();
+  const { isRTL, t } = useLanguage();
 
   const [showResume, setShowResume] = useState(false);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
@@ -109,7 +111,7 @@ export default function Home() {
                 >
                   <span style={{ fontSize: '1.1rem' }}>🏆</span>
                   <span style={{ fontSize: '0.88rem', fontWeight: '800' }}>
-                    المركز الأول على مستوى الجمهورية (DEPI)
+                    {t('hero.nationwideBadge')}
                   </span>
                 </div>
 
@@ -128,7 +130,7 @@ export default function Home() {
                   }}
                 >
                   <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10b981', boxShadow: '0 0 8px #10b981', animation: 'pulse 1.8s infinite' }}></span>
-                  <span>متاح للعمل والمشاريع البرمجية</span>
+                  <span>{t('hero.availableBadge')}</span>
                 </div>
               </div>
 
@@ -150,7 +152,7 @@ export default function Home() {
                     WebkitTextFillColor: 'transparent'
                   }}
                 >
-                  {personalInfo.nameAr}
+                  {isRTL ? personalInfo.nameAr : personalInfo.nameEn}
                 </span>
               </h1>
 
@@ -168,7 +170,7 @@ export default function Home() {
                   flexWrap: 'wrap'
                 }}
               >
-                <span>{personalInfo.roleAr}</span>
+                <span>{isRTL ? personalInfo.roleAr : personalInfo.roleEn}</span>
                 
               </div>
 
@@ -182,7 +184,7 @@ export default function Home() {
                   maxWidth: '630px'
                 }}
               >
-                {personalInfo.bioAr}
+                {isRTL ? personalInfo.bioAr : personalInfo.bioEn}
               </p>
 
               {/* CTA Action Buttons with High Conversion Contrast */}
@@ -197,8 +199,8 @@ export default function Home() {
                     boxShadow: '0 6px 20px rgba(37, 99, 235, 0.3)'
                   }}
                 >
-                  <span>استعراض المشاريع (Case Studies)</span>
-                  <ArrowUpLeft size={18} />
+                  <span>{t('hero.exploreProjects')}</span>
+                  <ArrowUpLeft size={18} style={{ transform: isRTL ? 'none' : 'rotate(90deg)' }} />
                 </Link>
 
                 <a 

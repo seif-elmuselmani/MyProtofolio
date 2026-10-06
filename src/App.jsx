@@ -15,8 +15,9 @@ import Testimonials from './pages/Testimonials';
 import About from './pages/About';
 import Contact from './pages/Contact';
 
-// 🛡️ Secret Admin CMS Imports
+// 🛡️ Secret Admin CMS & Language Imports
 import { DynamicPortfolioProvider } from './context/DynamicPortfolioContext';
+import { LanguageProvider } from './context/LanguageContext';
 import { SecretKeyShortcutListener, SECRET_ADMIN_ROUTE } from './admin/components/SecretKeyShortcutListener';
 import { AdminGuard } from './admin/AdminGuard';
 import { AdminDashboard } from './admin/AdminDashboard';
@@ -53,7 +54,7 @@ function MainLayout() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative', backgroundColor: 'var(--bg-canvas)' }}>
       <DynamicSeoManager />
-        <Navbar />
+      <Navbar />
       <main style={{ flexGrow: 1 }}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -75,12 +76,14 @@ function MainLayout() {
 
 export default function App() {
   return (
-    <DynamicPortfolioProvider>
-      <Router>
-        <ScrollToTop />
-        <SecretKeyShortcutListener />
-        <MainLayout />
-      </Router>
-    </DynamicPortfolioProvider>
+    <LanguageProvider>
+      <DynamicPortfolioProvider>
+        <Router>
+          <ScrollToTop />
+          <SecretKeyShortcutListener />
+          <MainLayout />
+        </Router>
+      </DynamicPortfolioProvider>
+    </LanguageProvider>
   );
 }

@@ -12,24 +12,16 @@ import {
   GraduationCap,
   Briefcase,
   CheckCircle2,
-  ShieldCheck
+  ShieldCheck,
+  Globe
 } from 'lucide-react';
 import { usePortfolioData } from '../context/DynamicPortfolioContext';
+import { useLanguage } from '../context/LanguageContext';
 import ResumeModal from './ResumeModal';
-
-const navItems = [
-  { path: '/', label: 'الرئيسية' },
-  { path: '/projects', label: 'المشاريع الهندسية' },
-  { path: '/credentials', label: 'الشهادات والاعتمادات' },
-  { path: '/testimonials', label: 'التوصيات والآراء' },
-  { path: '/teaching', label: 'التدريس التقني' },
-  { path: '/presentations', label: 'عروض الـ Decks' },
-  { path: '/about', label: 'عن سيف' },
-  { path: '/contact', label: 'تواصل معي' },
-];
 
 export default function Navbar() {
   const { personalInfo, cvArchive } = usePortfolioData();
+  const { language, toggleLanguage, t, isRTL } = useLanguage();
   const activeCvs = (cvArchive || []).filter(cv => cv.active !== false);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -42,6 +34,17 @@ export default function Navbar() {
 
   const cvDropdownRef = useRef(null);
   const location = useLocation();
+
+  const navItems = [
+    { path: '/', label: t('nav.home') },
+    { path: '/projects', label: t('nav.projects') },
+    { path: '/credentials', label: t('nav.credentials') },
+    { path: '/testimonials', label: t('nav.testimonialsPreview.title') || (isRTL ? 'التوصيات والآراء' : 'Testimonials') },
+    { path: '/teaching', label: t('nav.teaching') },
+    { path: '/presentations', label: t('nav.presentations') },
+    { path: '/about', label: t('nav.about') },
+    { path: '/contact', label: t('nav.contactBtn') },
+  ];
 
   useEffect(() => {
     setIsAdminAuth(sessionStorage.getItem('seif_admin_authenticated') === 'true');
@@ -70,15 +73,6 @@ export default function Navbar() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
-
-  const cvOptions = [
-    {
-      title: 'STEM & Programming Instructor Official CV',
-      subtitle: 'السيرة الذاتية المعتمدة للتدريس التقني والبرمجة (iSchool & DEPI)',
-      icon: GraduationCap,
-      link: '/assets/documents/CV_Computer_Science_And_ICT_Tutor.pdf'
-    }
-  ];
 
   return (
     <>
@@ -111,10 +105,10 @@ export default function Navbar() {
             }}
           >
             {/* Real Cutout Portrait Frame */}
-            <div className="brand-avatar-frame" title="سيف الدين محمد">
+            <div className="brand-avatar-frame" title={isRTL ? personalInfo.nameAr : personalInfo.nameEn}>
               <img 
                 src={personalInfo.avatar || "/assets/profile/seif-portrait-avatar.jpg"} 
-                alt={personalInfo.name || "سيف الدين محمد"} 
+                alt={isRTL ? personalInfo.nameAr : personalInfo.nameEn} 
                 className="brand-avatar-img"
               />
             </div>
@@ -122,18 +116,19 @@ export default function Navbar() {
             <div>
               <div style={{ fontWeight: '800', fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#0f172a' }}>
                 <span>
-                  سيف الدين<span className="name-last-word"> محمد</span>
+                  {isRTL ? 'سيف الدين' : 'Seif Elden'}
+                  <span className="name-last-word"> {isRTL ? 'محمد' : 'Mohamed'}</span>
                 </span>
                 
                 {/* Live Pulse Status Badge */}
                 <span className="pill-badge pill-emerald status-badge-mobile" style={{ padding: '0.15rem 0.6rem', fontSize: '0.72rem', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
                   <span className="live-pulse-dot"></span>
-                  <span>متاح للعمل</span>
+                  <span>{isRTL ? 'متاح للعمل' : 'Available'}</span>
                 </span>
               </div>
 
               <div className="brand-subtitle-text" style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: '600', whiteSpace: 'nowrap' }}>
-                {personalInfo.title || 'Full-Stack Software Engineer | Tech Instructor'}
+                {isRTL ? (personalInfo.titleAr || 'مهندس برمجيات Full-Stack | مدرب تقني') : (personalInfo.titleEn || 'Full-Stack Software Engineer | Tech Instructor')}
               </div>
             </div>
           </Link>
@@ -180,6 +175,32 @@ export default function Navbar() {
           {/* Action CTAs Container */}
           <div className="navbar-actions-container" style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', flexShrink: 0, whiteSpace: 'nowrap' }}>
             
+            {/* Minimalist Responsive Language Switcher Button */}
+            <button
+              onClick={toggleLanguage}
+              type="button"
+              className="lang-toggle-btn"
+              title={isRTL ? "Switch to English" : "التحويل للغة العربية"}
+              style={{
+                padding: '0.45rem 0.75rem',
+                fontSize: '0.82rem',
+                fontWeight: '700',
+                borderRadius: '12px',
+                border: '1px solid #cbd5e1',
+                backgroundColor: '#ffffff',
+                color: '#1e293b',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                transition: 'all 0.2s ease',
+                boxShadow: '0 1px 3px rgba(15, 23, 42, 0.05)'
+              }}
+            >
+              <Globe size={15} color="#2563eb" />
+              <span>{language === 'ar' ? 'English' : 'عربي'}</span>
+            </button>
+
             {/* Multi-CV Dropdown Trigger */}
             <div style={{ position: 'relative' }} ref={cvDropdownRef}>
               <button
@@ -206,7 +227,7 @@ export default function Navbar() {
               {showCvDropdown && (
                 <div className="glass-dropdown">
                   <div style={{ fontSize: '0.75rem', fontWeight: '800', color: '#94a3b8', padding: '0.3rem 0.6rem 0.5rem', textTransform: 'uppercase' }}>
-                    اختر النسخة المطلوبة من الـ CV
+                    {isRTL ? 'اختر النسخة المطلوبة من الـ CV' : 'Select CV Version'}
                   </div>
                   {activeCvs.map((cv, i) => {
                     const Icon = typeof cv.icon === 'function' ? cv.icon : FileText;
@@ -238,7 +259,7 @@ export default function Navbar() {
                       style={{ width: '100%', border: 'none', background: 'transparent', cursor: 'pointer' }}
                     >
                       <Sparkles size={16} color="#d97706" />
-                      <span>معاينة السيرة الذاتية التفاعلية (Web Resume)</span>
+                      <span>{isRTL ? 'معاينة السيرة الذاتية التفاعلية (Web Resume)' : 'Interactive Web Resume Preview'}</span>
                     </button>
                   </div>
                 </div>
@@ -267,7 +288,7 @@ export default function Navbar() {
                 }}
               >
                 <ShieldCheck size={15} color="#38bdf8" />
-                <span>لوحة التحكم</span>
+                <span>{isRTL ? 'لوحة التحكم' : 'Admin'}</span>
               </Link>
             )}
 
@@ -288,8 +309,8 @@ export default function Navbar() {
             >
               <Send size={14} />
               <span className="contact-btn-text">
-                <span className="hidden-mobile">تواصل مباشر</span>
-                <span className="show-mobile-only">تواصل</span>
+                <span className="hidden-mobile">{t('nav.contactBtn')}</span>
+                <span className="show-mobile-only">{t('nav.contactBtn')}</span>
               </span>
             </Link>
 
@@ -327,11 +348,38 @@ export default function Navbar() {
             }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              
+              {/* Mobile Language Switcher Row */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.65rem 0.85rem', backgroundColor: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0', marginBottom: '0.5rem' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: '700', color: '#475569', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <Globe size={16} color="#2563eb" />
+                  <span>{isRTL ? 'تغيير لغة الموقع:' : 'Language:'}</span>
+                </span>
+                <button
+                  onClick={() => {
+                    toggleLanguage();
+                    setIsOpen(false);
+                  }}
+                  style={{
+                    padding: '0.35rem 0.85rem',
+                    fontSize: '0.82rem',
+                    fontWeight: '800',
+                    borderRadius: '8px',
+                    backgroundColor: '#2563eb',
+                    color: '#ffffff',
+                    border: 'none',
+                    cursor: 'pointer'
+                  }}
+                >
+                  {language === 'ar' ? 'English 🇬🇧' : 'العربية 🇪🇬'}
+                </button>
+              </div>
+
               {/* Mobile CV Quick Section */}
               <div style={{ backgroundColor: '#f8fafc', padding: '0.85rem', borderRadius: '14px', border: '1px solid #e2e8f0', marginBottom: '0.75rem' }}>
                 <div style={{ fontSize: '0.8rem', fontWeight: '800', color: '#2563eb', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                   <FileText size={15} />
-                  <span>السيرة الذاتية المعتمدة (CV & Resume)</span>
+                  <span>{isRTL ? 'السيرة الذاتية المعتمدة (CV & Resume)' : 'Official Resume (CV)'}</span>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                   {activeCvs.map((cv, idx) => (
@@ -381,7 +429,7 @@ export default function Navbar() {
                     }}
                   >
                     <Sparkles size={14} />
-                    <span>السيرة الذاتية التفاعلية المعاينة (Web CV)</span>
+                    <span>{isRTL ? 'السيرة الذاتية التفاعلية (Web CV)' : 'Interactive Web Resume'}</span>
                   </button>
                 </div>
               </div>
@@ -422,6 +470,12 @@ export default function Navbar() {
         }
         .hidden-mobile {
           display: inline !important;
+        }
+
+        .lang-toggle-btn:hover {
+          background-color: #f1f5f9 !important;
+          border-color: #94a3b8 !important;
+          transform: translateY(-1px);
         }
 
         @media (min-width: 1240px) {

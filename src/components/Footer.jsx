@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Github, Linkedin, Mail, MessageSquare, Sparkles, ArrowUpLeft, Copy, Check, ArrowUp, Award } from 'lucide-react';
 import { usePortfolioData } from '../context/DynamicPortfolioContext';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Footer() {
   const { personalInfo } = usePortfolioData();
+  const { isRTL, t } = useLanguage();
   const [copied, setCopied] = useState(false);
 
   const handleCopyEmail = () => {
@@ -20,9 +22,9 @@ export default function Footer() {
   };
 
   const avatarSource = personalInfo?.avatar || personalInfo?.avatarUrl || "/assets/profile/seif-portrait-avatar.jpg";
-  const displayName = personalInfo?.nameAr || personalInfo?.name || "سيف الدين محمد";
-  const displayTitle = personalInfo?.titleEn || personalInfo?.roleAr || "Full-Stack Software Engineer (.NET & MEAN Stack)";
-  const displayBio = personalInfo?.bioAr || personalInfo?.bioEn;
+  const displayName = isRTL ? (personalInfo?.nameAr || "سيف الدين محمد") : (personalInfo?.nameEn || "Seif Elden Mohamed");
+  const displayTitle = isRTL ? (personalInfo?.roleAr || "مهندس برمجيات Full-Stack") : (personalInfo?.roleEn || "Full-Stack Software Engineer");
+  const displayBio = isRTL ? (personalInfo?.bioAr) : (personalInfo?.bioEn);
 
   return (
     <footer 
@@ -92,7 +94,7 @@ export default function Footer() {
               }}
             >
               <Award size={14} />
-              <span>المركز الأول على مستوى الجمهورية (DEPI - وزارة الاتصالات) 🏆</span>
+              <span>{isRTL ? 'المركز الأول على مستوى الجمهورية (DEPI - وزارة الاتصالات) 🏆' : '1st Place Winner Nationwide (DEPI - MCIT Egypt) 🏆'}</span>
             </div>
 
             <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: 1.75, marginBottom: '1.5rem' }}>
@@ -100,251 +102,208 @@ export default function Footer() {
             </p>
 
             {/* Social Links */}
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '0.75rem' }}>
               <a 
                 href={personalInfo?.github || "https://github.com/seif-elmuselmani"} 
                 target="_blank" 
                 rel="noreferrer"
-                className="social-btn-hover"
+                className="social-btn"
+                title="GitHub"
                 style={{
-                  width: '42px',
-                  height: '42px',
+                  width: '40px',
+                  height: '40px',
                   borderRadius: '10px',
-                  backgroundColor: '#f8fafc',
                   border: '1px solid #e2e8f0',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: 'var(--text-primary)',
-                  transition: 'var(--transition-smooth)'
+                  color: '#334155',
+                  textDecoration: 'none',
+                  transition: 'all 0.2s ease'
                 }}
-                aria-label="GitHub Profile"
-                title="GitHub"
               >
-                <Github size={19} />
+                <Github size={18} />
               </a>
               <a 
                 href={personalInfo?.linkedin || "https://www.linkedin.com/in/seif-elmuselmani"} 
                 target="_blank" 
                 rel="noreferrer"
-                className="social-btn-hover"
+                className="social-btn"
+                title="LinkedIn"
                 style={{
-                  width: '42px',
-                  height: '42px',
+                  width: '40px',
+                  height: '40px',
                   borderRadius: '10px',
-                  backgroundColor: '#f8fafc',
                   border: '1px solid #e2e8f0',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   color: '#0284c7',
-                  transition: 'var(--transition-smooth)'
+                  textDecoration: 'none',
+                  transition: 'all 0.2s ease'
                 }}
-                aria-label="LinkedIn Profile"
-                title="LinkedIn"
               >
-                <Linkedin size={19} />
+                <Linkedin size={18} />
               </a>
               <a 
                 href={personalInfo?.whatsapp || "https://wa.me/201223817860"} 
                 target="_blank" 
                 rel="noreferrer"
-                className="social-btn-hover"
-                style={{
-                  width: '42px',
-                  height: '42px',
-                  borderRadius: '10px',
-                  backgroundColor: '#f8fafc',
-                  border: '1px solid #e2e8f0',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#059669',
-                  transition: 'var(--transition-smooth)'
-                }}
-                aria-label="WhatsApp Contact"
+                className="social-btn"
                 title="WhatsApp"
-              >
-                <MessageSquare size={19} />
-              </a>
-              <a 
-                href={`mailto:${personalInfo?.email || 'eldenseif645@gmail.com'}`}
-                className="social-btn-hover"
                 style={{
-                  width: '42px',
-                  height: '42px',
+                  width: '40px',
+                  height: '40px',
                   borderRadius: '10px',
-                  backgroundColor: '#f8fafc',
                   border: '1px solid #e2e8f0',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: 'var(--brand-primary)',
-                  transition: 'var(--transition-smooth)'
-                }}
-                aria-label="Direct Email"
-                title="Direct Email"
-              >
-                <Mail size={19} />
-              </a>
-            </div>
-          </div>
-
-          {/* Col 2: Dynamic Site Map */}
-          <div>
-            <h4 style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '1.25rem' }}>
-              تصفح الموقع والروابط السريعة
-            </h4>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
-              <Link to="/" className="footer-nav-link" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.92rem', transition: 'var(--transition-smooth)' }}>
-                الرئيسية
-              </Link>
-              <Link to="/projects" className="footer-nav-link" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.92rem', transition: 'var(--transition-smooth)' }}>
-                المشاريع الهندسية
-              </Link>
-              <Link to="/credentials" className="footer-nav-link" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.92rem', transition: 'var(--transition-smooth)' }}>
-                الشهادات والاعتمادات
-              </Link>
-              <Link to="/testimonials" className="footer-nav-link" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.92rem', transition: 'var(--transition-smooth)' }}>
-                التوصيات والآراء
-              </Link>
-              <Link to="/teaching" className="footer-nav-link" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.92rem', transition: 'var(--transition-smooth)' }}>
-                التدريس و iSchool
-              </Link>
-              <Link to="/presentations" className="footer-nav-link" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.92rem', transition: 'var(--transition-smooth)' }}>
-                عروض الـ Decks
-              </Link>
-              <Link to="/about" className="footer-nav-link" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.92rem', transition: 'var(--transition-smooth)' }}>
-                عن سيف وسيرته
-              </Link>
-              <Link to="/contact" className="footer-nav-link" style={{ color: 'var(--brand-primary)', textDecoration: 'none', fontSize: '0.92rem', fontWeight: '800', transition: 'var(--transition-smooth)' }}>
-                تواصل مباشر
-              </Link>
-            </div>
-          </div>
-
-          {/* Col 3: Elevated Hiring CTA Card */}
-          <div 
-            className="corporate-card" 
-            style={{ 
-              padding: '1.75rem', 
-              backgroundColor: '#f8fafc', 
-              border: '1px solid #cbd5e1', 
-              borderRadius: '16px',
-              boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.04)',
-              position: 'relative'
-            }}
-          >
-            {/* Live Availability Status Indicator */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
-              <span 
-                style={{
-                  width: '9px',
-                  height: '9px',
-                  borderRadius: '50%',
-                  backgroundColor: '#10b981',
-                  boxShadow: '0 0 0 4px rgba(16, 185, 129, 0.2)',
-                  display: 'inline-block'
-                }} 
-              />
-              <span style={{ fontSize: '0.78rem', fontWeight: '800', color: '#047857' }}>
-                متاح حالياً للفرص الاستراتيجية والعمل الحر
-              </span>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--brand-primary)', marginBottom: '0.4rem' }}>
-              <Sparkles size={16} />
-              <span style={{ fontSize: '0.85rem', fontWeight: '800' }}>جاهز للتوظيف والمشاريع</span>
-            </div>
-            
-            <h4 style={{ fontSize: '1.15rem', fontWeight: '900', color: 'var(--text-primary)', marginBottom: '0.6rem' }}>
-              هل تبحث عن مهندس ذو كفاءة مثبتة؟
-            </h4>
-            
-            <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginBottom: '1.25rem', lineHeight: 1.6 }}>
-              يسعدني مناقشة انضمامي لفريق العمل أو التعاون في تطوير أنظمة برمجية متقدمة وعالية الأداء.
-            </p>
-
-            <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
-              <Link to="/contact" className="btn-primary" style={{ flex: '1 1 auto', justifyContent: 'center', padding: '0.75rem 1.25rem' }}>
-                <span>تواصل معي الآن</span>
-                <ArrowUpLeft size={16} />
-              </Link>
-              
-              <button
-                type="button"
-                onClick={handleCopyEmail}
-                style={{
-                  backgroundColor: copied ? '#ecfdf5' : '#ffffff',
-                  border: copied ? '1px solid #10b981' : '1px solid #cbd5e1',
-                  color: copied ? '#047857' : 'var(--text-primary)',
-                  padding: '0.75rem 1rem',
-                  borderRadius: '10px',
-                  fontWeight: '700',
-                  fontSize: '0.85rem',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.4rem',
+                  color: '#16a34a',
+                  textDecoration: 'none',
                   transition: 'all 0.2s ease'
                 }}
-                title="نسخ البريد الإلكتروني"
               >
-                {copied ? <Check size={16} color="#10b981" /> : <Copy size={16} />}
-                <span>{copied ? 'تم النسخ!' : 'نسخ البريد'}</span>
-              </button>
+                <MessageSquare size={18} />
+              </a>
+              <a 
+                href={`mailto:${personalInfo?.email || "eldenseif645@gmail.com"}`}
+                className="social-btn"
+                title="Email"
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '10px',
+                  border: '1px solid #e2e8f0',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#dc2626',
+                  textDecoration: 'none',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                <Mail size={18} />
+              </a>
+            </div>
+          </div>
+
+          {/* Col 2: Quick Links */}
+          <div>
+            <h4 style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '1.25rem' }}>
+              {isRTL ? 'روابط التنقل السريعة' : 'Quick Navigation'}
+            </h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <li>
+                <Link to="/" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.92rem', fontWeight: '600' }}>
+                  {t('nav.home')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/projects" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.92rem', fontWeight: '600' }}>
+                  {t('nav.projects')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/credentials" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.92rem', fontWeight: '600' }}>
+                  {t('nav.credentials')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/teaching" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.92rem', fontWeight: '600' }}>
+                  {t('nav.teaching')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/presentations" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.92rem', fontWeight: '600' }}>
+                  {t('nav.presentations')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.92rem', fontWeight: '600' }}>
+                  {t('nav.about')}
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 3: Direct Contact Box */}
+          <div>
+            <h4 style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '1.25rem' }}>
+              {isRTL ? 'معلومات التواصل المباشر' : 'Direct Contact Info'}
+            </h4>
+            <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginBottom: '1rem', lineHeight: 1.6 }}>
+              {isRTL 
+                ? 'متاح للمناقشات البرمجية، الفرص الوظيفية المتقدمة، والاستشارات التقنية عن بعد.' 
+                : 'Available for engineering roles, technical leadership, and remote consultancy.'}
+            </p>
+
+            {/* Email Copy Card */}
+            <div 
+              onClick={handleCopyEmail}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '0.75rem 1rem',
+                borderRadius: '12px',
+                backgroundColor: '#f8fafc',
+                border: '1px solid #e2e8f0',
+                cursor: 'pointer',
+                marginBottom: '1rem',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                <Mail size={16} color="#2563eb" />
+                <span style={{ fontSize: '0.85rem', fontWeight: '700', color: '#0f172a' }}>
+                  {personalInfo?.email || "eldenseif645@gmail.com"}
+                </span>
+              </div>
+              <span style={{ fontSize: '0.75rem', fontWeight: '800', color: copied ? '#059669' : '#64748b' }}>
+                {copied ? (isRTL ? 'تم النسخ! ✓' : 'Copied! ✓') : (isRTL ? 'نسخ' : 'Copy')}
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar & Back to Top */}
+        {/* Bottom Copyright Bar */}
         <div 
           style={{
-            borderTop: '1px solid #e2e8f0',
-            paddingTop: '1.75rem',
+            borderTop: '1px solid #f1f5f9',
+            paddingTop: '1.5rem',
             display: 'flex',
-            flexWrap: 'wrap',
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap: '1rem',
-            fontSize: '0.88rem',
-            color: 'var(--text-muted)'
+            flexWrap: 'wrap',
+            gap: '1rem'
           }}
         >
-          <div>
-            جميع الحقوق محفوظة © {new Date().getFullYear()} {displayName}.
-          </div>
+          <p style={{ fontSize: '0.85rem', color: '#64748b', margin: 0 }}>
+            {t('footer.copyright')}
+          </p>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
-              هندسة وتطوير برمجيات موثوقة وعالية الأداء
-            </span>
-
-            <button
-              type="button"
-              onClick={scrollToTop}
-              style={{
-                backgroundColor: '#f8fafc',
-                border: '1px solid #cbd5e1',
-                borderRadius: '8px',
-                width: '36px',
-                height: '36px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--brand-primary)',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}
-              title="العودة لأعلى الصفحة"
-              aria-label="Back to top"
-            >
-              <ArrowUp size={18} />
-            </button>
-          </div>
+          <button
+            onClick={scrollToTop}
+            style={{
+              padding: '0.4rem 0.85rem',
+              borderRadius: '8px',
+              border: '1px solid #cbd5e1',
+              backgroundColor: '#ffffff',
+              color: '#475569',
+              fontSize: '0.8rem',
+              fontWeight: '700',
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.35rem'
+            }}
+          >
+            <ArrowUp size={14} />
+            <span>{isRTL ? 'للأعلى' : 'Top'}</span>
+          </button>
         </div>
       </div>
     </footer>
   );
 }
-
