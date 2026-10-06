@@ -171,7 +171,6 @@ export default function Home() {
                 }}
               >
                 <span>{isRTL ? personalInfo.roleAr : personalInfo.roleEn}</span>
-                
               </div>
 
               {/* Bio Summary */}
@@ -223,7 +222,7 @@ export default function Home() {
                   }}
                 >
                   <Send size={17} />
-                  <span>تواصل عبر WhatsApp</span>
+                  <span>{isRTL ? "تواصل عبر WhatsApp" : "Chat on WhatsApp"}</span>
                 </a>
 
                 <button 
@@ -232,7 +231,7 @@ export default function Home() {
                   style={{ padding: '0.85rem 1.75rem', fontSize: '1rem', backgroundColor: '#ffffff', border: '1px solid #cbd5e1' }}
                 >
                   <FileText size={18} />
-                  <span>السيرة الذاتية (CV)</span>
+                  <span>{isRTL ? "السيرة الذاتية (CV)" : "Resume (CV)"}</span>
                 </button>
               </div>
 
@@ -249,15 +248,21 @@ export default function Home() {
               >
                 <div>
                   <div style={{ fontSize: '1.6rem', fontWeight: '900', color: 'var(--brand-primary)', lineHeight: 1 }}>15+</div>
-                  <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '0.35rem', fontWeight: '600' }}>مشرع ونظام خلفي متكامل</div>
+                  <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '0.35rem', fontWeight: '600' }}>
+                    {isRTL ? "مشروع ونظام خلفي متكامل" : "Full-Stack Systems & Apps"}
+                  </div>
                 </div>
                 <div>
                   <div style={{ fontSize: '1.6rem', fontWeight: '900', color: '#d97706', lineHeight: 1 }}>#1</div>
-                  <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '0.35rem', fontWeight: '600' }}>جمهورية في مبادرة DEPI</div>
+                  <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '0.35rem', fontWeight: '600' }}>
+                    {isRTL ? "جمهورية في مبادرة DEPI" : "1st Place Winner (DEPI)"}
+                  </div>
                 </div>
                 <div>
                   <div style={{ fontSize: '1.6rem', fontWeight: '900', color: '#059669', lineHeight: 1 }}>+500</div>
-                  <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '0.35rem', fontWeight: '600' }}>طالب تم تدريبه في iSchool</div>
+                  <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '0.35rem', fontWeight: '600' }}>
+                    {isRTL ? "طالب تم تدريبه في iSchool" : "Students Trained at iSchool"}
+                  </div>
                 </div>
               </div>
 
@@ -296,7 +301,7 @@ export default function Home() {
                 >
                   <img 
                     src={personalInfo.avatar} 
-                    alt={personalInfo.nameAr}
+                    alt={isRTL ? personalInfo.nameAr : personalInfo.nameEn}
                     style={{
                       width: '100%',
                       height: 'auto',
@@ -319,8 +324,12 @@ export default function Home() {
                       backdropFilter: 'blur(4px)'
                     }}
                   >
-                    <div style={{ fontSize: '0.92rem', fontWeight: '800', marginBottom: '0.2rem' }}>Top 1 Nationwide Winner</div>
-                    <div style={{ fontSize: '0.76rem', color: '#cbd5e1', fontWeight: '600' }}>مبادرة رواد مصر الرقمية (DEPI) • مسار Full Stack .NET</div>
+                    <div style={{ fontSize: '0.92rem', fontWeight: '800', marginBottom: '0.2rem' }}>
+                      {isRTL ? "المركز الأول على مستوى الجمهورية" : "Top 1 Nationwide Winner"}
+                    </div>
+                    <div style={{ fontSize: '0.76rem', color: '#cbd5e1', fontWeight: '600' }}>
+                      {isRTL ? "مبادرة رواد مصر الرقمية (DEPI) • مسار Full Stack .NET" : "Digital Egypt Pioneers Initiative (DEPI) • Full Stack .NET"}
+                    </div>
                   </div>
                 </div>
 
@@ -329,7 +338,8 @@ export default function Home() {
                   style={{
                     position: 'absolute',
                     top: '-18px',
-                    left: '-20px',
+                    left: isRTL ? '-20px' : 'auto',
+                    right: isRTL ? 'auto' : '-20px',
                     backgroundColor: 'rgba(255, 255, 255, 0.94)',
                     backdropFilter: 'blur(12px)',
                     border: '1px solid #fcd34d',
@@ -346,12 +356,14 @@ export default function Home() {
                     🏆
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.82rem', fontWeight: '800', color: '#92400e' }}>#1 على الجمهورية</div>
-                    <div style={{ fontSize: '0.72rem', color: '#b45309' }}>وزارة الاتصالات DEPI</div>
+                    <div style={{ fontSize: '0.82rem', fontWeight: '800', color: '#92400e' }}>
+                      {isRTL ? "#1 على الجمهورية" : "#1 Nationwide Winner"}
+                    </div>
+                    <div style={{ fontSize: '0.72rem', color: '#b45309' }}>
+                      {isRTL ? "وزارة الاتصالات DEPI" : "MCIT DEPI Initiative"}
+                    </div>
                   </div>
                 </div>
-
-
 
               </div>
 
@@ -375,21 +387,21 @@ export default function Home() {
             <div>
               <div className="pill-badge pill-blue" style={{ marginBottom: '0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
                 <Code2 size={14} />
-                <span>المشاريع الهندسية الأبرز</span>
+                <span>{isRTL ? "المشاريع الهندسية الأبرز" : "Featured Engineering Projects"}</span>
               </div>
               <h2 style={{ fontSize: '2.25rem', fontWeight: '900', color: 'var(--text-primary)' }}>
-                أنظمة خلفية ودراسات حالة متكاملة
+                {isRTL ? "أنظمة خلفية ودراسات حالة متكاملة" : "Enterprise Systems & Production Case Studies"}
               </h2>
             </div>
             <Link to="/projects" className="btn-secondary" style={{ backgroundColor: '#ffffff' }}>
-              <span>عرض كل المشاريع ({webProjects.length})</span>
-              <ArrowUpLeft size={16} />
+              <span>{isRTL ? `عرض كل المشاريع (${webProjects.length})` : `View All Projects (${webProjects.length})`}</span>
+              <ArrowUpLeft size={16} style={{ transform: isRTL ? 'none' : 'rotate(90deg)' }} />
             </Link>
           </div>
 
           {/* Swipe Hint Badge for Mobile Devices */}
           <div className="swipe-hint-badge" style={{ marginBottom: '1rem' }}>
-            <span>👈 اسحب للأفق لمشاهدة كافة المشاريع المميزة 👉</span>
+            <span>{isRTL ? "👈 اسحب للأفق لمشاهدة كافة المشاريع المميزة 👉" : "👈 Swipe horizontally to view all featured projects 👉"}</span>
           </div>
 
           <div className="mobile-carousel-wrapper">
@@ -411,66 +423,70 @@ export default function Home() {
             <div>
               <div className="pill-badge pill-gold" style={{ marginBottom: '0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
                 <Award size={14} />
-                <span>المركز الأول والشهادات المعتمدة</span>
+                <span>{isRTL ? "المركز الأول والشهادات المعتمدة" : "Honors & Verified Certifications"}</span>
               </div>
               <h2 style={{ fontSize: '2.25rem', fontWeight: '900', color: 'var(--text-primary)' }}>
-                الاعتمادات والتكريمات الرسمية
+                {isRTL ? "الاعتمادات والتكريمات الرسمية" : "Official Credentials & Verified Honors"}
               </h2>
             </div>
             <Link to="/credentials" className="btn-secondary" style={{ backgroundColor: '#ffffff' }}>
-              <span>عرض كافة الاعتمادات والشهادات</span>
-              <ArrowUpLeft size={16} />
+              <span>{isRTL ? "عرض كافة الاعتمادات والشهادات" : "View All Credentials"}</span>
+              <ArrowUpLeft size={16} style={{ transform: isRTL ? 'none' : 'rotate(90deg)' }} />
             </Link>
           </div>
 
           {/* Swipe Hint Badge for Mobile Devices */}
           <div className="swipe-hint-badge" style={{ marginBottom: '1rem' }}>
-            <span>👈 اسحب للأفق لمشاهدة أحدث الشهادات والاعتمادات 👉</span>
+            <span>{isRTL ? "👈 اسحب للأفق لمشاهدة أحدث الشهادات والاعتمادات 👉" : "👈 Swipe horizontally to view all credentials 👉"}</span>
           </div>
 
           <div className="mobile-carousel-wrapper">
             <div className="mobile-carousel-grid home-certs-grid">
-              {previewCertificates.map((cert) => (
-                <div 
-                  key={cert.id}
-                  className="corporate-card cert-preview-card"
-                  style={{ padding: '1.5rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
-                  onClick={() => setSelectedCert(cert)}
-                >
-                  <div>
-                    <div style={{ height: '140px', borderRadius: '12px', overflow: 'hidden', backgroundColor: '#f8fafc', marginBottom: '1rem', border: '1px solid #e2e8f0', padding: '0.5rem' }}>
-                      <img 
-                        src={cert.image} 
-                        alt={cert.title} 
-                        loading="lazy"
-                        decoding="async"
-                        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                      />
+              {previewCertificates.map((cert) => {
+                const certTitle = isRTL ? (cert.titleAr || cert.title) : (cert.titleEn || cert.title);
+                const certIssuer = isRTL ? (cert.issuerAr || cert.issuer) : (cert.issuerEn || cert.issuer);
+                return (
+                  <div 
+                    key={cert.id}
+                    className="corporate-card cert-preview-card"
+                    style={{ padding: '1.5rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+                    onClick={() => setSelectedCert(cert)}
+                  >
+                    <div>
+                      <div style={{ height: '140px', borderRadius: '12px', overflow: 'hidden', backgroundColor: '#f8fafc', marginBottom: '1rem', border: '1px solid #e2e8f0', padding: '0.5rem' }}>
+                        <img 
+                          src={cert.image} 
+                          alt={certTitle} 
+                          loading="lazy"
+                          decoding="async"
+                          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                        />
+                      </div>
+                      <div style={{ fontSize: '0.78rem', color: 'var(--brand-primary)', fontWeight: '700', marginBottom: '0.25rem' }}>
+                        {certIssuer}
+                      </div>
+                      <h4 style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '0.5rem', lineHeight: 1.4 }}>
+                        {certTitle}
+                      </h4>
                     </div>
-                    <div style={{ fontSize: '0.78rem', color: 'var(--brand-primary)', fontWeight: '700', marginBottom: '0.25rem' }}>
-                      {cert.issuer}
-                    </div>
-                    <h4 style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '0.5rem', lineHeight: 1.4 }}>
-                      {cert.title}
-                    </h4>
-                  </div>
 
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid #f1f5f9' }}>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{cert.date}</span>
-                    <span style={{ fontSize: '0.82rem', color: 'var(--brand-primary)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                      <span>معاينة</span>
-                      <ArrowUpLeft size={14} />
-                    </span>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid #f1f5f9' }}>
+                      <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{cert.date}</span>
+                      <span style={{ fontSize: '0.82rem', color: 'var(--brand-primary)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                        <span>{isRTL ? "معاينة" : "Preview"}</span>
+                        <ArrowUpLeft size={14} style={{ transform: isRTL ? 'none' : 'rotate(90deg)' }} />
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
         </div>
       </section>
 
-      {/* Verified Testimonials Preview (Matching Certificates Pattern) */}
+      {/* Verified Testimonials Preview */}
       <section className="home-section" style={{ padding: '4.5rem 0', backgroundColor: '#ffffff', borderTop: '1px solid #e2e8f0' }}>
         <div className="container-custom">
           
@@ -478,10 +494,10 @@ export default function Home() {
             <div>
               <div className="pill-badge pill-emerald" style={{ marginBottom: '0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
                 <Star size={14} />
-                <span>آراء وتوصيات رسمية</span>
+                <span>{isRTL ? "آراء وتوصيات رسمية" : "Verified Client & Leadership Endorsements"}</span>
               </div>
               <h2 style={{ fontSize: '2.25rem', fontWeight: '900', color: 'var(--text-primary)' }}>
-                ماذا يقول الموجهون والعملاء عن العمل معي
+                {isRTL ? "ماذا يقول الموجهون والعملاء عن العمل معي" : "What Mentors & Clients Say About Working With Me"}
               </h2>
             </div>
 
@@ -504,25 +520,30 @@ export default function Home() {
                 }}
               >
                 <Plus size={16} />
-                <span>أضف توصيتك</span>
+                <span>{isRTL ? "أضف توصيتك" : "Add Testimonial"}</span>
               </button>
 
               <Link to="/testimonials" className="btn-secondary" style={{ backgroundColor: '#ffffff' }}>
-                <span>عرض كافة التوصيات ({approvedTestimonials.length})</span>
-                <ArrowUpLeft size={16} />
+                <span>{isRTL ? `عرض كافة التوصيات (${approvedTestimonials.length})` : `View All Reviews (${approvedTestimonials.length})`}</span>
+                <ArrowUpLeft size={16} style={{ transform: isRTL ? 'none' : 'rotate(90deg)' }} />
               </Link>
             </div>
           </div>
 
           {/* Swipe Hint Badge for Mobile Devices */}
           <div className="swipe-hint-badge" style={{ marginBottom: '1rem' }}>
-            <span>👈 اسحب للأفق لمشاهدة آراء الموجهين والعملاء 👉</span>
+            <span>{isRTL ? "👈 اسحب للأفق لمشاهدة آراء الموجهون والعملاء 👉" : "👈 Swipe horizontally to view all client reviews 👉"}</span>
           </div>
 
           <div className="mobile-carousel-wrapper">
             <div className="mobile-carousel-grid home-testimonials-grid">
               {previewTestimonials.map((test) => {
-                const quoteText = test.quote || test.content || "";
+                const quoteText = isRTL ? (test.quoteAr || test.quote || test.content || "") : (test.quoteEn || test.quote || test.content || "");
+                const name = isRTL ? (test.nameAr || test.name) : (test.nameEn || test.name);
+                const role = isRTL ? (test.roleAr || test.role) : (test.roleEn || test.role);
+                const company = isRTL ? (test.companyAr || test.company) : (test.companyEn || test.company);
+                const badgeText = isRTL ? (test.badgeAr || test.badge || "توصية موثقة رسمياً") : (test.badgeEn || test.badge || "Verified Endorsement");
+
                 return (
                   <div 
                     key={test.id}
@@ -550,7 +571,7 @@ export default function Home() {
 
                       <span className="pill-badge pill-gold" style={{ fontSize: "0.78rem", display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
                         <ShieldCheck size={13} color="#d97706" />
-                        <span>{test.badge || "توصية موثقة رسمياً"}</span>
+                        <span>{badgeText}</span>
                       </span>
                     </div>
 
@@ -581,21 +602,21 @@ export default function Home() {
                       <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
                         <div style={{ width: "46px", height: "46px", borderRadius: "12px", overflow: "hidden", backgroundColor: "#eff6ff", border: "1.5px solid #cbd5e1", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
                           {test.image ? (
-                            <img src={test.image} alt={test.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                            <img src={test.image} alt={name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                           ) : (
                             <div style={{ width: "100%", height: "100%", backgroundColor: "#2563eb", color: "#ffffff", fontWeight: "900", fontSize: "1.1rem", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                              {test.name ? test.name.charAt(0) : "T"}
+                              {name ? name.charAt(0) : "T"}
                             </div>
                           )}
                         </div>
 
                         <div>
                           <div style={{ fontWeight: "800", color: "var(--text-primary)", fontSize: "0.95rem", display: "flex", alignItems: "center", gap: "0.35rem" }}>
-                            <span>{test.name}</span>
+                            <span>{name}</span>
                             <CheckCircle2 size={14} color="#2563eb" />
                           </div>
                           <div style={{ fontSize: "0.78rem", color: "var(--text-muted)", fontWeight: "600", marginTop: "0.15rem" }}>
-                            {test.role} — {test.company}
+                            {role} — {company}
                           </div>
                         </div>
                       </div>
@@ -606,7 +627,7 @@ export default function Home() {
                             href={test.proofUrl || test.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            title="زيارة رابط التوثيق الأصلي ↗"
+                            title={isRTL ? "زيارة رابط التوثيق الأصلي ↗" : "Visit Verification Source ↗"}
                             style={{
                               width: "36px",
                               height: "36px",
@@ -628,7 +649,7 @@ export default function Home() {
 
                         <button
                           onClick={() => setSelectedProofTestimonial(test)}
-                          title="معاينة التوثيق والإثبات"
+                          title={isRTL ? "معاينة التوثيق والإثبات" : "Preview Proof & Document"}
                           style={{
                             width: "36px",
                             height: "36px",
@@ -673,13 +694,13 @@ export default function Home() {
           >
             <div className="pill-badge pill-blue" style={{ marginBottom: '1rem' }}>
               <Send size={14} />
-              <span>جاهز للبدء فوراً</span>
+              <span>{isRTL ? "جاهز للبدء فوراً" : "Ready to Start Immediately"}</span>
             </div>
             <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', fontWeight: '900', color: 'var(--text-primary)', marginBottom: '1rem' }}>
-              هل ترغب في بناء منظومة برمجية متينة أو توظيف كفاءة واعدة؟
+              {isRTL ? "هل ترغب في بناء منظومة برمجية متينة أو توظيف كفاءة واعدة؟" : "Looking to build a robust web system or hire top tech talent?"}
             </h2>
             <p style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', maxWidth: '650px', margin: '0 auto 2rem', lineHeight: 1.7 }}>
-              يسعدني مناقشة الفرص الوظيفية (Full-time / Remote) أو المشاريع البرمجية واستشارات الـ Backend.
+              {isRTL ? "يسعدني مناقشة الفرص الوظيفية (Full-time / Remote) أو المشاريع البرمجية واستشارات الـ Backend." : "Available for full-time/remote roles, software engineering contracts, and backend consultancy."}
             </p>
             <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem' }}>
               <a 
@@ -690,15 +711,15 @@ export default function Home() {
                 style={{ padding: '0.85rem 2rem', fontSize: '1rem', backgroundColor: '#10b981', borderColor: '#10b981' }}
               >
                 <Send size={18} />
-                <span>محادثة مباشرة عبر WhatsApp</span>
+                <span>{isRTL ? "محادثة مباشرة عبر WhatsApp" : "Direct Chat on WhatsApp"}</span>
               </a>
               <Link 
                 to="/contact" 
                 className="btn-secondary"
                 style={{ padding: '0.85rem 1.85rem', fontSize: '1rem', backgroundColor: '#ffffff' }}
               >
-                <span>صفحة التواصل والبريد</span>
-                <ArrowUpLeft size={18} />
+                <span>{isRTL ? "صفحة التواصل والبريد" : "Contact & Email Page"}</span>
+                <ArrowUpLeft size={18} style={{ transform: isRTL ? 'none' : 'rotate(90deg)' }} />
               </Link>
             </div>
           </div>
