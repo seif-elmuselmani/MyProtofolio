@@ -40,9 +40,17 @@ export default function TrustPartnersTicker() {
         <div className="partners-grid-wrapper">
           <div className="partners-grid">
             {trustPartners.map((partner) => {
-              const partnerName = isRTL ? partner.name : (partner.enName || partner.name);
-              const partnerBadge = isRTL ? partner.badge : (partner.enBadge || partner.badge);
-              const linkText = isRTL ? partner.linkText : (partner.enLinkText || partner.linkText || 'View Credentials');
+              const partnerName = isRTL 
+                ? (partner.nameAr || partner.name || partner.nameEn || partner.enName) 
+                : (partner.nameEn || partner.enName || partner.name || partner.nameAr);
+
+              const partnerBadge = isRTL 
+                ? (partner.badgeAr || partner.badge || partner.role || partner.categoryAr) 
+                : (partner.badgeEn || partner.enBadge || partner.badge || partner.role || partner.badgeAr);
+
+              const linkText = isRTL 
+                ? (partner.linkTextAr || partner.linkText || 'استعراض الاعتماد') 
+                : (partner.linkTextEn || partner.enLinkText || partner.linkText || 'View Credentials');
 
               return (
                 <div
@@ -75,8 +83,8 @@ export default function TrustPartnersTicker() {
 
                   {/* Middle: Partner Title & Badge */}
                   <div className="partner-info-box">
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', marginBottom: '0.4rem' }}>
-                      <span style={{ fontWeight: '800', color: 'var(--text-primary)', lineHeight: '1.3' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', marginBottom: '0.4rem', textAlign: 'center' }}>
+                      <span style={{ fontWeight: '800', color: 'var(--text-primary)', lineHeight: '1.3', fontSize: '0.92rem' }}>
                         {partnerName}
                       </span>
                       <CheckCircle2 size={16} color="#10b981" style={{ flexShrink: 0 }} />
@@ -107,7 +115,7 @@ export default function TrustPartnersTicker() {
                     <Link
                       to={partner.linkUrl || "/credentials"}
                       className="partner-link-btn"
-                      style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.8rem', fontWeight: '800', color: '#2563eb' }}
+                      style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.35rem', fontSize: '0.8rem', fontWeight: '800', color: '#2563eb' }}
                     >
                       <span>{linkText}</span>
                       <ArrowUpLeft size={14} style={{ transform: isRTL ? 'none' : 'rotate(90deg)' }} />
@@ -136,11 +144,13 @@ export default function TrustPartnersTicker() {
                           cursor: 'pointer',
                           display: 'inline-flex',
                           alignItems: 'center',
-                          gap: '0.3rem'
+                          justifyContent: 'center',
+                          gap: '0.3rem',
+                          width: '100%'
                         }}
                       >
                         <Eye size={13} color="#2563eb" />
-                        <span>{isRTL ? "معاينة الإثبات" : "Proof"}</span>
+                        <span>{isRTL ? "معاينة الإثبات" : "View Proof"}</span>
                       </button>
                     )}
 
@@ -193,7 +203,9 @@ export default function TrustPartnersTicker() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
                 <FileCheck size={20} color="#2563eb" />
                 <h3 style={{ fontSize: '1.05rem', fontWeight: '800', color: '#0f172a', margin: 0 }}>
-                  {isRTL ? (selectedProof.proofTitle || `إثبات واعتماد رسمى - ${selectedProof.name}`) : (selectedProof.enProofTitle || selectedProof.proofTitle || `Official Proof - ${selectedProof.enName || selectedProof.name}`)}
+                  {isRTL 
+                    ? (selectedProof.proofTitleAr || selectedProof.proofTitle || `إثبات واعتماد رسمى - ${selectedProof.nameAr || selectedProof.name}`) 
+                    : (selectedProof.proofTitleEn || selectedProof.enProofTitle || selectedProof.proofTitle || `Official Proof - ${selectedProof.nameEn || selectedProof.enName || selectedProof.name}`)}
                 </h3>
               </div>
               <button
@@ -208,7 +220,7 @@ export default function TrustPartnersTicker() {
             <div style={{ padding: '1.25rem', overflowY: 'auto', flexGrow: 1, backgroundColor: '#0f172a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <img 
                 src={selectedProof.proofUrl} 
-                alt={selectedProof.proofTitle}
+                alt={selectedProof.proofTitleAr || selectedProof.proofTitle}
                 style={{ maxWidth: '100%', maxHeight: '70vh', objectFit: 'contain', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }} 
               />
             </div>

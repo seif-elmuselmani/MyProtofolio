@@ -70,7 +70,7 @@ export function DynamicPortfolioProvider({ children }) {
     // Sync logo paths from defaultData to ensure updated assets display correctly
     return parsed.map(p => {
       const defaultP = (defaultData.trustPartners || []).find(dp => dp.id === p.id);
-      return defaultP ? { ...p, logo: defaultP.logo } : p;
+      return defaultP ? { ...defaultP, ...p, logo: defaultP.logo } : p;
     });
   });
 
