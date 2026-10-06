@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Code2, Filter, Sparkles, Search, Layers, X, CheckCircle2 } from 'lucide-react';
 import { usePortfolioData } from '../context/DynamicPortfolioContext';
+import { useLanguage } from '../context/LanguageContext';
 import ProjectCard from '../components/ProjectCard';
 
 export default function Projects() {
   const { webProjects, categories } = usePortfolioData();
+  const { isRTL, t } = useLanguage();
 
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -23,10 +25,14 @@ export default function Projects() {
 
   const filteredProjects = (webProjects || []).filter(p => {
     const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
+    const title = isRTL ? (p.titleAr || p.title) : (p.titleEn || p.title);
+    const subtitle = isRTL ? (p.subtitleAr || p.subtitle) : (p.subtitleEn || p.subtitle);
+    const summary = isRTL ? (p.summaryAr || p.summary) : (p.summaryEn || p.summary);
+
     const matchesSearch = 
-      (p.title || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (p.subtitle || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (p.summary || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (title || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (subtitle || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (summary || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
       (p.tags || []).some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesCategory && matchesSearch;
   });
@@ -39,13 +45,15 @@ export default function Projects() {
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <div className="pill-badge pill-blue" style={{ marginBottom: '1rem', display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}>
             <Code2 size={16} />
-            <span>المشاريع ودراسات الحالة الهندسية</span>
+            <span>{isRTL ? 'المشاريع ودراسات الحالة الهندسية' : 'Engineering Case Studies'}</span>
           </div>
           <h1 style={{ fontSize: 'clamp(2rem, 4.5vw, 3.2rem)', fontWeight: '900', color: '#0f172a', marginBottom: '0.85rem', lineHeight: 1.25 }}>
-            المشاريع الهندسية و الـ Architecture
+            {isRTL ? 'المشاريع الهندسية و المعمارية' : 'Software Engineering & Architecture Portfolio'}
           </h1>
           <p style={{ color: '#64748b', fontSize: '1.08rem', maxWidth: '720px', margin: '0 auto', lineHeight: 1.8, fontWeight: '500' }}>
-            معرض الأنظمة البرمجية المباشرة والمشاريع الحاصلة على المركز الأول، مع دراسات حالة تفصيلية للمعمارية البرمجية والهندسة الخلفية.
+            {isRTL 
+              ? 'معرض الأنظمة البرمجية المباشرة والمشاريع الحاصلة على المركز الأول، مع دراسات حالة تفصيلية للمعمارية البرمجية والهندسة الخلفية.'
+              : 'Showcase of live production web systems, 1st place nationwide award-winning projects, and in-depth software architecture case studies.'}
           </p>
         </div>
 
@@ -65,10 +73,10 @@ export default function Projects() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="ابحث باسم المشروع، المعمارية، أو التقنية (مثال: .NET 8, Clean Architecture, Node.js, React)..."
+              placeholder={isRTL ? "ابحث باسم المشروع، المعمارية، أو التقنية (مثال: .NET 8, Clean Architecture, Node.js, React)..." : "Search by project, architecture, or stack (.NET 8, Clean Architecture, React, Node.js)..."}
               style={{
                 width: '100%',
-                padding: '0.95rem 1.25rem 0.95rem 3.2rem',
+                padding: isRTL ? '0.95rem 1.25rem 0.95rem 3.2rem' : '0.95rem 3.2rem 0.95rem 1.25rem',
                 borderRadius: '16px',
                 backgroundColor: '#ffffff',
                 border: '1.5px solid #cbd5e1',
@@ -83,14 +91,14 @@ export default function Projects() {
             <Search 
               size={20} 
               color="#2563eb" 
-              style={{ position: 'absolute', left: '1.25rem', top: '50%', transform: 'translateY(-50%)' }} 
+              style={{ position: 'absolute', [isRTL ? 'left' : 'right']: '1.25rem', top: '50%', transform: 'translateY(-50%)' }} 
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
                 style={{
                   position: 'absolute',
-                  right: '1rem',
+                  [isRTL ? 'right' : 'left']: '1rem',
                   top: '50%',
                   transform: 'translateY(-50%)',
                   background: 'none',
@@ -101,14 +109,14 @@ export default function Projects() {
                   display: 'flex',
                   alignItems: 'center'
                 }}
-                title="مسح النص"
+                title={isRTL ? "مسح النص" : "Clear search"}
               >
                 <X size={18} />
               </button>
             )}
           </div>
 
-          {/* Dynamic Categories Tabs (Only Non-Zero Categories) */}
+          {/* Dynamic Categories Tabs */}
           <div 
             className="category-tabs-wrapper"
             style={{
@@ -121,7 +129,7 @@ export default function Projects() {
             {activeCategories.map((cat) => {
               const isActive = activeCategory === cat.id;
               const count = getCategoryCount(cat.id);
-              const label = cat.label || cat.nameAr || cat.id;
+              const label = isRTL ? (cat.labelAr || cat.label || cat.nameAr) : (cat.labelEn || cat.nameEn || cat.label || cat.id);
 
               return (
                 <button
@@ -148,10 +156,10 @@ export default function Projects() {
                     style={{ 
                       backgroundColor: isActive ? 'rgba(255,255,255,0.25)' : '#f1f5f9', 
                       color: isActive ? '#ffffff' : '#2563eb', 
-                      padding: '0.15rem 0.55rem', 
-                      borderRadius: '9999px', 
-                      fontSize: '0.78rem',
-                      fontWeight: '800' 
+                      fontSize: '0.75rem', 
+                      padding: '0.1rem 0.5rem', 
+                      borderRadius: '9999px',
+                      fontWeight: '800'
                     }}
                   >
                     {count}
@@ -160,30 +168,37 @@ export default function Projects() {
               );
             })}
           </div>
-
-          {/* Search Result Summary Badge */}
-          {searchQuery && (
-            <div style={{ textAlign: 'center', marginTop: '0.25rem' }}>
-              <span className="pill-badge pill-blue" style={{ fontSize: '0.85rem' }}>
-                نتائج البحث عن "{searchQuery}": {filteredProjects.length} مشاريع هندسية
-              </span>
-            </div>
-          )}
-
         </div>
 
-        {/* Projects Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '2.25rem' }}>
-          {filteredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
-
-        {/* Empty Search Result Fallback */}
-        {filteredProjects.length === 0 && (
-          <div className="corporate-card" style={{ textAlign: 'center', padding: '4rem 2rem', color: '#64748b', maxWidth: '520px', margin: '0 auto', backgroundColor: '#ffffff', borderRadius: '20px', border: '1px solid #cbd5e1' }}>
-            <p style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0f172a', marginBottom: '0.5rem' }}>لا توجد مشاريع تطابق البحث</p>
-            <p style={{ fontSize: '0.92rem', lineHeight: 1.6 }}>جرب البحث باستخدام كلمات مفتاحية أخرى مثل (.NET, Node.js, AI, Clean Architecture) أو اختار فئة "الكل".</p>
+        {/* Projects Grid Display */}
+        {filteredProjects.length > 0 ? (
+          <div 
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+              gap: '2rem'
+            }}
+          >
+            {filteredProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
+        ) : (
+          <div style={{ textAlign: 'center', padding: '4rem 1rem', backgroundColor: '#ffffff', borderRadius: '24px', border: '1px solid #e2e8f0', maxWidth: '600px', margin: '0 auto' }}>
+            <Layers size={48} color="#94a3b8" style={{ marginBottom: '1rem' }} />
+            <h3 style={{ fontSize: '1.25rem', fontWeight: '800', color: '#0f172a', marginBottom: '0.5rem' }}>
+              {isRTL ? 'لم يتم العثور على مشاريع مطابقة' : 'No matching projects found'}
+            </h3>
+            <p style={{ color: '#64748b', fontSize: '0.92rem', marginBottom: '1.5rem' }}>
+              {isRTL ? 'جرب البحث بكلمات أخرى أو اختر تصنيفاً مختلفاً من القائمة.' : 'Try searching with different keywords or select another category filter.'}
+            </p>
+            <button
+              onClick={() => { setActiveCategory('all'); setSearchQuery(''); }}
+              className="btn-primary"
+              style={{ padding: '0.6rem 1.4rem', fontSize: '0.88rem' }}
+            >
+              {isRTL ? 'إعادة ضبط البحث والتصنيفات' : 'Reset Filters & Search'}
+            </button>
           </div>
         )}
 
