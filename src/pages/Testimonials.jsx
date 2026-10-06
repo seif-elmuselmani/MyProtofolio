@@ -14,26 +14,37 @@ import {
   Filter
 } from "lucide-react";
 import { usePortfolioData } from "../context/DynamicPortfolioContext";
+import { useLanguage } from "../context/LanguageContext";
 import SubmitTestimonialModal from "../components/SubmitTestimonialModal";
 import TestimonialProofModal from "../components/TestimonialProofModal";
 
 export default function Testimonials() {
   const { testimonialsList } = usePortfolioData();
+  const { isRTL } = useLanguage();
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   const [selectedProofTestimonial, setSelectedProofTestimonial] = useState(null);
-  const [activeFilter, setActiveFilter] = useState("all"); // "all" | "nti" | "nafezly" | "linkedin"
+  const [activeFilter, setActiveFilter] = useState("all");
 
   // Filter approved testimonials
   const approvedTestimonials = (testimonialsList || []).filter(t => t.status !== "pending");
 
-    const filteredTestimonials = approvedTestimonials.filter(t => {
+  const filteredTestimonials = approvedTestimonials.filter(t => {
     if (activeFilter === "ischool") return t.category === "ischool" || (t.company && t.company.includes("iSchool"));
-    if (activeFilter === "parent") return t.category === "parent" || (t.role && t.role.includes("ولي أمر"));
-    if (activeFilter === "student") return t.category === "student" || (t.role && t.role.includes("طالب"));
+    if (activeFilter === "parent") return t.category === "parent" || (t.role && (t.role.includes("ولي أمر") || t.role.includes("Parent")));
+    if (activeFilter === "student") return t.category === "student" || (t.role && (t.role.includes("طالب") || t.role.includes("Student")));
     if (activeFilter === "nti") return (t.company && t.company.includes("NTI")) || (t.source && t.source.includes("NTI"));
-    if (activeFilter === "nafezly") return (t.source && t.source.includes("Nafezly")) || (t.company && t.company.includes("Nafezly")) || (t.company && t.company.includes("Kafiil"));
+    if (activeFilter === "nafezly") return (t.source && (t.source.includes("Nafezly") || t.source.includes("Mostaql"))) || (t.company && (t.company.includes("Nafezly") || t.company.includes("Kafiil")));
     return true;
   });
+
+  const filterTabs = [
+    { key: "all", label: isRTL ? `كافة التوصيات (${approvedTestimonials.length})` : `All Reviews (${approvedTestimonials.length})` },
+    { key: "ischool", label: isRTL ? "إشادات قيادات iSchool" : "iSchool Leadership" },
+    { key: "parent", label: isRTL ? "آراء أولياء الأمور" : "Parent Reviews" },
+    { key: "student", label: isRTL ? "رسالات شكر الطلاب" : "Student Commendations" },
+    { key: "nti", label: isRTL ? "توصيات NTI الرسمية" : "NTI Official Letters" },
+    { key: "nafezly", label: isRTL ? "عملاء مستقل / نفذلي" : "Freelance Client Reviews" }
+  ];
 
   return (
     <div className="animate-fade-in" style={{ paddingTop: "6.5rem", minHeight: "85vh", paddingBottom: "5rem", backgroundColor: "#f8fafc" }}>
@@ -53,15 +64,17 @@ export default function Testimonials() {
         >
           <div className="pill-badge pill-gold" style={{ marginBottom: "1rem", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
             <Sparkles size={15} />
-            <span>شهادات موثقة وإشادات رسمية من خبراء الصناعة</span>
+            <span>{isRTL ? "شهادات موثقة وإشادات رسمية من خبراء الصناعة" : "Verified Endorsements & Executive Commendations"}</span>
           </div>
 
           <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: "900", color: "var(--text-primary)", marginBottom: "1rem", lineHeight: 1.25 }}>
-            ماذا يقول الموجهون والعملاء عن العمل معي
+            {isRTL ? "ماذا يقول الموجهون والعملاء عن العمل معي" : "What Mentors, Leaders & Clients Say"}
           </h1>
 
           <p style={{ fontSize: "1.05rem", color: "var(--text-secondary)", maxWidth: "720px", margin: "0 auto 2rem", lineHeight: 1.8 }}>
-            توصيات إدارية وتقنية رسمية من قادة المعهد القومي للاتصالات (NTI) وموجهي وزارة الاتصالات DEPI، بالإضافة لإشادات عملاء منصة مستقل وتنفذي للعمل الحر (تقييم 5.0/5.0).
+            {isRTL 
+              ? "توصيات إدارية وتقنية رسمية من قادة المعهد القومي للاتصالات (NTI) وموجهي وزارة الاتصالات DEPI، بالإضافة لإشادات عملاء منصة مستقل وتنفذي للعمل الحر (تقييم 5.0/5.0)."
+              : "Official technical & administrative letters from NTI leaders, MCIT mentors, and 5.0/5.0 rated freelance clients on Mostaql & Nafezly."}
           </p>
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", justifyContent: "center", alignItems: "center" }}>
@@ -75,7 +88,7 @@ export default function Testimonials() {
               }}
             >
               <Plus size={18} />
-              <span>أضف توصيتك أو تقييمك</span>
+              <span>{isRTL ? "أضف توصيتك أو تقييمك" : "Submit Your Testimonial"}</span>
             </button>
           </div>
         </div>
@@ -94,19 +107,12 @@ export default function Testimonials() {
             backgroundColor: "#ffffff",
             borderRadius: "9999px",
             border: "1px solid #e2e8f0",
-            maxWidth: "700px",
+            maxWidth: "780px",
             margin: "0 auto",
             boxShadow: "0 2px 10px rgba(15, 23, 42, 0.04)"
           }}
         >
-                    {[
-            { key: "all", label: `كافة التوصيات (${approvedTestimonials.length})` },
-            { key: "ischool", label: "إشادات قيادات iSchool" },
-            { key: "parent", label: "آراء أولياء الأمور" },
-            { key: "student", label: "رسالات شكر الطلاب" },
-            { key: "nti", label: "توصيات NTI الرسمية" },
-            { key: "nafezly", label: "عملاء مستقل / نفذلي" }
-          ].map((tab) => {
+          {filterTabs.map((tab) => {
             const isActive = activeFilter === tab.key;
             return (
               <button
@@ -141,7 +147,12 @@ export default function Testimonials() {
           }}
         >
           {filteredTestimonials.map((test, idx) => {
-            const quoteText = test.quote || test.content || "";
+            const quoteText = isRTL ? (test.quoteAr || test.quote || test.content || "") : (test.quoteEn || test.quote || test.content || "");
+            const name = isRTL ? (test.nameAr || test.name) : (test.nameEn || test.name);
+            const role = isRTL ? (test.roleAr || test.role) : (test.roleEn || test.role);
+            const company = isRTL ? (test.companyAr || test.company) : (test.companyEn || test.company);
+            const badge = isRTL ? (test.badgeAr || test.badge || "توصية موثقة رسمياً") : (test.badgeEn || test.badge || "Verified Endorsement");
+
             return (
               <div 
                 key={test.id || idx}
@@ -178,7 +189,7 @@ export default function Testimonials() {
                       }}
                     >
                       <ShieldCheck size={13} color="#d97706" />
-                      <span>{test.badge || "توصية موثقة رسمياً"}</span>
+                      <span>{badge}</span>
                     </span>
                   </div>
 
@@ -218,7 +229,7 @@ export default function Testimonials() {
                         }}
                       >
                         <Eye size={14} />
-                        <span>قراءة التوصية الكاملة مع التوثيق</span>
+                        <span>{isRTL ? "قراءة التوصية الكاملة مع التوثيق" : "Read Full Letter & Proof"}</span>
                       </button>
                     )}
                   </div>
@@ -231,21 +242,21 @@ export default function Testimonials() {
                     <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
                       <div style={{ width: "48px", height: "48px", borderRadius: "12px", overflow: "hidden", backgroundColor: "#eff6ff", border: "1.5px solid #cbd5e1", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
                         {test.image ? (
-                          <img src={test.image} alt={test.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                          <img src={test.image} alt={name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                         ) : (
                           <div style={{ width: "100%", height: "100%", backgroundColor: "#2563eb", color: "#ffffff", fontWeight: "900", fontSize: "1.1rem", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                            {test.name ? test.name.charAt(0) : "T"}
+                            {name ? name.charAt(0) : "T"}
                           </div>
                         )}
                       </div>
 
                       <div>
                         <div style={{ fontWeight: "800", color: "var(--text-primary)", fontSize: "0.96rem", display: "flex", alignItems: "center", gap: "0.35rem" }}>
-                          <span>{test.name}</span>
+                          <span>{name}</span>
                           <CheckCircle2 size={14} color="#2563eb" />
                         </div>
                         <div style={{ fontSize: "0.78rem", color: "var(--text-muted)", fontWeight: "600", marginTop: "0.15rem" }}>
-                          {test.role} — {test.company}
+                          {role} — {company}
                         </div>
                       </div>
                     </div>
@@ -256,7 +267,7 @@ export default function Testimonials() {
                           href={test.proofUrl || test.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          title="زيارة رابط التوثيق الأصلي ↗"
+                          title={isRTL ? "زيارة رابط التوثيق الأصلي ↗" : "Visit Verification Source ↗"}
                           style={{
                             width: "36px",
                             height: "36px",
@@ -278,7 +289,7 @@ export default function Testimonials() {
 
                       <button
                         onClick={() => setSelectedProofTestimonial(test)}
-                        title="معاينة التوثيق والإثبات"
+                        title={isRTL ? "معاينة التوثيق والإثبات" : "Preview Proof & Document"}
                         style={{
                           width: "36px",
                           height: "36px",

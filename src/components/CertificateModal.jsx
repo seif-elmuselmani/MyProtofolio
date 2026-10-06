@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X, ExternalLink, Award, Calendar, ShieldCheck, Download, ChevronRight, ChevronLeft } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function CertificateModal({ cert, onClose, onNext, onPrev, currentIndex, totalCount }) {
+  const { isRTL } = useLanguage();
+
   useEffect(() => {
     if (cert) {
       document.body.style.overflow = 'hidden';
@@ -15,9 +18,9 @@ export default function CertificateModal({ cert, onClose, onNext, onPrev, curren
       if (e.key === 'Escape') {
         onClose();
       } else if (e.key === 'ArrowRight') {
-        if (onPrev) onPrev();
+        if (isRTL ? onPrev : onNext) (isRTL ? onPrev : onNext)();
       } else if (e.key === 'ArrowLeft') {
-        if (onNext) onNext();
+        if (isRTL ? onNext : onPrev) (isRTL ? onNext : onPrev)();
       }
     };
 
@@ -26,9 +29,13 @@ export default function CertificateModal({ cert, onClose, onNext, onPrev, curren
       document.body.style.overflow = 'unset';
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [cert, onClose, onNext, onPrev]);
+  }, [cert, onClose, onNext, onPrev, isRTL]);
 
   if (!cert) return null;
+
+  const certTitle = isRTL ? (cert.titleAr || cert.title) : (cert.titleEn || cert.title);
+  const certIssuer = isRTL ? (cert.issuerAr || cert.issuer) : (cert.issuerEn || cert.issuer);
+  const certDesc = isRTL ? (cert.descriptionAr || cert.description) : (cert.descriptionEn || cert.description);
 
   return createPortal(
     <div 
@@ -70,11 +77,11 @@ export default function CertificateModal({ cert, onClose, onNext, onPrev, curren
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             {typeof currentIndex === 'number' && typeof totalCount === 'number' && totalCount > 1 && (
               <span className="pill-badge pill-gold" style={{ fontSize: '0.8rem', padding: '0.25rem 0.75rem' }}>
-                {currentIndex + 1} من {totalCount}
+                {currentIndex + 1} {isRTL ? 'من' : 'of'} {totalCount}
               </span>
             )}
             <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-              (يمكن التنقل بأسهم الكيبورد ➔ ⬅)
+              ({isRTL ? 'يمكن التنقل بأسهم الكيبورد ➔ ⬅' : 'Navigate using keyboard arrow keys ⬅ ➔'})
             </span>
           </div>
 
@@ -83,7 +90,7 @@ export default function CertificateModal({ cert, onClose, onNext, onPrev, curren
             {onPrev && (
               <button
                 onClick={onPrev}
-                title="الشهادة السابقة (السهم الأيمن)"
+                title={isRTL ? "الشهادة السابقة" : "Previous Credential"}
                 style={{
                   padding: '0.4rem 0.75rem',
                   borderRadius: '10px',
@@ -99,8 +106,11 @@ export default function CertificateModal({ cert, onClose, onNext, onPrev, curren
                   transition: 'var(--transition-smooth)'
                 }}
               >
-                <span>السابقة</span>
-                <ChevronRight size={18} />
+                {isRTL ? (
+                  <><span>السابقة</span><ChevronRight size={18} /></>
+                ) : (
+                  <><ChevronLeft size={18} /><span>Prev</span></>
+                )}
               </button>
             )}
 
@@ -108,7 +118,7 @@ export default function CertificateModal({ cert, onClose, onNext, onPrev, curren
             {onNext && (
               <button
                 onClick={onNext}
-                title="الشهادة التالية (السهم الأيسر)"
+                title={isRTL ? "الشهادة التالية" : "Next Credential"}
                 style={{
                   padding: '0.4rem 0.75rem',
                   borderRadius: '10px',
@@ -124,8 +134,11 @@ export default function CertificateModal({ cert, onClose, onNext, onPrev, curren
                   transition: 'var(--transition-smooth)'
                 }}
               >
-                <ChevronLeft size={18} />
-                <span>التالية</span>
+                {isRTL ? (
+                  <><ChevronLeft size={18} /><span>التالية</span></>
+                ) : (
+                  <><span>Next</span><ChevronRight size={18} /></>
+                )}
               </button>
             )}
 
@@ -145,7 +158,7 @@ export default function CertificateModal({ cert, onClose, onNext, onPrev, curren
                 justifyContent: 'center',
                 transition: 'var(--transition-smooth)'
               }}
-              aria-label="إغلاق"
+              aria-label={isRTL ? "إغلاق" : "Close"}
             >
               <X size={20} />
             </button>
@@ -170,10 +183,10 @@ export default function CertificateModal({ cert, onClose, onNext, onPrev, curren
           </div>
           <div>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: '600' }}>
-              {cert.issuer}
+              {certIssuer}
             </div>
             <h3 style={{ fontSize: '1.35rem', fontWeight: '800', color: 'var(--text-primary)', lineHeight: 1.3 }}>
-              {cert.title}
+              {certTitle}
             </h3>
           </div>
         </div>
@@ -195,17 +208,18 @@ export default function CertificateModal({ cert, onClose, onNext, onPrev, curren
         >
           <img 
             src={cert.image} 
-            alt={cert.title} 
+            alt={certTitle} 
             style={{ width: '100%', height: 'auto', maxHeight: '460px', objectFit: 'contain', display: 'block' }} 
           />
 
-          {/* Left / Right Nav Overlays for fast clicking */}
+          {/* Side Nav Overlays */}
           {onPrev && (
             <button
               onClick={onPrev}
               style={{
                 position: 'absolute',
-                right: '10px',
+                right: isRTL ? '10px' : 'auto',
+                left: isRTL ? 'auto' : '10px',
                 top: '50%',
                 transform: 'translateY(-50%)',
                 width: '42px',
@@ -220,9 +234,9 @@ export default function CertificateModal({ cert, onClose, onNext, onPrev, curren
                 justifyContent: 'center',
                 boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
               }}
-              title="الشهادة السابقة"
+              title={isRTL ? "الشهادة السابقة" : "Previous"}
             >
-              <ChevronRight size={24} />
+              {isRTL ? <ChevronRight size={24} /> : <ChevronLeft size={24} />}
             </button>
           )}
 
@@ -231,7 +245,8 @@ export default function CertificateModal({ cert, onClose, onNext, onPrev, curren
               onClick={onNext}
               style={{
                 position: 'absolute',
-                left: '10px',
+                left: isRTL ? '10px' : 'auto',
+                right: isRTL ? 'auto' : '10px',
                 top: '50%',
                 transform: 'translateY(-50%)',
                 width: '42px',
@@ -246,9 +261,9 @@ export default function CertificateModal({ cert, onClose, onNext, onPrev, curren
                 justifyContent: 'center',
                 boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
               }}
-              title="الشهادة التالية"
+              title={isRTL ? "الشهادة التالية" : "Next"}
             >
-              <ChevronLeft size={24} />
+              {isRTL ? <ChevronLeft size={24} /> : <ChevronRight size={24} />}
             </button>
           )}
         </div>
@@ -268,24 +283,24 @@ export default function CertificateModal({ cert, onClose, onNext, onPrev, curren
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
             <Calendar size={16} color="var(--brand-primary)" />
-            <span>التاريخ: <strong>{cert.date || cert.issueDate}</strong></span>
+            <span>{isRTL ? 'التاريخ:' : 'Date:'} <strong>{cert.date || cert.issueDate}</strong></span>
           </div>
           {(cert.verificationId || cert.credentialId) && (
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
               <ShieldCheck size={16} color="var(--brand-emerald)" />
-              <span>التحقق الرقمي: <strong>{cert.verificationId || cert.credentialId}</strong></span>
+              <span>{isRTL ? 'التحقق الرقمي:' : 'Credential Verification:'} <strong>{cert.verificationId || cert.credentialId}</strong></span>
             </div>
           )}
         </div>
 
         {/* Description */}
-        {cert.description && (
+        {certDesc && (
           <div style={{ marginBottom: '1.25rem' }}>
             <h4 style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--text-muted)', marginBottom: '0.4rem' }}>
-              تفاصيل الاعتماد والمهارات:
+              {isRTL ? 'تفاصيل الاعتماد والمهارات:' : 'Credential & Skill Details:'}
             </h4>
             <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0 }}>
-              {cert.description}
+              {certDesc}
             </p>
           </div>
         )}
@@ -301,7 +316,7 @@ export default function CertificateModal({ cert, onClose, onNext, onPrev, curren
               style={{ fontSize: '0.85rem', padding: '0.5rem 1.15rem' }}
             >
               <Download size={15} />
-              <span>تحميل المستند الرسمي (PDF)</span>
+              <span>{isRTL ? 'تحميل المستند الرسمي (PDF)' : 'Download Official PDF'}</span>
             </a>
           )}
           <a 
@@ -312,7 +327,7 @@ export default function CertificateModal({ cert, onClose, onNext, onPrev, curren
             style={{ fontSize: '0.85rem', padding: '0.5rem 1.15rem' }}
           >
             <ExternalLink size={15} />
-            <span>فتح الصورة بالحجم الكامل</span>
+            <span>{isRTL ? 'فتح الصورة بالحجم الكامل' : 'Open Full High-Res Image'}</span>
           </a>
         </div>
 

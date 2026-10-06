@@ -23,9 +23,11 @@ import {
   Send
 } from "lucide-react";
 import { usePortfolioData } from "../context/DynamicPortfolioContext";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Teaching() {
   const { personalInfo, teachingExperience, testimonialsList } = usePortfolioData();
+  const { isRTL } = useLanguage();
   const [zoomedImage, setZoomedImage] = useState(null);
 
   const { stats, experienceList } = teachingExperience;
@@ -39,45 +41,55 @@ export default function Teaching() {
   const sessionPhotos = [
     {
       src: "/assets/teaching/ischool-live-session.png",
-      title: "خبرة وتجربة التدريس أونلاين عبر منصة iSchool",
-      desc: "تصور توضيحي يعكس بيئة المحاضرات والسيشنات أونلاين، مراعاة لسياسة الخصوصية وعدم نشر صور الطلاب الناشئين.",
+      title: isRTL ? "خبرة وتجربة التدريس أونلاين عبر منصة iSchool" : "Online Live Tutoring Experience on iSchool",
+      desc: isRTL 
+        ? "تصور توضيحي يعكس بيئة المحاضرات والسيشنات أونلاين، مراعاة لسياسة الخصوصية وعدم نشر صور الطلاب الناشئين."
+        : "Visual representation reflecting the interactive online lecture environment while preserving student privacy.",
       link: "https://www.linkedin.com/posts/seif-elmuselmani_%D8%A7%D9%84%D8%B4%D9%87%D8%B1-%D8%AF%D9%87-%D8%A7%D8%AA%D8%B9%D8%B1%D8%B6-%D8%B9%D9%84%D9%8A%D8%A7-%D9%81%D8%B1%D8%B5%D8%A9-%D8%A5%D9%86%D9%8A-%D8%A3%D8%AF%D9%8A-%D8%B3%D9%8A%D8%B4%D9%86%D8%A7%D8%AA-%D8%A3%D9%88%D9%86%D9%84%D8%A7%D9%8A%D9%86-activity-7508549064591069184-COuP",
-      linkText: "قراءة منشور تجربة الأونلاين على LinkedIn ↗"
+      linkText: isRTL ? "قراءة منشور تجربة الأونلاين على LinkedIn ↗" : "Read Online Tutoring Post on LinkedIn ↗"
     },
     {
       src: "/assets/teaching/offline-sessions.png",
-      title: "خبرة عملية مثبتة في إدارة الجلسات والمحاضرات الأوفلاين (In-Person)",
-      desc: "تصور توضيحي يجسد تفاعل الطلاب والتواصل المباشر والحضوري في قاعات التدريب.",
+      title: isRTL ? "خبرة عملية مثبتة في إدارة الجلسات والمحاضرات الأوفلاين (In-Person)" : "Proven In-Person Classroom Tutoring & Workshops",
+      desc: isRTL
+        ? "تصور توضيحي يجسد تفاعل الطلاب والتواصل المباشر والحضوري في قاعات التدريب."
+        : "Visual representation showcasing active in-person student engagement and hands-on coding sessions.",
       link: "https://lnkd.in/p/emGPyist",
-      linkText: "قراءة منشور تجربة التدريس الأوفلاين على LinkedIn ↗"
+      linkText: isRTL ? "قراءة منشور تجربة التدريس الأوفلاين على LinkedIn ↗" : "Read In-Person Tutoring Post on LinkedIn ↗"
     }
   ];
 
   // Scholarship Proofs
   const scholarshipProofs = [
     {
-      title: "🎓 بكالوريوس علوم الحاسب (CS) — تقدير جيد جداً و A+ بمشروع التخرج",
-      issuer: "كلية الحاسبات والمعلومات — جامعة الزقازيق",
+      title: isRTL ? "🎓 بكالوريوس علوم الحاسب (CS) — تقدير جيد جداً و A+ بمشروع التخرج" : "🎓 B.Sc. Computer Science — Very Good (Honor Roll) & A+ Grad Project",
+      issuer: isRTL ? "كلية الحاسبات والمعلومات — جامعة الزقازيق" : "Faculty of Computers & Informatics — Zagazig University",
       image: "/assets/certificates/cert-zagazig-graduation.png",
       date: "2026",
-      desc: "التخرج بتقدير عام جيد جداً مرتفع من كلية الحاسبات والمعلومات جامعة الزقازيق، والعمل كـ Team Leader لمشروع التخرج الطبي الذكي (نبض) والحصول على تقدير ممتاز (A+) مع إشادة لجنة التحكيم.",
+      desc: isRTL 
+        ? "التخرج بتقدير عام جيد جداً مرتفع من كلية الحاسبات والمعلومات جامعة الزقازيق، والعمل كـ Team Leader لمشروع التخرج الطبي الذكي (نبض) والحصول على تقدير ممتاز (A+) مع إشادة لجنة التحكيم."
+        : "Graduated with High Very Good honors from Zagazig University CS. Led the NABD AI medical system team receiving an A+ Grade & jury praise.",
       link: "https://lnkd.in/p/eiWnXkAC",
-      linkText: "قراءة منشور التخرج الرسمي والتفاصيل على LinkedIn ↗",
-      badgeText: "درجة أكاديمية رسمية وتوثيق تخرج"
+      linkText: isRTL ? "قراءة منشور التخرج الرسمي والتفاصيل على LinkedIn ↗" : "Read Official Graduation Announcement on LinkedIn ↗",
+      badgeText: isRTL ? "درجة أكاديمية رسمية وتوثيق تخرج" : "Official Academic Degree & Honors Document"
     },
     {
-      title: "🏆 تكريم المركز الأول على مستوى الجمهورية (مبادرة DEPI)",
-      issuer: "وزارة الاتصالات وتكنولوجيا المعلومات (MCIT) بالتعاون مع EYouth",
+      title: isRTL ? "🏆 تكريم المركز الأول على مستوى الجمهورية (مبادرة DEPI)" : "🏆 1st Place Winner Nationwide (DEPI Initiative - MCIT)",
+      issuer: isRTL ? "وزارة الاتصالات وتكنولوجيا المعلومات (MCIT) بالتعاون مع EYouth" : "Ministry of Communications & IT (MCIT) / EYouth",
       image: "/assets/profile/seif-with-dr-hesham-farouk-depi.png",
       date: "2025 - 2026",
-      desc: "صورة التكريم الرسمي بحضور مستشار وزير الاتصالات للتطوير التكنولوجي د. هشام فاروق بعد الحصول على المرتبة الأولى على مستوى الجمهورية في مسار Full Stack .NET."
+      desc: isRTL
+        ? "صورة التكريم الرسمي بحضور مستشار وزير الاتصالات للتطوير التكنولوجي د. هشام فاروق بعد الحصول على المرتبة الأولى على مستوى الجمهورية في مسار Full Stack .NET."
+        : "Official honor ceremony photo with Dr. Hesham Farouk (Advisor to the Minister of IT) after securing 1st Place Nationwide in Full Stack .NET track."
     },
     {
-      title: "🏛️ برنامج التدريب المكثف بالمعهد القومي للاتصالات (NTI) - 210 ساعة",
-      issuer: "National Telecommunication Institute (NTI) - وزارة الاتصالات",
+      title: isRTL ? "🏛️ برنامج التدريب المكثف بالمعهد القومي للاتصالات (NTI) - 210 ساعة" : "🏛️ Intensive NTI Diploma (210 Hours) - MCIT",
+      issuer: isRTL ? "National Telecommunication Institute (NTI) - وزارة الاتصالات" : "National Telecommunication Institute (NTI) - MCIT",
       image: "/assets/certificates/cert-nti-210h.jpg",
       date: "2025 - 2026",
-      desc: "برنامج تدريبي مكثف واحترافي بمعدل 210 ساعة دراسية وعملية من المعهد القومي للاتصالات (NTI)، شمل تطوير تطبيقات الويب، الهندسة السحابية وبناء المعماريات المعقدة وتأمين الأنظمة وتطبيقها عملياً."
+      desc: isRTL
+        ? "برنامج تدريبي مكثف واحترافي بمعدل 210 ساعة دراسية وعملية من المعهد القومي للاتصالات (NTI)، شمل تطوير تطبيقات الويب، الهندسة السحابية وبناء المعماريات المعقدة وتأمين الأنظمة وتطبيقها عملياً."
+        : "210 hours of intensive engineering diploma covering full-stack web development, cloud architectures, system security, and hands-on production code."
     }
   ];
 
@@ -104,11 +116,13 @@ export default function Teaching() {
           </div>
 
           <h1 style={{ fontSize: "clamp(2rem, 4.5vw, 3.2rem)", fontWeight: "900", color: "var(--text-primary)", marginBottom: "1.25rem", lineHeight: 1.2 }}>
-            إعداد أجيال البرمجة، الذكاء الاصطناعي، والتفكير المنطقي
+            {isRTL ? "إعداد أجيال البرمجة، الذكاء الاصطناعي، والتفكير المنطقي" : "Empowering Future Innovators in CS, AI & Computational Thinking"}
           </h1>
 
           <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", maxWidth: "780px", margin: "0 auto 2.25rem", lineHeight: 1.85, fontWeight: "500" }}>
-            مدرب تقني رئيسي (Main Technical Tutor) في منصة **iSchool** ومبادرة **براعم مصر الرقمية (DEMI)** بالتعاون مع **وزارة الاتصالات وتكنولوجيا المعلومات**. متمرس في تبسيط العلوم الحاسوبية المعقدة، وبناء الثقة بالنفس للأطفال والشباب، وتخريج طلاب قادريين على بناء مشاريع حقيقية.
+            {isRTL 
+              ? "مدرب تقني رئيسي (Main Technical Tutor) في منصة iSchool ومبادرة براعم مصر الرقمية (DEMI) بالتعاون مع وزارة الاتصالات وتكنولوجيا المعلومات. متمرس في تبسيط العلوم الحاسوبية المعقدة، وبناء الثقة بالنفس للأطفال والشباب، وتخريج طلاب قادريين على بناء مشاريع حقيقية."
+              : "Lead Coding Tutor at iSchool & Digital Egypt Youth Initiative (DEMI) in partnership with MCIT Egypt. Specialized in simplifying complex computer science concepts, building student confidence, and guiding young creators to build real software applications."}
           </p>
 
           {/* High Conversion CTA Action Buttons */}
@@ -133,7 +147,7 @@ export default function Teaching() {
               }}
             >
               <Download size={18} />
-              <span>تحميل السيرة الذاتية المخصصة للتدريس (Tutor CV PDF)</span>
+              <span>{isRTL ? "تحميل السيرة الذاتية المخصصة للتدريس (Tutor CV PDF)" : "Download Dedicated Tutor Resume (PDF)"}</span>
             </a>
 
             <Link
@@ -154,7 +168,7 @@ export default function Teaching() {
               }}
             >
               <Star size={17} color="#f59e0b" fill="#f59e0b" />
-              <span>عرض تقييمات أولياء الأمور والطلاب (10+)</span>
+              <span>{isRTL ? "عرض تقييمات أولياء الأمور والطلاب (10+)" : "View Parent & Student Reviews (10+)"}</span>
             </Link>
           </div>
         </div>
@@ -170,26 +184,26 @@ export default function Teaching() {
         >
           <div className="corporate-card" style={{ padding: "1.85rem", textAlign: "center", backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
             <div style={{ fontSize: "2.4rem", fontWeight: "900", color: "#059669", marginBottom: "0.3rem" }}>{stats.totalStudents || "500+"}</div>
-            <div style={{ fontSize: "0.95rem", color: "#0f172a", fontWeight: "800" }}>طالب وطالبة تم تدريبهم</div>
+            <div style={{ fontSize: "0.95rem", color: "#0f172a", fontWeight: "800" }}>{isRTL ? "طالب وطالبة تم تدريبهم" : "Students Trained"}</div>
             <div style={{ fontSize: "0.8rem", color: "#64748b", marginTop: "0.2rem" }}>iSchool & DEMI Summer Camp</div>
           </div>
 
           <div className="corporate-card" style={{ padding: "1.85rem", textAlign: "center", backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
             <div style={{ fontSize: "2.4rem", fontWeight: "900", color: "#2563eb", marginBottom: "0.3rem" }}>{stats.hoursTaught || "250+"}</div>
-            <div style={{ fontSize: "0.95rem", color: "#0f172a", fontWeight: "800" }}>ساعة تدريس وتفاعل مباشر</div>
-            <div style={{ fontSize: "0.8rem", color: "#64748b", marginTop: "0.2rem" }}>جلسات عمل وتطبيق كود شغال</div>
+            <div style={{ fontSize: "0.95rem", color: "#0f172a", fontWeight: "800" }}>{isRTL ? "ساعة تدريس وتفاعل مباشر" : "Live Tutoring Hours"}</div>
+            <div style={{ fontSize: "0.8rem", color: "#64748b", marginTop: "0.2rem" }}>{isRTL ? "جلسات عمل وتطبيق كود شغال" : "Hands-on Practical Coding Sessions"}</div>
           </div>
 
           <div className="corporate-card" style={{ padding: "1.85rem", textAlign: "center", backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
-            <div style={{ fontSize: "1.9rem", fontWeight: "900", color: "#d97706", marginBottom: "0.3rem" }}>🏆 المركز الأول</div>
-            <div style={{ fontSize: "0.95rem", color: "#0f172a", fontWeight: "800" }}>أول على الجمهورية بـ DEPI</div>
-            <div style={{ fontSize: "0.8rem", color: "#64748b", marginTop: "0.2rem" }}>وزارة الاتصالات وتكنولوجيا المعلومات</div>
+            <div style={{ fontSize: "1.9rem", fontWeight: "900", color: "#d97706", marginBottom: "0.3rem" }}>{isRTL ? "🏆 المركز الأول" : "🏆 1st Place"}</div>
+            <div style={{ fontSize: "0.95rem", color: "#0f172a", fontWeight: "800" }}>{isRTL ? "أول على الجمهورية بـ DEPI" : "DEPI 1st Place Winner"}</div>
+            <div style={{ fontSize: "0.8rem", color: "#64748b", marginTop: "0.2rem" }}>MCIT Egypt & NTI</div>
           </div>
 
           <div className="corporate-card" style={{ padding: "1.85rem", textAlign: "center", backgroundColor: "#ffffff", border: "1px solid #e2e8f0" }}>
             <div style={{ fontSize: "2.4rem", fontWeight: "900", color: "#7c3aed", marginBottom: "0.3rem" }}>100%</div>
-            <div style={{ fontSize: "0.95rem", color: "#0f172a", fontWeight: "800" }}>معدل رضى وأثر تربوي مثبت</div>
-            <div style={{ fontSize: "0.8rem", color: "#64748b", marginTop: "0.2rem" }}>إشادات أولياء الأمور والقيادات</div>
+            <div style={{ fontSize: "0.95rem", color: "#0f172a", fontWeight: "800" }}>{isRTL ? "معدل رضى وأثر تربوي مثبت" : "Satisfaction & Pedagogical Impact"}</div>
+            <div style={{ fontSize: "0.8rem", color: "#64748b", marginTop: "0.2rem" }}>{isRTL ? "إشادات أولياء الأمور والقيادات" : "Parent & Leadership Commendations"}</div>
           </div>
         </div>
 
@@ -198,13 +212,13 @@ export default function Teaching() {
           <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
             <div className="pill-badge pill-blue" style={{ marginBottom: "0.75rem", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
               <Code2 size={15} />
-              <span>شواهد حية من القاعات وجلسات التدريب أونلاين</span>
+              <span>{isRTL ? "شواهد حية من القاعات وجلسات التدريب أونلاين" : "Live Evidence & Classroom Environment"}</span>
             </div>
             <h2 style={{ fontSize: "2.2rem", fontWeight: "900", color: "#0f172a" }}>
-              معرض الجلسات والسيشنات التفاعلية المباشرة
+              {isRTL ? "معرض الجلسات والسيشنات التفاعلية المباشرة" : "Interactive Tutoring Session Showcase"}
             </h2>
             <p style={{ color: "#64748b", fontSize: "1.02rem", maxWidth: "650px", margin: "0.5rem auto 0" }}>
-              نظرة داخل قاعات التدريب الافتراضية وكيفية إدارة السيشن وتطبيق مبدأ التعلم التفاعلي.
+              {isRTL ? "نظرة داخل قاعات التدريب الافتراضية وكيفية إدارة السيشن وتطبيق مبدأ التعلم التفاعلي." : "A glimpse into virtual and classroom tutoring sessions demonstrating interactive learning methodologies."}
             </p>
           </div>
 
@@ -242,7 +256,8 @@ export default function Teaching() {
                     style={{
                       position: "absolute",
                       bottom: "0.75rem",
-                      right: "0.75rem",
+                      right: isRTL ? "0.75rem" : "auto",
+                      left: isRTL ? "auto" : "0.75rem",
                       backgroundColor: "rgba(15, 23, 42, 0.8)",
                       color: "#ffffff",
                       padding: "0.35rem 0.75rem",
@@ -255,7 +270,7 @@ export default function Teaching() {
                     }}
                   >
                     <Maximize2 size={13} />
-                    <span>تكبير الصورة</span>
+                    <span>{isRTL ? "تكبير الصورة" : "Expand Image"}</span>
                   </div>
                 </div>
 
@@ -287,12 +302,12 @@ export default function Teaching() {
                       }}
                     >
                       <ExternalLink size={15} />
-                      <span>{photo.linkText || "عرض المنشور الرسمي ↗"}</span>
+                      <span>{photo.linkText}</span>
                     </a>
                   ) : (
                     <div style={{ marginTop: "1rem", paddingTop: "0.75rem", borderTop: "1px solid #f1f5f9", display: "flex", alignItems: "center", gap: "0.4rem", color: "#059669", fontSize: "0.82rem", fontWeight: "700" }}>
                       <CheckCircle2 size={15} />
-                      <span>جلسات موثقة ومباشرة</span>
+                      <span>{isRTL ? "جلسات موثقة ومباشرة" : "Verified Tutoring Sessions"}</span>
                     </div>
                   )}
                 </div>
@@ -306,13 +321,13 @@ export default function Teaching() {
           <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
             <div className="pill-badge pill-gold" style={{ marginBottom: "0.75rem", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
               <Award size={15} />
-              <span>المنح الحكومية والاعتمادات الرسمية</span>
+              <span>{isRTL ? "المنح الحكومية والاعتمادات الرسمية" : "Government Scholarships & Institutional Grants"}</span>
             </div>
             <h2 style={{ fontSize: "2.2rem", fontWeight: "900", color: "#0f172a" }}>
-              المنح التدريبية والتكريمات الرسمية
+              {isRTL ? "المنح التدريبية والتكريمات الرسمية" : "Official Honors & Training Diplomas"}
             </h2>
             <p style={{ color: "#64748b", fontSize: "1.02rem", maxWidth: "680px", margin: "0.5rem auto 0" }}>
-              توثيق المنح المكثفة والتكريمات الرسمية من وزارة الاتصالات وتكنولوجيا المعلومات والشركاء الدوليين.
+              {isRTL ? "توثيق المنح المكثفة والتكريمات الرسمية من وزارة الاتصالات وتكنولوجيا المعلومات والشركاء الدوليين." : "Documentation of intensive scholarships and official honors from MCIT Egypt and international partners."}
             </p>
           </div>
 
@@ -349,7 +364,7 @@ export default function Teaching() {
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#059669", fontWeight: "700", fontSize: "0.88rem" }}>
                       <ShieldCheck size={17} />
-                      <span>{item.badgeText || "منحة رسمية معتمدة وموثقة بالشهادات والتكريمات"}</span>
+                      <span>{item.badgeText || (isRTL ? "منحة رسمية معتمدة وموثقة بالشهادات والتكريمات" : "Official Government Scholarship & Diploma")}</span>
                     </div>
                     {item.link && (
                       <a 
@@ -367,7 +382,7 @@ export default function Teaching() {
                         }}
                       >
                         <ExternalLink size={15} />
-                        <span>{item.linkText || "عرض المنشور الرسمي على LinkedIn ↗"}</span>
+                        <span>{item.linkText || (isRTL ? "عرض المنشور الرسمي على LinkedIn ↗" : "View Official Announcement on LinkedIn ↗")}</span>
                       </a>
                     )}
                   </div>
@@ -398,7 +413,8 @@ export default function Teaching() {
                     style={{
                       position: "absolute",
                       bottom: "0.75rem",
-                      left: "0.75rem",
+                      left: isRTL ? "0.75rem" : "auto",
+                      right: isRTL ? "auto" : "0.75rem",
                       backgroundColor: "rgba(15, 23, 42, 0.85)",
                       color: "#ffffff",
                       padding: "0.35rem 0.75rem",
@@ -411,7 +427,7 @@ export default function Teaching() {
                     }}
                   >
                     <Maximize2 size={13} />
-                    <span>معاينة صورة التكريم/الشهادة</span>
+                    <span>{isRTL ? "معاينة صورة التكريم/الشهادة" : "Preview Certificate Photo"}</span>
                   </div>
                 </div>
               </div>
@@ -435,13 +451,13 @@ export default function Teaching() {
             <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
               <div style={{ display: "inline-flex", alignItems: "center", gap: "0.45rem", padding: "0.4rem 1rem", borderRadius: "9999px", backgroundColor: "#eff6ff", color: "#2563eb", border: "1px solid #bfdbfe", fontSize: "0.85rem", fontWeight: "800", marginBottom: "1rem" }}>
                 <MessageSquare size={16} />
-                <span>إشادات القيادات التنفيذية وأولياء الأمور</span>
+                <span>{isRTL ? "إشادات القيادات التنفيذية وأولياء الأمور" : "Executive & Parent Testimonials"}</span>
               </div>
               <h2 style={{ fontSize: "2.2rem", fontWeight: "900", color: "#0f172a", marginBottom: "0.75rem" }}>
-                ماذا يقول الرؤساء المباشرون وأولياء الأمور عن أسلوب تدريسي؟
+                {isRTL ? "ماذا يقول الرؤساء المباشرون وأولياء الأمور عن أسلوب تدريسي؟" : "What Supervisors & Parents Say About My Tutoring"}
               </h2>
               <p style={{ color: "#64748b", fontSize: "1.02rem", maxWidth: "650px", margin: "0 auto", lineHeight: 1.7 }}>
-                شهادات حقيقية وموثقة على LinkedIn ومنصات التدريب الرسمية تعكس الأثر التقني والتربوي الكبير.
+                {isRTL ? "شهادات حقيقية وموثقة على LinkedIn ومنصات التدريب الرسمية تعكس الأثر التقني والتربوي الكبير." : "Verified recommendations from LinkedIn and official platforms reflecting tech leadership and teaching quality."}
               </p>
             </div>
 
@@ -453,35 +469,40 @@ export default function Teaching() {
                 marginBottom: "2.5rem"
               }}
             >
-              {featuredTestimonials.slice(0, 3).map((test, i) => (
-                <div 
-                  key={i}
-                  style={{
-                    backgroundColor: "#f8fafc",
-                    padding: "1.75rem",
-                    borderRadius: "18px",
-                    border: "1px solid #e2e8f0", boxShadow: "0 4px 12px rgba(15, 23, 42, 0.03)",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between"
-                  }}
-                >
-                  <div>
-                    <div style={{ fontSize: "0.8rem", color: "#2563eb", fontWeight: "800", marginBottom: "0.5rem" }}>
-                      {test.badge || test.company}
+              {featuredTestimonials.slice(0, 3).map((test, i) => {
+                const quote = isRTL ? (test.quoteAr || test.quote) : (test.quoteEn || test.quote);
+                const name = isRTL ? (test.nameAr || test.name) : (test.nameEn || test.name);
+                const badge = isRTL ? (test.badgeAr || test.badge || test.company) : (test.badgeEn || test.badge || test.company);
+                return (
+                  <div 
+                    key={i}
+                    style={{
+                      backgroundColor: "#f8fafc",
+                      padding: "1.75rem",
+                      borderRadius: "18px",
+                      border: "1px solid #e2e8f0", boxShadow: "0 4px 12px rgba(15, 23, 42, 0.03)",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between"
+                    }}
+                  >
+                    <div>
+                      <div style={{ fontSize: "0.8rem", color: "#2563eb", fontWeight: "800", marginBottom: "0.5rem" }}>
+                        {badge}
+                      </div>
+                      <p style={{ fontSize: "0.92rem", color: "#334155", lineHeight: 1.75, fontStyle: "italic", marginBottom: "1.25rem" }}>
+                        "{quote && quote.length > 160 ? quote.substring(0, 160) + "..." : quote}"
+                      </p>
                     </div>
-                    <p style={{ fontSize: "0.92rem", color: "#334155", lineHeight: 1.75, fontStyle: "italic", marginBottom: "1.25rem" }}>
-                      "{test.quote.length > 160 ? test.quote.substring(0, 160) + "..." : test.quote}"
-                    </p>
-                  </div>
 
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", paddingTop: "0.75rem", borderTop: "1px solid #e2e8f0" }}>
-                    <div style={{ fontWeight: "800", color: "#0f172a", fontSize: "0.95rem" }}>
-                      {test.name}
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", paddingTop: "0.75rem", borderTop: "1px solid #e2e8f0" }}>
+                      <div style={{ fontWeight: "800", color: "#0f172a", fontSize: "0.95rem" }}>
+                        {name}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* High Conversion CTA Link to Full Testimonials */}
@@ -503,8 +524,8 @@ export default function Teaching() {
                   boxShadow: "0 10px 25px -5px rgba(5, 150, 105, 0.4)"
                 }}
               >
-                <span>عرض كافة تقييمات وتوصيات التدريس الموثقة (10+) ↗</span>
-                <ChevronRight size={18} />
+                <span>{isRTL ? "عرض كافة تقييمات وتوصيات التدريس الموثقة (10+) ↗" : "View All Verified Tutoring Testimonials (10+) ↗"}</span>
+                <ChevronRight size={18} style={{ transform: isRTL ? 'rotate(180deg)' : 'none' }} />
               </Link>
             </div>
           </div>
@@ -514,10 +535,10 @@ export default function Teaching() {
         <div style={{ marginBottom: "5rem" }}>
           <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
             <h2 style={{ fontSize: "2rem", fontWeight: "900", color: "#0f172a" }}>
-              منهجية الشرح والأسلوب التربوي والتقني
+              {isRTL ? "منهجية الشرح والأسلوب التربوي والتقني" : "Teaching Methodology & Core Pillars"}
             </h2>
             <p style={{ color: "#64748b", fontSize: "1rem", maxWidth: "600px", margin: "0.5rem auto 0" }}>
-              4 ركائز حاسمة أعتمد عليها لضمان تحويل المفاهيم الجافة إلى متعة شغف وإنجاز عملي.
+              {isRTL ? "4 ركائز حاسمة أعتمد عليها لضمان تحويل المفاهيم الجافة إلى متعة شغف وإنجاز عملي." : "4 core pillars ensuring complex programming concepts translate into practical working code."}
             </p>
           </div>
 
@@ -533,7 +554,9 @@ export default function Teaching() {
                 <Cpu size={24} />
               </div>
               <h3 style={{ fontSize: "1.15rem", fontWeight: "800", color: "#0f172a", marginBottom: "0.5rem" }}>Project-Based Learning</h3>
-              <p style={{ fontSize: "0.88rem", color: "#475569", lineHeight: 1.6 }}>الطلاب لا يحفظون الأكواد؛ بل يتم تكليفهم ببناء مشاريع حقيقية بنهاية كل جلسة لرؤية النتيجة بأعينهم.</p>
+              <p style={{ fontSize: "0.88rem", color: "#475569", lineHeight: 1.6 }}>
+                {isRTL ? "الطلاب لا يحفظون الأكواد؛ بل يتم تكليفهم ببناء مشاريع حقيقية بنهاية كل جلسة لرؤية النتيجة بأعينهم." : "Students build real, functional projects by the end of each session rather than memorizing code snippet syntax."}
+              </p>
             </div>
 
             <div className="corporate-card" style={{ padding: "1.75rem", backgroundColor: "#ffffff" }}>
@@ -541,7 +564,9 @@ export default function Teaching() {
                 <HeartHandshake size={24} />
               </div>
               <h3 style={{ fontSize: "1.15rem", fontWeight: "800", color: "#0f172a", marginBottom: "0.5rem" }}>Peer Teaching & Confidence</h3>
-              <p style={{ fontSize: "0.88rem", color: "#475569", lineHeight: 1.6 }}>إتاحة الفرصة للطلاب لشرح منطقهم البرمجي لزملائهم لبناء ثقتهم بنفسهم ومهارات التحدث والقيادة.</p>
+              <p style={{ fontSize: "0.88rem", color: "#475569", lineHeight: 1.6 }}>
+                {isRTL ? "إتاحة الفرصة للطلاب لشرح منطقهم البرمجي لزملائهم لبناء ثقتهم بنفسهم ومهارات التحدث والقيادة." : "Encouraging students to present their code logic to peers, mastering communication, leadership, and self-confidence."}
+              </p>
             </div>
 
             <div className="corporate-card" style={{ padding: "1.75rem", backgroundColor: "#ffffff" }}>
@@ -549,7 +574,9 @@ export default function Teaching() {
                 <Brain size={24} />
               </div>
               <h3 style={{ fontSize: "1.15rem", fontWeight: "800", color: "#0f172a", marginBottom: "0.5rem" }}>Computational Thinking</h3>
-              <p style={{ fontSize: "0.88rem", color: "#475569", lineHeight: 1.6 }}>تدريب عقل الطالب على تفكيك التحديات المعقدة إلى خطوات منطقية متسلسلة قبل الشروع في كتابة الأكواد.</p>
+              <p style={{ fontSize: "0.88rem", color: "#475569", lineHeight: 1.6 }}>
+                {isRTL ? "تدريب عقل الطالب على تفكيك التحديات المعقدة إلى خطوات منطقية متسلسلة قبل الشروع في كتابة الأكواد." : "Training minds to decompose complex logic into step-by-step algorithms before writing raw code syntax."}
+              </p>
             </div>
 
             <div className="corporate-card" style={{ padding: "1.75rem", backgroundColor: "#ffffff" }}>
@@ -557,7 +584,9 @@ export default function Teaching() {
                 <Sparkles size={24} />
               </div>
               <h3 style={{ fontSize: "1.15rem", fontWeight: "800", color: "#0f172a", marginBottom: "0.5rem" }}>Gamified Challenges</h3>
-              <p style={{ fontSize: "0.88rem", color: "#475569", lineHeight: 1.6 }}>تحويل التحديات البرمجية إلى مسابقات تفاعلية مشوقة تدفع الطلاب للحماس والتركيز والابتكار.</p>
+              <p style={{ fontSize: "0.88rem", color: "#475569", lineHeight: 1.6 }}>
+                {isRTL ? "تحويل التحديات البرمجية إلى مسابقات تفاعلية مشوقة تدفع الطلاب للحماس والتركيز والابتكار." : "Transforming coding exercises into dynamic, gamified competitions that foster enthusiasm and creativity."}
+              </p>
             </div>
           </div>
         </div>
@@ -576,15 +605,17 @@ export default function Teaching() {
         >
           <div className="pill-badge pill-blue" style={{ marginBottom: "1rem", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
             <Send size={15} />
-            <span>متاح حالياً للمسارات التدريبية والشراكات التعليمية</span>
+            <span>{isRTL ? "متاح حالياً للمسارات التدريبية والشراكات التعليمية" : "Available for Tutoring Tracks & STEM Partnerships"}</span>
           </div>
 
           <h2 style={{ fontSize: "2rem", fontWeight: "900", color: "#0f172a", marginBottom: "0.75rem" }}>
-            هل تبحث عن مدرب تقني (CS & Coding Tutor) ذو كفاءة وأثر مثبت؟
+            {isRTL ? "هل تبحث عن مدرب تقني (CS & Coding Tutor) ذو كفاءة وأثر مثبت؟" : "Looking for a Proven Technical CS & Coding Tutor?"}
           </h2>
 
           <p style={{ color: "#475569", fontSize: "1.05rem", maxWidth: "650px", margin: "0 auto 2rem", lineHeight: 1.75 }}>
-            يسعدني مناقشة الانضمام كـ Instructor / Coding Tutor للمسارات البرمجية في المنصات التعليمية، المدارس الدولية، أو المبادرات الحكومية.
+            {isRTL 
+              ? "يسعدني مناقشة الانضمام كـ Instructor / Coding Tutor للمسارات البرمجية في المنصات التعليمية، المدارس الدولية، أو المبادرات الحكومية."
+              : "Open to joining as an Instructor / Coding Tutor for educational platforms, international academies, or government digital initiatives."}
           </p>
 
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
@@ -607,11 +638,11 @@ export default function Teaching() {
               }}
             >
               <Download size={18} />
-              <span>تحميل الـ Tutor CV (PDF)</span>
+              <span>{isRTL ? "تحميل الـ Tutor CV (PDF)" : "Download Tutor Resume (PDF)"}</span>
             </a>
 
             <a
-              href="https://api.whatsapp.com/send/?phone=201223817860&text=أهلاً سيف، نرغب في مناقشة فرصة تدريبية كـ Tutor"
+              href="https://api.whatsapp.com/send/?phone=201223817860&text=Hello%20Seif,%20we%20would%20like%20to%20discuss%20a%20tutoring%20opportunity"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary"
@@ -629,7 +660,7 @@ export default function Teaching() {
               }}
             >
               <MessageSquare size={18} />
-              <span>محادثة فورية عبر WhatsApp</span>
+              <span>{isRTL ? "محادثة فورية عبر WhatsApp" : "Instant WhatsApp Inquiry"}</span>
             </a>
           </div>
         </div>
@@ -690,7 +721,7 @@ export default function Teaching() {
               }}
             >
               <X size={18} />
-              <span>إغلاق التكبير</span>
+              <span>{isRTL ? "إغلاق التكبير" : "Close Preview"}</span>
             </button>
           </div>
 

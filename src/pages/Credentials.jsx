@@ -1,31 +1,37 @@
 import React, { useState } from 'react';
 import { Award, ExternalLink, Search, CheckCircle2 } from 'lucide-react';
 import { usePortfolioData } from '../context/DynamicPortfolioContext';
+import { useLanguage } from '../context/LanguageContext';
 import CertificateModal from '../components/CertificateModal';
-
-const certCategories = [
-  { id: 'all', label: 'جميع الشهادات والاعتمادات' },
-  { id: 'mcit', label: 'مبادرات وزارة الاتصالات (DEPI & NTI)' },
-  { id: 'academic', label: 'المؤهل الأكاديمي والجامعي' },
-  { id: 'ai', label: 'الذكاء الاصطناعي و Microsoft' },
-  { id: 'english', label: 'اللغات والمهارات الشخصية' },
-  { id: 'databases', label: 'قواعد البيانات و HackerRank' },
-  { id: 'tools', label: 'أدوات التطوير و Git/GitHub' }
-];
 
 export default function Credentials() {
   const { certificatesList } = usePortfolioData();
+  const { isRTL } = useLanguage();
 
   const [selectedCertIndex, setSelectedCertIndex] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
+  const certCategories = [
+    { id: 'all', label: isRTL ? 'جميع الشهادات والاعتمادات' : 'All Credentials & Certifications' },
+    { id: 'mcit', label: isRTL ? 'مبادرات وزارة الاتصالات (DEPI & NTI)' : 'MCIT Initiatives (DEPI & NTI)' },
+    { id: 'academic', label: isRTL ? 'المؤهل الأكاديمي والجامعي' : 'Academic & University Degree' },
+    { id: 'ai', label: isRTL ? 'الذكاء الاصطناعي و Microsoft' : 'AI & Microsoft Credentials' },
+    { id: 'english', label: isRTL ? 'اللغات والمهارات الشخصية' : 'Languages & Soft Skills' },
+    { id: 'databases', label: isRTL ? 'قواعد البيانات و HackerRank' : 'Databases & HackerRank' },
+    { id: 'tools', label: isRTL ? 'أدوات التطوير و Git/GitHub' : 'Dev Tools & Git/GitHub' }
+  ];
+
   const filteredCerts = certificatesList.filter(cert => {
+    const certTitle = isRTL ? (cert.titleAr || cert.title) : (cert.titleEn || cert.title);
+    const certIssuer = isRTL ? (cert.issuerAr || cert.issuer) : (cert.issuerEn || cert.issuer);
+    const certDesc = isRTL ? (cert.descriptionAr || cert.description) : (cert.descriptionEn || cert.description);
+
     const matchesFilter = activeFilter === 'all' || cert.category === activeFilter;
     const matchesSearch = searchQuery.trim() === '' || 
-      cert.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      cert.issuer.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (cert.description && cert.description.toLowerCase().includes(searchQuery.toLowerCase()));
+      (certTitle && certTitle.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (certIssuer && certIssuer.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (certDesc && certDesc.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesFilter && matchesSearch;
   });
 
@@ -56,13 +62,15 @@ export default function Credentials() {
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <div className="pill-badge pill-gold" style={{ marginBottom: '0.75rem' }}>
             <Award size={15} />
-            <span>سجل الاعتمادات والتكريمات الرسمية</span>
+            <span>{isRTL ? 'سجل الاعتمادات والتكريمات الرسمية' : 'Verified Credentials & Official Honors'}</span>
           </div>
           <h1 style={{ fontSize: '2.5rem', fontWeight: '900', color: 'var(--text-primary)', marginBottom: '0.75rem' }}>
-            الشهادات والاعتمادات الرسمية الموثقة
+            {isRTL ? 'الشهادات والاعتمادات الرسمية الموثقة' : 'Official Credentials & Verified Certifications'}
           </h1>
           <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', maxWidth: '720px', margin: '0 auto' }}>
-            شهادات معتمدة رسمياً وموثقة من وزارة الاتصالات (MCIT)، Berlitz، مايكروسوفت، جامعة الزقازيق، معهد ITI، المعهد القومي للاتصالات NTI، منصة HackerRank، ومبادرة مصر الرقمية (DEPI).
+            {isRTL 
+              ? 'شهادات معتمدة رسمياً وموثقة من وزارة الاتصالات (MCIT)، Berlitz، مايكروسوفت، جامعة الزقازيق، معهد ITI، المعهد القومي للاتصالات NTI، منصة HackerRank، ومبادرة مصر الرقمية (DEPI).'
+              : 'Officially verified certifications from MCIT Egypt, Microsoft, Zagazig University, NTI, ITI, Berlitz, HackerRank, and DEPI Initiative.'}
           </p>
         </div>
 
@@ -78,12 +86,12 @@ export default function Credentials() {
           >
             <input 
               type="text"
-              placeholder="ابحث عن شهادة، مؤسسة، أو تخصص (مثال: DEPI, Berlitz, SQL, AI)..."
+              placeholder={isRTL ? "ابحث عن شهادة، مؤسسة، أو تخصص (مثال: DEPI, Berlitz, SQL, AI)..." : "Search by credential, issuer, or skill (e.g. DEPI, Berlitz, SQL, AI)..."}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
                 width: '100%',
-                padding: '0.85rem 1.25rem 0.85rem 3rem',
+                padding: isRTL ? '0.85rem 1.25rem 0.85rem 3rem' : '0.85rem 3rem 0.85rem 1.25rem',
                 borderRadius: '16px',
                 border: '1px solid #cbd5e1',
                 backgroundColor: '#ffffff',
@@ -96,7 +104,14 @@ export default function Credentials() {
             />
             <Search 
               size={18} 
-              style={{ position: 'absolute', left: '1.15rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} 
+              style={{ 
+                position: 'absolute', 
+                left: isRTL ? '1.15rem' : 'auto', 
+                right: isRTL ? 'auto' : '1.15rem', 
+                top: '50%', 
+                transform: 'translateY(-50%)', 
+                color: 'var(--text-muted)' 
+              }} 
             />
           </div>
 
@@ -157,109 +172,118 @@ export default function Credentials() {
         {/* Credentials Grid */}
         {filteredCerts.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '4rem 1rem', color: 'var(--text-muted)' }}>
-            لا تتوفر شهادات تطابق البحث الحالي.
+            {isRTL ? 'لا تتوفر شهادات تطابق البحث الحالي.' : 'No credentials match your current search criteria.'}
           </div>
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
-            {filteredCerts.map((cert, index) => (
-              <div 
-                key={cert.id}
-                className="corporate-card"
-                style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: '#ffffff', borderRadius: '18px' }}
-              >
-                {/* Preview Image Container */}
+            {filteredCerts.map((cert, index) => {
+              const certTitle = isRTL ? (cert.titleAr || cert.title) : (cert.titleEn || cert.title);
+              const certIssuer = isRTL ? (cert.issuerAr || cert.issuer) : (cert.issuerEn || cert.issuer);
+              const certDesc = isRTL ? (cert.descriptionAr || cert.description) : (cert.descriptionEn || cert.description);
+              const certBadge = isRTL ? (cert.badgeAr || cert.badge) : (cert.badgeEn || cert.badge);
+
+              return (
                 <div 
-                  style={{ 
-                    position: 'relative', 
-                    width: '100%', 
-                    height: '220px', 
-                    backgroundColor: '#0f172a', 
-                    overflow: 'hidden',
-                    cursor: 'pointer',
-                    borderBottom: '1px solid #f1f5f9',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                  onClick={() => setSelectedCertIndex(index)}
+                  key={cert.id}
+                  className="corporate-card"
+                  style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', backgroundColor: '#ffffff', borderRadius: '18px' }}
                 >
-                  <img 
-                    src={cert.image} 
-                    alt={cert.title} 
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
-                  />
-                  {cert.badge && (
-                    <div style={{ position: 'absolute', top: '0.75rem', right: '0.75rem' }}>
-                      <span className="pill-badge pill-gold" style={{ fontSize: '0.75rem', padding: '0.3rem 0.75rem' }}>
-                        {cert.badge}
-                      </span>
-                    </div>
-                  )}
+                  {/* Preview Image Container */}
                   <div 
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      backgroundColor: 'rgba(15, 23, 42, 0.4)',
-                      opacity: 0,
-                      transition: 'opacity 0.25s ease',
+                    style={{ 
+                      position: 'relative', 
+                      width: '100%', 
+                      height: '220px', 
+                      backgroundColor: '#0f172a', 
+                      overflow: 'hidden',
+                      cursor: 'pointer',
+                      borderBottom: '1px solid #f1f5f9',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center',
-                      color: '#ffffff',
-                      fontWeight: '700',
-                      fontSize: '0.9rem'
+                      justifyContent: 'center'
                     }}
-                    className="card-hover-overlay"
+                    onClick={() => setSelectedCertIndex(index)}
                   >
-                    اضغط لمكابرة الشهادة والمعاينة 🔍
-                  </div>
-                </div>
-
-                {/* Body */}
-                <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                  
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.4rem' }}>
-                    <span style={{ fontSize: '0.82rem', color: 'var(--brand-primary)', fontWeight: '700' }}>
-                      {cert.issuer}
-                    </span>
-                    <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-                      {cert.date}
-                    </span>
-                  </div>
-
-                  <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '0.65rem', lineHeight: 1.4 }}>
-                    {cert.title}
-                  </h3>
-
-                  <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1.25rem', flexGrow: 1 }}>
-                    {cert.description}
-                  </p>
-
-                  {cert.verificationId && (
-                    <div style={{ padding: '0.65rem 0.85rem', backgroundColor: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0', marginBottom: '1.25rem' }}>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '600' }}>رقم الاعتماد / كود التحقق:</div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--brand-emerald)', fontWeight: '700', marginTop: '0.15rem' }}>
-                        {cert.verificationId}
+                    <img 
+                      src={cert.image} 
+                      alt={certTitle} 
+                      style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+                    />
+                    {certBadge && (
+                      <div style={{ position: 'absolute', top: '0.75rem', right: isRTL ? '0.75rem' : 'auto', left: isRTL ? 'auto' : '0.75rem' }}>
+                        <span className="pill-badge pill-gold" style={{ fontSize: '0.75rem', padding: '0.3rem 0.75rem' }}>
+                          {certBadge}
+                        </span>
                       </div>
-                    </div>
-                  )}
-
-                  {/* Footer Button */}
-                  <div style={{ borderTop: '1px solid #e2e8f0', paddingTop: '1rem' }}>
-                    <button
-                      onClick={() => setSelectedCertIndex(index)}
-                      className="btn-primary"
-                      style={{ padding: '0.55rem 0.95rem', fontSize: '0.85rem', width: '100%', justifyContent: 'center' }}
+                    )}
+                    <div 
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        backgroundColor: 'rgba(15, 23, 42, 0.4)',
+                        opacity: 0,
+                        transition: 'opacity 0.25s ease',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: '#ffffff',
+                        fontWeight: '700',
+                        fontSize: '0.9rem'
+                      }}
+                      className="card-hover-overlay"
                     >
-                      <span>معاينة الشهادة والتنقل</span>
-                      <ExternalLink size={15} />
-                    </button>
+                      {isRTL ? 'اضغط لمعاينة الشهادة بالتفصيل 🔍' : 'Click to view full credential 🔍'}
+                    </div>
+                  </div>
+
+                  {/* Body */}
+                  <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                    
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.4rem' }}>
+                      <span style={{ fontSize: '0.82rem', color: 'var(--brand-primary)', fontWeight: '700' }}>
+                        {certIssuer}
+                      </span>
+                      <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                        {cert.date}
+                      </span>
+                    </div>
+
+                    <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '0.65rem', lineHeight: 1.4 }}>
+                      {certTitle}
+                    </h3>
+
+                    <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1.25rem', flexGrow: 1 }}>
+                      {certDesc}
+                    </p>
+
+                    {cert.verificationId && (
+                      <div style={{ padding: '0.65rem 0.85rem', backgroundColor: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0', marginBottom: '1.25rem' }}>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '600' }}>
+                          {isRTL ? 'رقم الاعتماد / كود التحقق:' : 'Verification Code / Credential ID:'}
+                        </div>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--brand-emerald)', fontWeight: '700', marginTop: '0.15rem' }}>
+                          {cert.verificationId}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Footer Button */}
+                    <div style={{ borderTop: '1px solid #e2e8f0', paddingTop: '1rem' }}>
+                      <button
+                        onClick={() => setSelectedCertIndex(index)}
+                        className="btn-primary"
+                        style={{ padding: '0.55rem 0.95rem', fontSize: '0.85rem', width: '100%', justifyContent: 'center' }}
+                      >
+                        <span>{isRTL ? 'معاينة الشهادة والتنقل' : 'Preview Certificate & Details'}</span>
+                        <ExternalLink size={15} />
+                      </button>
+                    </div>
+
                   </div>
 
                 </div>
-
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
 

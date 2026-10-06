@@ -17,6 +17,7 @@ import {
   Play
 } from 'lucide-react';
 import { usePortfolioData } from '../context/DynamicPortfolioContext';
+import { useLanguage } from '../context/LanguageContext';
 import SlideViewer from './SlideViewer';
 
 export default function BentoHighlights() {
@@ -29,6 +30,7 @@ export default function BentoHighlights() {
     teachingExperience 
   } = usePortfolioData();
 
+  const { isRTL } = useLanguage();
   const [activeLiveDeck, setActiveLiveDeck] = useState(null);
 
   const totalCertificatesCount = certificatesList ? certificatesList.length : 9;
@@ -41,13 +43,17 @@ export default function BentoHighlights() {
         <div style={{ textAlign: 'center', marginBottom: '3.25rem' }}>
           <div className="pill-badge pill-blue" style={{ marginBottom: '0.85rem' }}>
             <Sparkles size={14} />
-            <span>مراكز الخبرة والتخصص الهندسية</span>
+            <span>{isRTL ? 'مراكز الخبرة والتخصص الهندسية' : 'Engineering Specialization Centers'}</span>
           </div>
           <h2 style={{ fontSize: '2.35rem', fontWeight: '900', color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
-            منظومة عمل متكاملة <span style={{ color: 'var(--brand-primary)' }}>بين الكود والقيادة والتعليم</span>
+            {isRTL ? (
+              <>منظومة عمل متكاملة <span style={{ color: 'var(--brand-primary)' }}>بين الكود والقيادة والتعليم</span></>
+            ) : (
+              <>Integrated Pillars of <span style={{ color: 'var(--brand-primary)' }}>Engineering, Leadership & Mentorship</span></>
+            )}
           </h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', maxWidth: '680px', margin: '0.65rem auto 0', lineHeight: 1.6 }}>
-            استكشف المحاور الرئيسية لخبراتي العملية المعتمدة مع حلول الهندسة المتقدمة والتوثيق الرسمي
+            {isRTL ? 'استكشف المحاور الرئيسية لخبراتي العملية المعتمدة مع حلول الهندسة المتقدمة والتوثيق الرسمي' : 'Explore core focus areas spanning robust enterprise engineering, academic defense, and technical tutoring.'}
           </p>
         </div>
 
@@ -76,12 +82,12 @@ export default function BentoHighlights() {
             <div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '0.75rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <div className="brand-avatar-frame" style={{ width: "46px", height: "46px", boxShadow: "0 4px 10px rgba(37,99,235,0.18)" }} title="سيف الدين محمد">
-                    <img src="/assets/profile/seif-portrait-avatar.jpg" alt="سيف الدين محمد" className="brand-avatar-img" />
+                  <div className="brand-avatar-frame" style={{ width: "46px", height: "46px", boxShadow: "0 4px 10px rgba(37,99,235,0.18)" }} title={isRTL ? personalInfo.nameAr : personalInfo.nameEn}>
+                    <img src="/assets/profile/seif-portrait-avatar.jpg" alt={isRTL ? personalInfo.nameAr : personalInfo.nameEn} className="brand-avatar-img" />
                   </div>
                   <div>
                     <span style={{ fontSize: '0.8rem', fontWeight: '700', color: 'var(--brand-primary)', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block' }}>
-                      التخصص الرئيسي (Core Engineering)
+                      {isRTL ? 'التخصص الرئيسي (Core Engineering)' : 'Core Engineering'}
                     </span>
                     <span style={{ fontSize: '0.9rem', fontWeight: '600', color: 'var(--text-secondary)' }}>
                       Full Stack & Systems Architect
@@ -91,15 +97,17 @@ export default function BentoHighlights() {
 
                 <span className="pill-badge pill-gold bento-badge-interactive" style={{ padding: '0.4rem 0.95rem' }}>
                   <Trophy size={15} color="#d97706" />
-                  <span>المركز الأول جمهورية (DEPI)</span>
+                  <span>{isRTL ? 'المركز الأول جمهورية (DEPI)' : '1st Place Winner (DEPI)'}</span>
                 </span>
               </div>
 
               <h3 style={{ fontSize: '1.65rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '0.75rem', lineHeight: 1.35 }}>
-                هندسة الأنظمة الخلفية والواجهات (.NET & MEAN)
+                {isRTL ? 'هندسة الأنظمة الخلفية والواجهات (.NET & MEAN)' : 'Backend Architecture & Full Stack Engineering (.NET & MEAN)'}
               </h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.98rem', lineHeight: 1.7, maxWidth: '620px', marginBottom: '1.75rem' }}>
-                بناء تطبيقات سحابية وواجهات تفاعلية فائقة السرعة، وتطوير معمارية Clean Architecture و SOLID Principles مع إدارة قواعد بيانات SQL Server و MongoDB بكفاءة عالية وفق أعلى معايير الأداء والأمان.
+                {isRTL 
+                  ? 'بناء تطبيقات سحابية وواجهات تفاعلية فائقة السرعة، وتطوير معمارية Clean Architecture و SOLID Principles مع إدارة قواعد بيانات SQL Server و MongoDB بكفاءة عالية وفق أعلى معايير الأداء والأمان.'
+                  : 'Designing scalable backend microservices and responsive frontends. Implementing Clean Architecture, CQRS, SOLID principles, and optimized SQL Server / MongoDB databases.'}
               </p>
             </div>
 
@@ -124,8 +132,8 @@ export default function BentoHighlights() {
               </div>
 
               <Link to="/projects" className="btn-primary" style={{ padding: '0.55rem 1.25rem', fontSize: '0.9rem' }}>
-                <span>تصفح المشاريع الهندسية</span>
-                <ArrowUpLeft size={16} />
+                <span>{isRTL ? 'تصفح المشاريع الهندسية' : 'Explore Engineering Projects'}</span>
+                <ArrowUpLeft size={16} style={{ transform: isRTL ? 'none' : 'rotate(90deg)' }} />
               </Link>
             </div>
           </div>
@@ -147,15 +155,17 @@ export default function BentoHighlights() {
                   <Presentation size={26} />
                 </div>
                 <span className="pill-badge pill-gold" style={{ fontSize: '0.78rem' }}>
-                  عروض الاستثمار والتحكيم
+                  {isRTL ? 'عروض الاستثمار والتحكيم' : 'Defense Decks & Keynotes'}
                 </span>
               </div>
 
               <h3 style={{ fontSize: '1.4rem', fontWeight: '800', color: '#92400e', marginBottom: '0.65rem' }}>
-                عروض التحكيم والـ Pitch Decks
+                {isRTL ? 'عروض التحكيم والـ Pitch Decks' : 'Academic & Pitch Decks'}
               </h3>
               <p style={{ color: '#78350f', fontSize: '0.92rem', lineHeight: 1.65, marginBottom: '1.25rem' }}>
-                تصميم وتقديم عروض الإقناع التقنية للجان التحكيم الحكومية والجامعية وتتويجها ببروز المهارات الجماهيرية وتصدّر المراكز الأولى.
+                {isRTL 
+                  ? 'تصميم وتقديم عروض الإقناع التقنية للجان التحكيم الحكومية والجامعية وتتويجها ببروز المهارات الجماهيرية وتصدّر المراكز الأولى.'
+                  : 'Designing technical defense decks and high-impact presentations for government juries and academic committees.'}
               </p>
             </div>
 
@@ -183,12 +193,12 @@ export default function BentoHighlights() {
                 }}
               >
                 <Play size={14} />
-                <span>معاينة العرض الحي (31 سلايدز) 📊</span>
+                <span>{isRTL ? 'معاينة العرض الحي (31 سلايدز) 📊' : 'Preview Live Deck (31 Slides) 📊'}</span>
               </button>
 
               <Link to="/presentations" className="btn-secondary" style={{ width: '100%', justifyContent: 'center', padding: '0.55rem 1rem', fontSize: '0.82rem', backgroundColor: '#ffffff', borderColor: '#fde68a', color: '#92400e' }}>
-                <span>كافة العروض والمحاضرات</span>
-                <ArrowUpLeft size={15} />
+                <span>{isRTL ? 'كافة العروض والمحاضرات' : 'All Decks & Lectures'}</span>
+                <ArrowUpLeft size={15} style={{ transform: isRTL ? 'none' : 'rotate(90deg)' }} />
               </Link>
             </div>
           </div>
@@ -210,21 +220,23 @@ export default function BentoHighlights() {
                   <GraduationCap size={26} />
                 </div>
                 <span className="pill-badge pill-emerald" style={{ fontSize: '0.78rem' }}>
-                  مبادرة DEMI & iSchool
+                  {isRTL ? 'مبادرة DEMI & iSchool' : 'iSchool & DEMI Partner'}
                 </span>
               </div>
 
               <h3 style={{ fontSize: '1.4rem', fontWeight: '800', color: '#065f46', marginBottom: '0.65rem' }}>
-                التدريس التقني وتدريب الفرق
+                {isRTL ? 'التدريس التقني وتدريب الفرق' : 'Technical Tutoring & STEM Coaching'}
               </h3>
               <p style={{ color: '#047857', fontSize: '0.92rem', lineHeight: 1.65, marginBottom: '1.5rem' }}>
-                تدريب وتوجيه مئات الطلاب على الخوارزميات وتطبيقات الذكاء الاصطناعي التفاعلية لمبادرة براعم مصر الرقمية (DEMI) مع تبسيط الكود المتقدم.
+                {isRTL 
+                  ? 'تدريب وتوجيه مئات الطلاب على الخوارزميات وتطبيقات الذكاء الاصطناعي التفاعلية لمبادرة براعم مصر الرقمية (DEMI) مع تبسيط الكود المتقدم.'
+                  : 'Training 500+ students in algorithms, web technologies, and AI for iSchool and Digital Egypt Youth Initiative (DEMI).'}
               </p>
             </div>
 
             <Link to="/teaching" className="btn-secondary" style={{ width: '100%', justifyContent: 'center', padding: '0.6rem 1rem', fontSize: '0.88rem', backgroundColor: '#ffffff', borderColor: '#a7f3d0', color: '#065f46' }}>
-              <span>تفاصيل الخبرة التدريسية</span>
-              <ArrowUpLeft size={16} />
+              <span>{isRTL ? 'تفاصيل الخبرة التدريسية' : 'Tutoring Experience Details'}</span>
+              <ArrowUpLeft size={16} style={{ transform: isRTL ? 'none' : 'rotate(90deg)' }} />
             </Link>
           </div>
 
@@ -247,7 +259,7 @@ export default function BentoHighlights() {
                   </div>
                   <div>
                     <span style={{ fontSize: '0.8rem', fontWeight: '700', color: 'var(--brand-primary)', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block' }}>
-                      التوثيق والاعتمادات الرسمية
+                      {isRTL ? 'التوثيق والاعتمادات الرسمية' : 'Official Verification & Badges'}
                     </span>
                     <span style={{ fontSize: '0.9rem', fontWeight: '600', color: 'var(--text-secondary)' }}>
                       Official Institutional Badges
@@ -257,15 +269,17 @@ export default function BentoHighlights() {
 
                 <span className="pill-badge pill-blue bento-badge-interactive" style={{ padding: '0.4rem 0.95rem' }}>
                   <CheckCircle2 size={14} color="var(--brand-primary)" />
-                  <span>{totalCertificatesCount}+ شهادات واعتمادات موثقة</span>
+                  <span>{totalCertificatesCount}+ {isRTL ? 'شهادات واعتمادات موثقة' : 'Verified Credentials'}</span>
                 </span>
               </div>
 
               <h3 style={{ fontSize: '1.65rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '0.75rem', lineHeight: 1.35 }}>
-                الاعتمادات والتوصيات الرسمية (Verified Credentials)
+                {isRTL ? 'الاعتمادات والتوصيات الرسمية (Verified Credentials)' : 'Verified Credentials & Official Institutional Commendations'}
               </h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.98rem', lineHeight: 1.7, maxWidth: '620px', marginBottom: '1.75rem' }}>
-                شهادات معتمدة رسمياً من Microsoft، وزارة الاتصالات وتكنولوجيا المعلومات (MCIT)، معهد NTI، معهد ITI، و HackerRank بالإضافة إلى تقييمات العمل الحر بتقدير 5.0/5.0 نجوم بنسبة إنجاز 100%.
+                {isRTL 
+                  ? 'شهادات معتمدة رسمياً من Microsoft، وزارة الاتصالات وتكنولوجيا المعلومات (MCIT)، معهد NTI، معهد ITI، و HackerRank بالإضافة إلى تقييمات العمل الحر بتقدير 5.0/5.0 نجوم بنسبة إنجاز 100%.'
+                  : 'Official diplomas and certificates from Microsoft, MCIT Egypt, NTI, ITI, Berlitz, and HackerRank, paired with a 5.0/5.0 freelance client rating.'}
               </p>
             </div>
 
@@ -278,8 +292,8 @@ export default function BentoHighlights() {
               </div>
 
               <Link to="/credentials" className="btn-primary" style={{ padding: '0.55rem 1.25rem', fontSize: '0.9rem' }}>
-                <span>عرض الشهادات والتحقق</span>
-                <ArrowUpLeft size={16} />
+                <span>{isRTL ? 'عرض الشهادات والتحقق' : 'View Credentials & Verification'}</span>
+                <ArrowUpLeft size={16} style={{ transform: isRTL ? 'none' : 'rotate(90deg)' }} />
               </Link>
             </div>
           </div>

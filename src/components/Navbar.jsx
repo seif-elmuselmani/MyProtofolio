@@ -39,7 +39,7 @@ export default function Navbar() {
     { path: '/', label: t('nav.home') },
     { path: '/projects', label: t('nav.projects') },
     { path: '/credentials', label: t('nav.credentials') },
-    { path: '/testimonials', label: t('nav.testimonialsPreview.title') || (isRTL ? 'التوصيات والآراء' : 'Testimonials') },
+    { path: '/testimonials', label: isRTL ? 'التوصيات والآراء' : 'Testimonials' },
     { path: '/teaching', label: t('nav.teaching') },
     { path: '/presentations', label: t('nav.presentations') },
     { path: '/about', label: t('nav.about') },

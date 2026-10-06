@@ -11,10 +11,12 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { usePortfolioData } from '../context/DynamicPortfolioContext';
+import { useLanguage } from '../context/LanguageContext';
 import SlideViewer from '../components/SlideViewer';
 
 export default function Presentations() {
   const { presentationDecks } = usePortfolioData();
+  const { isRTL } = useLanguage();
   const featuredDeck = (presentationDecks || [])[0];
 
   return (
@@ -25,13 +27,15 @@ export default function Presentations() {
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <div className="pill-badge pill-gold" style={{ marginBottom: '1rem', display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}>
             <Presentation size={16} />
-            <span>العروض التقديمية والـ Pitch Decks</span>
+            <span>{isRTL ? 'العروض التقديمية والـ Pitch Decks' : 'Presentations & Pitch Decks'}</span>
           </div>
           <h1 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: '900', color: '#0f172a', marginBottom: '0.85rem', lineHeight: 1.25 }}>
-            عروض التحكيم التقنية والمناقشات الأكاديمية
+            {isRTL ? 'عروض التحكيم التقنية والمناقشات الأكاديمية' : 'Technical Defense Decks & Keynote Presentations'}
           </h1>
           <p style={{ color: '#64748b', fontSize: '1.05rem', maxWidth: '720px', margin: '0 auto', lineHeight: 1.75, fontWeight: '500' }}>
-            استعراض تفاعلي كامل لشرائح مناقشة مشروع التخرج والتصميم المفهومي والمعماري لمنظومة الذكاء الاصطناعي.
+            {isRTL 
+              ? 'استعراض تفاعلي كامل لشرائح مناقشة مشروع التخرج والتصميم المفهومي والمعماري لمنظومة الذكاء الاصطناعي.'
+              : 'Interactive slide deck viewer showcasing graduation defense slides, system architecture, and AI model design.'}
           </p>
         </div>
 
@@ -54,24 +58,24 @@ export default function Presentations() {
                 <div>
                   <div style={{ display: 'flex', gap: '0.55rem', alignItems: 'center', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
                     <span className="pill-badge pill-blue" style={{ fontSize: '0.82rem', fontWeight: '800' }}>
-                      🎓 {featuredDeck.category}
+                      🎓 {isRTL ? (featuredDeck.categoryAr || featuredDeck.category) : (featuredDeck.categoryEn || featuredDeck.category)}
                     </span>
                     <span className="pill-badge pill-emerald" style={{ fontSize: '0.82rem', fontWeight: '800' }}>
-                      🟢 {featuredDeck.slidesCount} شرائح تفاعلية بالكامل
+                      🟢 {featuredDeck.slidesCount} {isRTL ? 'شرائح تفاعلية بالكامل' : 'Interactive Slides'}
                     </span>
                   </div>
 
                   <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: '900', color: '#0f172a', lineHeight: 1.35, marginBottom: '0.65rem' }}>
-                    {featuredDeck.title}
+                    {isRTL ? (featuredDeck.titleAr || featuredDeck.title) : (featuredDeck.titleEn || featuredDeck.title)}
                   </h2>
                   <p style={{ color: '#475569', fontSize: '1.02rem', maxWidth: '780px', lineHeight: 1.8, fontWeight: '500' }}>
-                    {featuredDeck.description}
+                    {isRTL ? (featuredDeck.descriptionAr || featuredDeck.description) : (featuredDeck.descriptionEn || featuredDeck.description)}
                   </p>
                 </div>
 
                 <div className="pill-badge pill-emerald" style={{ padding: '0.85rem 1.35rem', fontSize: '0.9rem', fontWeight: '800', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
                   <Award size={18} />
-                  <span>{featuredDeck.impact}</span>
+                  <span>{isRTL ? (featuredDeck.impactAr || featuredDeck.impact) : (featuredDeck.impactEn || featuredDeck.impact)}</span>
                 </div>
               </div>
 
@@ -79,7 +83,7 @@ export default function Presentations() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', paddingTop: '1.25rem', borderTop: '1px solid #e2e8f0', marginBottom: '1.75rem' }}>
                 <span style={{ fontSize: '0.85rem', fontWeight: '800', color: '#64748b', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
                   <Cpu size={15} />
-                  <span>التقنيات المستخدمة بالعرض:</span>
+                  <span>{isRTL ? 'التقنيات المستخدمة بالعرض:' : 'Technologies & Architecture:'}</span>
                 </span>
                 {(featuredDeck.tools || []).map((tool, tIdx) => (
                   <span 
@@ -121,7 +125,7 @@ export default function Presentations() {
                     }}
                   >
                     <Download size={18} />
-                    <span>تحميل ملف العرض الأصلي (PPTX)</span>
+                    <span>{isRTL ? 'تحميل ملف العرض الأصلي (PPTX)' : 'Download Original Deck (PPTX)'}</span>
                   </a>
                 )}
 
@@ -146,7 +150,7 @@ export default function Presentations() {
                     }}
                   >
                     <ExternalLink size={18} />
-                    <span>مستودع العرض على GitHub ↗</span>
+                    <span>{isRTL ? 'مستودع العرض على GitHub ↗' : 'View Deck Repo on GitHub ↗'}</span>
                   </a>
                 )}
               </div>
